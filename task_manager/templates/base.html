@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load i18n %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+</head>
+<body>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">{% translate "Менеджер задач" %}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  {% if user.is_authenticated %}
+  <div class="collapse navbar-collapse" id="navbarsExample04">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'users_list' %}"> {% translate "Пользователи" %} </a>
+      </li>
+    </ul>
+    <div class="my-2 my-md-0">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">{{ user.username }}</a>
+            </li>
+            <li class="nav-item">
+      <a class="nav-link" href="{% url 'logout' %}">{% translate "Выход" %}</a>
+            </li>
+        </ul>
+    </div>
+  </div>
+  {% else %}
+  <div class="collapse navbar-collapse" id="navbarsExample04">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'users_list' %}"> {% translate "Пользователи" %} </a>
+      </li>
+    </ul>
+    <div class="my-2 my-md-0">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+      <a class="nav-link" href="{% url 'login' %}">{% translate "Вход" %}</a>
+            </li>
+            <li class="nav-item">
+      <a class="nav-link" href="{% url 'user_create' %}">{% translate "Регистрация" %}</a>
+            </li>
+        </ul>
+    </div>
+  </div>
+  {% endif %}
+</nav>
+{% block content %}{% endblock %}
+

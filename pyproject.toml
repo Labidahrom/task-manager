@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "hexlet-code"
+version = "0.1.0"
+description = ""
+authors = ["Labidahrom <labidahrom@yandex.ru>"]
+readme = "README.md"
+packages = [{include = "task_manager"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.1.7"
+python-dotenv = "^1.0.0"
+dj-database-url = "^1.2.0"
+django-bootstrap4 = "^22.3"
+gunicorn = "^20.1.0"
+whitenoise = "^6.4.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
