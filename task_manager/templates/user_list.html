@@ -23,7 +23,7 @@
           {% csrf_token %}
           <input type="submit" value="Изменить">
           </form>
-          <form action="{% url 'user_delete' id=user.id %}" method="get">
+          <form action="{% url 'user_delete' id=user.id %}" method="post">
           {% csrf_token %}
           <input type="submit" value="Удалить">
           </form>
