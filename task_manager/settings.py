@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+import warnings
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -140,3 +141,5 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 AUTH_USER_MODEL = 'task_manager.User'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+warnings.filterwarnings("ignore", message="No directory at", module="whitenoise.base" )

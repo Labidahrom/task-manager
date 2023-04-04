@@ -7,10 +7,15 @@ class UserManager(BaseUserManager):
     def create_user(self, username, password=None, first_name=None, last_name=None, **extra_fields):
         if not username:
             raise ValueError('username пользователя обязательно для заполнения')
-        if not first_name:
-            raise ValueError('first_name пользователя обязательно для заполнения')
-        if not last_name:
-            raise ValueError('last_name пользователя обязательно для заполнения')
+
+        if self._is_superuser(extra_fields):
+            first_name = None
+            last_name = None
+        else:
+            if not first_name:
+                raise ValueError('first_name пользователя обязательно для заполнения')
+            if not last_name:
+                raise ValueError('last_name пользователя обязательно для заполнения')
 
         user = self.model(
             username=username,
@@ -31,6 +36,8 @@ class UserManager(BaseUserManager):
     def get_by_natural_key(self, username):
         return self.get(**{self.model.USERNAME_FIELD: username})
 
+    def _is_superuser(self, extra_fields):
+        return extra_fields.get('is_admin')
 
 class User(AbstractUser):
     username = models.CharField(max_length=30, unique=True)

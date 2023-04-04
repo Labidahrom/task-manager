@@ -53,6 +53,9 @@ class UpdateUser(View):
 
     def post(self, request, *args, **kwargs):
         user_id = kwargs.get('id')
+        if user_id != request.user.id:
+            messages.warning(request, 'Вы не можете редактировать этого юзера')
+            return redirect(reverse('users_list'))
         user = User.objects.get(id=user_id)
         form = forms.UserUpdateForm(request.POST, instance=user)
         if form.is_valid():
@@ -110,4 +113,4 @@ class LogoutUser(View):
 
     def get(self, request, *args, **kwargs):
         logout(request)
-        return redirect(reverse('users_list'))
+        return redirect(reverse('index'))
