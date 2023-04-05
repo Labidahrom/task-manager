@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.views import View
 from django import forms
 from django.urls import reverse
-from task_manager.models import User
+from task_manager.models import User, Status
 from task_manager import forms
 from django.contrib.auth import authenticate, login, logout
 
@@ -114,3 +114,74 @@ class LogoutUser(View):
     def get(self, request, *args, **kwargs):
         logout(request)
         return redirect(reverse('index'))
+
+
+class StatusesListView(View):
+
+    def get(self, request, *args, **kwargs):
+        statuses = Status.objects.all()
+        return render(request, 'status_list.html', context={
+            'statuses': statuses,
+        })
+
+
+class CreateStatus(View):
+
+    def get(self, request, *args, **kwargs):
+        form = forms.StatusCreateForm()
+        return render(request, 'create_status.html', {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = forms.StatusCreateForm(request.POST)
+        if form.is_valid():
+            status = form.save(commit=False)
+            status.save()
+            messages.success(request, 'Статус успешно создан')
+            return redirect(reverse('statuses_list'))
+        return render(request, 'create_status.html', {'form': form})
+
+
+class UpdateStatus(View):
+
+    def get(self, request, *args, **kwargs):
+        status_id = kwargs.get('id')
+        if not request.user.id:
+            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            return redirect(reverse('login'))
+        updated_status = Status.objects.get(id=status_id)
+        form = forms.StatusUpdateForm(instance=updated_status)
+        return render(request, 'update_status.html', {'form': form, 'updated_status': updated_status, 'id': status_id})
+
+    def post(self, request, *args, **kwargs):
+        status_id = kwargs.get('id')
+        if not request.user.id:
+            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            return redirect(reverse('login'))
+        status = Status.objects.get(id=status_id)
+        form = forms.StatusUpdateForm(request.POST, instance=status)
+        if form.is_valid():
+            status = form.save(commit=False)
+            status.save()
+            messages.success(request, 'Статус успешно изменён')
+            return redirect(reverse('statuses_list'))
+        return render(request, 'update_status.html', {'form': form})
+    
+    
+class DeleteStatus(View):
+    def get(self, request, *args, **kwargs):
+        status_id = kwargs.get('id')
+        if not request.user.id:
+            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            return redirect(reverse('login'))
+        deleted_status = Status.objects.get(id=status_id)
+        return render(request, 'delete_status.html', {'status': deleted_status})
+
+    def post(self, request, *args, **kwargs):
+        status_id = kwargs.get('id')
+        if not request.user.id:
+            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            return redirect(reverse('login'))
+        deleted_status = Status.objects.get(id=status_id)
+        deleted_status.delete()
+        messages.success(request, 'Статус успешно удалён')
+        return redirect(reverse('statuses_list'))

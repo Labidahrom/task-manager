@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container wrapper flex-grow-1">
+    <h1>Изменение статуса</h1>
+{% if form.subject.errors %}
+<div>
+    <ul>
+    {% for error in form.subject.errors %}
+        <li><strong>{{ error|escape }}</strong></li>
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}
+<form action="{% url 'status_update' id=id %}" method="post">
+    {% csrf_token %}
+    <table border="1">
+    {{ form }}
+    </table>
+    <input type="submit" value="Изменить">
+</form>
+</div>
+{% endblock %}

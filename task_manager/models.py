@@ -39,6 +39,7 @@ class UserManager(BaseUserManager):
     def _is_superuser(self, extra_fields):
         return extra_fields.get('is_admin')
 
+
 class User(AbstractUser):
     username = models.CharField(max_length=30, unique=True)
     first_name = models.CharField(max_length=30, null=True)
@@ -55,3 +56,11 @@ class User(AbstractUser):
     @property
     def is_staff(self):
         return self.is_admin
+
+
+class Status(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.name

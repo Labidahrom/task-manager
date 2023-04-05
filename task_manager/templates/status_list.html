@@ -1,29 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Пользователи</h1>
+<h1>Статусы</h1>
+<p><a href="{% url 'status_create' %}">Создать статус</a></p>
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
       <tr>
         <th>ID</th>
-        <th>Имя пользователя</th>
-        <th>Полное имя</th>
+        <th>Имя</th>
         <th>Дата создания</th>
       </tr>
     </thead>
     <tbody>
-    {% for user in users %}
+    {% for status in statuses %}
       <tr>
-        <td>{{ user.id }}</td>
-        <td>{{ user.username }}</td>
-        <td>{{ user.first_name }} {{ user.last_name }}</td>
-        <td>{{ user.created_at }}</td>
+        <td>{{ status.id }}</td>
+        <td>{{ status.name }}</td>
+        <td>{{ status.created_at }}</td>
         <td>
-          <form action="{% url 'user_update' id=user.id %}" method="get">
+          <form action="{% url 'status_update' id=status.id %}" method="get">
           {% csrf_token %}
           <input type="submit" value="Изменить">
           </form>
-          <form action="{% url 'user_delete' id=user.id %}" method="get">
+          <form action="{% url 'status_delete' id=status.id %}" method="get">
           {% csrf_token %}
           <input type="submit" value="Удалить">
           </form>

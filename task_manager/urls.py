@@ -12,4 +12,8 @@ urlpatterns = [
     path('logout/', views.LogoutUser.as_view(), name='logout'),
     path('users/', views.UsersListView.as_view(), name='users_list'),
     path('admin/', admin.site.urls),
+    path('statuses/', views.StatusesListView.as_view(), name='statuses_list'),
+    path('statuses/create/', views.CreateStatus.as_view(), name='status_create'),
+    path('statuses/<int:id>/update/', views.UpdateStatus.as_view(), name='status_update'),
+    path('statuses/<int:id>/delete/', views.DeleteStatus.as_view(), name='status_delete'),
 ]

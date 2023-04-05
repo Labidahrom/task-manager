@@ -1,9 +1,9 @@
 from django.test import Client, TestCase
-from task_manager.models import User
+from task_manager.models import User, Status
 
 
 class SimpleTestCase(TestCase):
-    fixtures = ['users.json']
+    fixtures = ['data.json']
 
     def test_header(self):
         client = Client()
@@ -65,3 +65,35 @@ class SimpleTestCase(TestCase):
                     {'id': user.id})
         response = client.get('/users/')
         self.assertNotContains(response, "12345")
+
+    def test_status_create(self):
+        client = Client()
+        client.post('/login/',
+                    {'username': '12345',
+                     'password': '12345678'})
+        client.post('/statuses/create/',
+                    {'name': 'john2'})
+        response = client.get('/statuses/')
+        self.assertContains(response, "john2")
+
+    def test_status_update(self):
+        client = Client()
+        client.post('/login/',
+                    {'username': '12345',
+                     'password': '12345678'})
+        status = Status.objects.get(name='Быстро')
+        client.post(f'/statuses/{status.id}/update/',
+                    {'name': 'Медленно'})
+        response = client.get('/statuses/')
+        self.assertContains(response, "Медленно")
+
+    def test_status_delete(self):
+        client = Client()
+        client.post('/login/',
+                    {'username': '12345',
+                     'password': '12345678'})
+        status = Status.objects.get(name='Быстро')
+        client.post(f'/statuses/{status.id}/delete/',
+                    {'id': status.id})
+        response = client.get('/statuses/')
+        self.assertNotContains(response, "Быстро")

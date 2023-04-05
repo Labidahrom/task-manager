@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.views import View
 from django import forms
 from django.urls import reverse
-from task_manager.models import User
+from task_manager.models import User, Status
 from django.contrib.auth import authenticate, login, logout
 
 
@@ -62,5 +62,18 @@ class LoginForm(UserCreateForm, BootstrapMixin):
         fields = ['username', 'password']
 
 
-def index(request):
-    return render(request, 'base.html')
+class StatusCreateForm(BootstrapMixin, forms.ModelForm):
+
+    class Meta:
+        model = Status
+        fields = ['name']
+        widgets = {
+            'name': forms.TextInput(attrs={'label': 'name'}),
+        }
+
+
+class StatusUpdateForm(StatusCreateForm):
+
+    class Meta:
+        model = Status
+        fields = ['name']
