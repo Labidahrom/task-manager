@@ -64,3 +64,15 @@ class Status(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Task(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    description = models.TextField()
+    author = models.ForeignKey(User, on_delete=models.PROTECT, related_name='user_author')
+    assigned_to = models.ForeignKey(User, on_delete=models.PROTECT, related_name='user_assignee')
+    status = models.ForeignKey(Status, on_delete=models.PROTECT)
+    created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.name

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Просмотр задачи</h1>
+ <div>
+  <div><h2>{{ task.name }}<h2></div>
+  <div><p>{{ task.description }}<p></div>
+<table  class="table table-striped">
+  <tr>
+  <td>Автор:</td>
+  <td>{{ task.author }}</td>
+  </tr>
+  <tr>
+  <td>Исполнитель:</td>
+  <td>{{ task.assigned_to }}</td>
+  </tr>
+  <tr>
+  <td>Статус:</td>
+  <td>{{ task.status }}</td>
+  </tr>
+  <tr>
+  <td>Дата создания:</td>
+  <td>{{ task.created_at }}</td>
+  </tr>
+  <tr>
+  <td>Метки:</td>
+  <td>{{ task.description }}</td>
+  </tr>
+</table>
+</div>
+{% endblock %}

@@ -10,8 +10,8 @@
 </div>
 {% endif %}
 <h1>Удаление пользователя</h1>
-<div>Вы уверены, что хотите удалить пользователя {{ user.first_name }} {{ user.last_name }}?</div>
-<form action="{% url 'user_delete' id=user.id %}" method="post">
+<div>Вы уверены, что хотите удалить задачу {{ task.name }}?</div>
+<form action="{% url 'task_delete' id=task.id %}" method="post">
     {% csrf_token %}
     <input class="btn btn-danger"  type="submit" value="Удалить">
 </form>

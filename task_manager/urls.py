@@ -16,4 +16,9 @@ urlpatterns = [
     path('statuses/create/', views.CreateStatus.as_view(), name='status_create'),
     path('statuses/<int:id>/update/', views.UpdateStatus.as_view(), name='status_update'),
     path('statuses/<int:id>/delete/', views.DeleteStatus.as_view(), name='status_delete'),
+    path('tasks/', views.TasksListView.as_view(), name='tasks_list'),
+    path('tasks/create/', views.CreateTask.as_view(), name='task_create'),
+    path('tasks/<int:id>/update/', views.UpdateTask.as_view(), name='task_update'),
+    path('tasks/<int:id>/delete/', views.DeleteTask.as_view(), name='task_delete'),
+    path('tasks/<int:id>/', views.TaskDetailsView.as_view(), name='task_details'),
 ]

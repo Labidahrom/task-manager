@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.views import View
 from django import forms
 from django.urls import reverse
-from task_manager.models import User, Status
+from task_manager.models import User, Status, Task
 from django.contrib.auth import authenticate, login, logout
 
 
@@ -77,3 +77,26 @@ class StatusUpdateForm(StatusCreateForm):
     class Meta:
         model = Status
         fields = ['name']
+
+
+class TaskCreateForm(BootstrapMixin, forms.ModelForm):
+    assigned_to = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.Select(attrs={'label': 'assigned_to'}))
+    status = forms.ModelChoiceField(queryset=Status.objects.all(), widget=forms.Select(attrs={'label': 'status'}))
+
+
+    class Meta:
+        model = Task
+        fields = ['name', 'description', 'assigned_to', 'status']
+        widgets = {
+            'name': forms.TextInput(attrs={'label': 'name'}),
+            'description': forms.TextInput(attrs={'label': 'description'}),
+            'assigned_to': forms.TextInput(attrs={'label': 'assigned_to'}),
+            'status': forms.TextInput(attrs={'label': 'status'}),
+        }
+
+
+class TaskUpdateForm(TaskCreateForm):
+
+    class Meta:
+        model = Task
+        fields = ['name', 'description', 'assigned_to', 'status']

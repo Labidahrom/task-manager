@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Задачи</h1>
+<p><a href="{% url 'task_create' %}">Создать задачу</a></p>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Статус</th>
+        <th>Автор</th>
+        <th>Исполнитель</th>
+        <th>Дата создания</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for task in tasks %}
+      <tr>
+        <td>{{ task.id }}</td>
+        <td><a href="{% url 'task_details' id=task.id %}">{{ task.name }}</a></td>
+        <td>{{ task.status }}</td>
+        <td>{{ task.author }}</td>
+        <td>{{ task.assigned_to }}</td>
+        <td>{{ task.created_at }}</td>
+        <td>
+          <form action="{% url 'task_update' id=task.id %}" method="get">
+          {% csrf_token %}
+          <input type="submit" value="Изменить">
+          </form>
+          <form action="{% url 'task_delete' id=task.id %}" method="get">
+          {% csrf_token %}
+          <input type="submit" value="Удалить">
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+      </tbody>
+</table>
+  </div>
+{% endblock %}

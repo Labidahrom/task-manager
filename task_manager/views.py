@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.views import View
 from django import forms
 from django.urls import reverse
-from task_manager.models import User, Status
+from task_manager.models import User, Status, Task
 from task_manager import forms
 from django.contrib.auth import authenticate, login, logout
 
@@ -185,3 +185,88 @@ class DeleteStatus(View):
         deleted_status.delete()
         messages.success(request, 'Статус успешно удалён')
         return redirect(reverse('statuses_list'))
+
+
+class TasksListView(View):
+
+    def get(self, request, *args, **kwargs):
+        tasks = Task.objects.all()
+        return render(request, 'tasks_list.html', context={
+            'tasks': tasks,
+        })
+
+
+class TaskDetailsView(View):
+
+    def get(self, request, *args, **kwargs):
+        task_id = kwargs.get('id')
+        task = Task.objects.get(id=task_id)
+        return render(request, 'task_details.html', context={
+            'task': task,
+        })
+
+
+class CreateTask(View):
+
+    def get(self, request, *args, **kwargs):
+        form = forms.TaskCreateForm()
+        return render(request, 'create_task.html', {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = forms.TaskCreateForm(request.POST)
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.author = request.user
+            task.save()
+            messages.success(request, 'Задача успешно создана')
+            return redirect(reverse('tasks_list'))
+        return render(request, 'create_task.html', {'form': form})
+
+
+class UpdateTask(View):
+
+    def get(self, request, *args, **kwargs):
+        task_id = kwargs.get('id')
+        if not request.user.id:
+            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            return redirect(reverse('login'))
+        updated_task = Task.objects.get(id=task_id)
+        form = forms.TaskUpdateForm(instance=updated_task)
+        return render(request, 'update_task.html', {'form': form, 'updated_task': updated_task, 'id': task_id})
+
+    def post(self, request, *args, **kwargs):
+        task_id = kwargs.get('id')
+        if not request.user.id:
+            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            return redirect(reverse('login'))
+        task = Task.objects.get(id=task_id)
+        form = forms.TaskUpdateForm(request.POST, instance=task)
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.save()
+            messages.success(request, 'Задача успешно изменена')
+            return redirect(reverse('tasks_list'))
+        return render(request, 'update_task.html', {'form': form})
+
+
+class DeleteTask(View):
+    def get(self, request, *args, **kwargs):
+        task_id = kwargs.get('id')
+        if not request.user.id:
+            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            return redirect(reverse('login'))
+        deleted_task = Task.objects.get(id=task_id)
+        if request.user != deleted_task.author:
+            messages.warning(request, 'Задачу может удалить только её автор')
+            return redirect(reverse('tasks_list'))
+        return render(request, 'delete_task.html', {'task': deleted_task})
+
+    def post(self, request, *args, **kwargs):
+        task_id = kwargs.get('id')
+        if not request.user.id:
+            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            return redirect(reverse('login'))
+        deleted_task = Task.objects.get(id=task_id)
+        deleted_task.delete()
+        messages.success(request, 'Задача успешно удалена')
+        return redirect(reverse('tasks_list'))
