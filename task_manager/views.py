@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.views import View
 from django import forms
 from django.urls import reverse
-from task_manager.models import User, Status, Task
+from task_manager.models import User, Status, Task, Label
 from task_manager import forms
 from django.contrib.auth import authenticate, login, logout
 
@@ -201,8 +201,9 @@ class TaskDetailsView(View):
     def get(self, request, *args, **kwargs):
         task_id = kwargs.get('id')
         task = Task.objects.get(id=task_id)
+        task_labels = task.labels.values_list('name', flat=True)
         return render(request, 'task_details.html', context={
-            'task': task,
+            'task': task, 'task_labels': task_labels
         })
 
 
@@ -215,9 +216,12 @@ class CreateTask(View):
     def post(self, request, *args, **kwargs):
         form = forms.TaskCreateForm(request.POST)
         if form.is_valid():
+            selected_labels = form.cleaned_data['label']
             task = form.save(commit=False)
             task.author = request.user
             task.save()
+            task.labels.set(selected_labels)
+
             messages.success(request, 'Задача успешно создана')
             return redirect(reverse('tasks_list'))
         return render(request, 'create_task.html', {'form': form})
@@ -231,7 +235,7 @@ class UpdateTask(View):
             messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
             return redirect(reverse('login'))
         updated_task = Task.objects.get(id=task_id)
-        form = forms.TaskUpdateForm(instance=updated_task)
+        form = forms.TaskUpdateForm(instance=updated_task, initial={'label': updated_task.labels.all()})
         return render(request, 'update_task.html', {'form': form, 'updated_task': updated_task, 'id': task_id})
 
     def post(self, request, *args, **kwargs):
@@ -242,9 +246,12 @@ class UpdateTask(View):
         task = Task.objects.get(id=task_id)
         form = forms.TaskUpdateForm(request.POST, instance=task)
         if form.is_valid():
+            selected_labels = form.cleaned_data['label']
             task = form.save(commit=False)
+            task.author = request.user
             task.save()
-            messages.success(request, 'Задача успешно изменена')
+            task.labels.set(selected_labels)
+            messages.success(request, 'Задача успешно отредактирована')
             return redirect(reverse('tasks_list'))
         return render(request, 'update_task.html', {'form': form})
 
@@ -270,3 +277,74 @@ class DeleteTask(View):
         deleted_task.delete()
         messages.success(request, 'Задача успешно удалена')
         return redirect(reverse('tasks_list'))
+
+
+class LabelsListView(View):
+
+    def get(self, request, *args, **kwargs):
+        labels = Label.objects.all()
+        return render(request, 'label_list.html', context={
+            'labels': labels,
+        })
+
+
+class CreateLabel(View):
+
+    def get(self, request, *args, **kwargs):
+        form = forms.LabelCreateForm()
+        return render(request, 'create_label.html', {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = forms.LabelCreateForm(request.POST)
+        if form.is_valid():
+            label = form.save(commit=False)
+            label.save()
+            messages.success(request, 'Метка успешно создана')
+            return redirect(reverse('labels_list'))
+        return render(request, 'create_label.html', {'form': form})
+
+
+class UpdateLabel(View):
+
+    def get(self, request, *args, **kwargs):
+        label_id = kwargs.get('id')
+        if not request.user.id:
+            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            return redirect(reverse('login'))
+        updated_label = Label.objects.get(id=label_id)
+        form = forms.LabelUpdateForm(instance=updated_label)
+        return render(request, 'update_label.html', {'form': form, 'updated_label': updated_label, 'id': label_id})
+
+    def post(self, request, *args, **kwargs):
+        label_id = kwargs.get('id')
+        if not request.user.id:
+            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            return redirect(reverse('login'))
+        label = Label.objects.get(id=label_id)
+        form = forms.LabelUpdateForm(request.POST, instance=label)
+        if form.is_valid():
+            label = form.save(commit=False)
+            label.save()
+            messages.success(request, 'Метка успешно изменёна')
+            return redirect(reverse('labels_list'))
+        return render(request, 'update_label.html', {'form': form})
+
+
+class DeleteLabel(View):
+    def get(self, request, *args, **kwargs):
+        label_id = kwargs.get('id')
+        if not request.user.id:
+            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            return redirect(reverse('login'))
+        deleted_label = Label.objects.get(id=label_id)
+        return render(request, 'delete_label.html', {'label': deleted_label})
+
+    def post(self, request, *args, **kwargs):
+        label_id = kwargs.get('id')
+        if not request.user.id:
+            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            return redirect(reverse('login'))
+        deleted_label = Label.objects.get(id=label_id)
+        deleted_label.delete()
+        messages.success(request, 'Метка успешно удалёна')
+        return redirect(reverse('labels_list'))

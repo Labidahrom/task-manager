@@ -2,7 +2,7 @@
 {% block content %}
 <h1>Просмотр задачи</h1>
  <div>
-  <div><h2>{{ task.name }}<h2></div>
+  <div><h2>{{ task.name }}</h2></div>
   <div><p>{{ task.description }}<p></div>
 <table  class="table table-striped">
   <tr>
@@ -23,7 +23,27 @@
   </tr>
   <tr>
   <td>Метки:</td>
-  <td>{{ task.description }}</td>
+  <td>
+  <ul>
+  {% for i in task_labels %}
+  <li>{{ i }}</li>
+  {% endfor %}
+  </ul>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <form action="{% url 'task_update' id=task.id %}" method="get">
+  {% csrf_token %}
+  <input type="submit" value="Изменить">
+  </form>
+  </td>
+  <td>
+  <form action="{% url 'task_delete' id=task.id %}" method="get">
+  {% csrf_token %}
+  <input type="submit" value="Удалить">
+  </form>
+  </td>
   </tr>
 </table>
 </div>

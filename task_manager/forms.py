@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.views import View
 from django import forms
 from django.urls import reverse
-from task_manager.models import User, Status, Task
+from task_manager.models import User, Status, Task, Label
 from django.contrib.auth import authenticate, login, logout
 
 
@@ -82,16 +82,17 @@ class StatusUpdateForm(StatusCreateForm):
 class TaskCreateForm(BootstrapMixin, forms.ModelForm):
     assigned_to = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.Select(attrs={'label': 'assigned_to'}))
     status = forms.ModelChoiceField(queryset=Status.objects.all(), widget=forms.Select(attrs={'label': 'status'}))
-
+    label = forms.ModelMultipleChoiceField(queryset=Label.objects.all(), widget=forms.SelectMultiple(attrs={'label': 'label'}), required=False)
 
     class Meta:
         model = Task
-        fields = ['name', 'description', 'assigned_to', 'status']
+        fields = ['name', 'description', 'assigned_to', 'status', 'label']
         widgets = {
             'name': forms.TextInput(attrs={'label': 'name'}),
             'description': forms.TextInput(attrs={'label': 'description'}),
             'assigned_to': forms.TextInput(attrs={'label': 'assigned_to'}),
             'status': forms.TextInput(attrs={'label': 'status'}),
+            'label': forms.TextInput(attrs={'label': 'label'}),
         }
 
 
@@ -99,4 +100,21 @@ class TaskUpdateForm(TaskCreateForm):
 
     class Meta:
         model = Task
-        fields = ['name', 'description', 'assigned_to', 'status']
+        fields = ['name', 'description', 'assigned_to', 'status', 'label']
+
+
+class LabelCreateForm(BootstrapMixin, forms.ModelForm):
+
+    class Meta:
+        model = Label
+        fields = ['name']
+        widgets = {
+            'name': forms.TextInput(attrs={'label': 'label'}),
+        }
+
+
+class LabelUpdateForm(LabelCreateForm):
+
+    class Meta:
+        model = Label
+        fields = ['name']

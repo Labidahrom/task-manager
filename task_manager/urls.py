@@ -21,4 +21,8 @@ urlpatterns = [
     path('tasks/<int:id>/update/', views.UpdateTask.as_view(), name='task_update'),
     path('tasks/<int:id>/delete/', views.DeleteTask.as_view(), name='task_delete'),
     path('tasks/<int:id>/', views.TaskDetailsView.as_view(), name='task_details'),
+    path('labels/', views.LabelsListView.as_view(), name='labels_list'),
+    path('labels/create/', views.CreateLabel.as_view(), name='label_create'),
+    path('labels/<int:id>/update/', views.UpdateLabel.as_view(), name='label_update'),
+    path('labels/<int:id>/delete/', views.DeleteLabel.as_view(), name='label_delete'),
 ]

@@ -66,12 +66,34 @@ class Status(models.Model):
         return self.name
 
 
+class TaskLabel(models.Model):
+    task = models.ForeignKey('Task', on_delete=models.CASCADE)
+    label = models.ForeignKey('Label', on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('task', 'label')
+
+
+class Label(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.name
+
+    def delete(self, *args, **kwargs):
+        if self.tasks.exists():
+            raise Exception('Cannot delete Label object with associated tasks')
+        super().delete(*args, **kwargs)
+
+
 class Task(models.Model):
     name = models.CharField(max_length=100, unique=True)
     description = models.TextField()
     author = models.ForeignKey(User, on_delete=models.PROTECT, related_name='user_author')
     assigned_to = models.ForeignKey(User, on_delete=models.PROTECT, related_name='user_assignee')
     status = models.ForeignKey(Status, on_delete=models.PROTECT)
+    labels = models.ManyToManyField(Label, through=TaskLabel, related_name='tasks')
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
