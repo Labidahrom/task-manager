@@ -1,5 +1,5 @@
 from django.test import Client, TestCase
-from task_manager.models import User, Status, Task
+from task_manager.models import User, Status, Task, Label
 from django.urls import reverse
 
 
@@ -59,13 +59,13 @@ class SimpleTestCase(TestCase):
     def test_user_delete(self):
         client = Client()
         client.post('/login/',
-                    {'username': 'test',
+                    {'username': 'afaf',
                      'password': '12345678'})
-        user = User.objects.get(username='test')
+        user = User.objects.get(username='afaf')
         client.post(f'/users/{user.id}/delete/',
                     {'id': user.id})
         response = client.get('/users/')
-        self.assertNotContains(response, "test")
+        self.assertNotContains(response, "afaf")
 
     def test_status_create(self):
         client = Client()
@@ -93,11 +93,11 @@ class SimpleTestCase(TestCase):
         client.post('/login/',
                     {'username': '12345',
                      'password': '12345678'})
-        status = Status.objects.get(name='test')
+        status = Status.objects.get(name='test2')
         client.post(f'/statuses/{status.id}/delete/',
                     {'id': status.id})
         response = client.get('/statuses/')
-        self.assertNotContains(response, "test")
+        self.assertNotContains(response, "test2")
 
     def test_task_create(self):
         client = Client()
@@ -133,10 +133,42 @@ class SimpleTestCase(TestCase):
     def test_task_delete(self):
         client = Client()
         client.post('/login/',
-                    {'username': '12345',
+                    {'username': 'ulya',
                      'password': '12345678'})
         task = Task.objects.get(name='test')
         client.post(f'/tasks/{task.id}/delete/',
                     {'id': task.id})
         response = client.get('/tasks/')
         self.assertNotContains(response, "test")
+
+    def test_label_create(self):
+        client = Client()
+        client.post('/login/',
+                    {'username': '12345',
+                     'password': '12345678'})
+        client.post('/labels/create/',
+                    {'name': 'john2'})
+        response = client.get('/labels/')
+        self.assertContains(response, "john2")
+
+    def test_label_update(self):
+        client = Client()
+        client.post('/login/',
+                    {'username': '12345',
+                     'password': '12345678'})
+        label = Label.objects.get(name='test')
+        client.post(f'/labels/{label.id}/update/',
+                    {'name': '333'})
+        response = client.get('/labels/')
+        self.assertContains(response, "333")
+
+    def test_label_delete(self):
+        client = Client()
+        client.post('/login/',
+                    {'username': '12345',
+                     'password': '12345678'})
+        label = Label.objects.get(name='test2')
+        client.post(f'/labels/{label.id}/delete/',
+                    {'id': label.id})
+        response = client.get('/labels/')
+        self.assertNotContains(response, "test2")

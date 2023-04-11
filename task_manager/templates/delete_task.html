@@ -9,7 +9,7 @@
     </ul>
 </div>
 {% endif %}
-<h1>Удаление пользователя</h1>
+<h1>Удаление задачи</h1>
 <div>Вы уверены, что хотите удалить задачу {{ task.name }}?</div>
 <form action="{% url 'task_delete' id=task.id %}" method="post">
     {% csrf_token %}

@@ -79,9 +79,15 @@ class DeleteUser(View):
         return render(request, 'delete_user.html', {'user': deleted_user})
 
     def post(self, request, *args, **kwargs):
+        used_authors_id = [i for i in Task.objects.values_list('author', flat=True).distinct()]
+        print('used_authors_id:', used_authors_id)
+        used_assignees_id = [i for i in Task.objects.values_list('assigned_to', flat=True).distinct()]
         user_id = kwargs.get('id')
+        if user_id in used_authors_id or user_id in used_assignees_id:
+            messages.warning(request, 'Невозможно удалить пользователя, потому что он используется')
+            return redirect(reverse('users_list'))
         if user_id != request.user.id:
-            messages.warning(request, 'Вы не можете редактировать этого юзера')
+            messages.warning(request, 'Вы не можете редактировать этого пользователя')
             return redirect(reverse('users_list'))
         deleted_user = User.objects.get(id=user_id)
         deleted_user.delete()
@@ -165,8 +171,8 @@ class UpdateStatus(View):
             messages.success(request, 'Статус успешно изменён')
             return redirect(reverse('statuses_list'))
         return render(request, 'update_status.html', {'form': form})
-    
-    
+
+
 class DeleteStatus(View):
     def get(self, request, *args, **kwargs):
         status_id = kwargs.get('id')
@@ -177,7 +183,11 @@ class DeleteStatus(View):
         return render(request, 'delete_status.html', {'status': deleted_status})
 
     def post(self, request, *args, **kwargs):
+        used_statuses_id = [i.id for i in Status.objects.filter(task__isnull=False).distinct()]
         status_id = kwargs.get('id')
+        if status_id in used_statuses_id:
+            messages.warning(request, 'Невозможно удалить статус, потому что он используется')
+            return redirect(reverse('statuses_list'))
         if not request.user.id:
             messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
             return redirect(reverse('login'))
@@ -248,7 +258,6 @@ class UpdateTask(View):
         if form.is_valid():
             selected_labels = form.cleaned_data['label']
             task = form.save(commit=False)
-            task.author = request.user
             task.save()
             task.labels.set(selected_labels)
             messages.success(request, 'Задача успешно отредактирована')
@@ -340,7 +349,11 @@ class DeleteLabel(View):
         return render(request, 'delete_label.html', {'label': deleted_label})
 
     def post(self, request, *args, **kwargs):
+        used_labels_id = [i.id for i in Label.objects.filter(tasklabel__isnull=False).distinct()]
         label_id = kwargs.get('id')
+        if label_id in used_labels_id:
+            messages.warning(request, 'Невозможно удалить метку, потому что она используется')
+            return redirect(reverse('labels_list'))
         if not request.user.id:
             messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
             return redirect(reverse('login'))
