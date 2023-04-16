@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.views import View
 from django import forms
 from django.urls import reverse
-from task_manager.models import User, Status, Task, Label
+from task_manager.models import User, Status, Task, Label, StatusFilter, TaskFilter
 from task_manager import forms
 from django.contrib.auth import authenticate, login, logout
 
@@ -126,8 +126,9 @@ class StatusesListView(View):
 
     def get(self, request, *args, **kwargs):
         statuses = Status.objects.all()
+        f = StatusFilter(request.GET, queryset=Status.objects.all())
         return render(request, 'status_list.html', context={
-            'statuses': statuses,
+            'statuses': statuses, 'filter': f
         })
 
 
@@ -201,8 +202,9 @@ class TasksListView(View):
 
     def get(self, request, *args, **kwargs):
         tasks = Task.objects.all()
+        f = TaskFilter(request.GET, queryset=Task.objects.all())
         return render(request, 'tasks_list.html', context={
-            'tasks': tasks,
+            'tasks': tasks, 'filter': f
         })
 
 

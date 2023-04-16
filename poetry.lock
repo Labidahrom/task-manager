@@ -87,6 +87,21 @@ beautifulsoup4 = ">=4.8.0"
 Django = ">=3.2"
 
 [[package]]
+name = "django-filter"
+version = "23.1"
+description = "Django-filter is a reusable Django application for allowing users to filter querysets dynamically."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "django-filter-23.1.tar.gz", hash = "sha256:dee5dcf2cea4d7f767e271b6d01f767fce7500676d5e5dc58dac8154000b87df"},
+    {file = "django_filter-23.1-py3-none-any.whl", hash = "sha256:e3c52ad83c32fb5882125105efb5fea2a1d6a85e7dc64b04ef52edbf14451b6c"},
+]
+
+[package.dependencies]
+Django = ">=3.2"
+
+[[package]]
 name = "gunicorn"
 version = "20.1.0"
 description = "WSGI HTTP Server for UNIX"
@@ -193,4 +208,4 @@ brotli = ["Brotli"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "25ed714aca1adb035d9dac033cbb85ae0d396c3e3e22651d15728232918d97d8"
+content-hash = "aaad688edf607da24e5fdae0a842e0164fb02c32bdc55330319748d9ba3af293"
