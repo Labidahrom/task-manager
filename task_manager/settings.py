@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY")
 DATABASE_URL = os.getenv("DATABASE_URL")
-# DJANGO_DEBUG = os.getenv("DJANGO_DEBUG")
+DJANGO_DEBUG = os.getenv("DJANGO_DEBUG")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +37,7 @@ ALLOWED_HOSTS = [
     'webserver',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://*.railway.app','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://*','https://*.127.0.0.1']
 
 # Application definition
 
