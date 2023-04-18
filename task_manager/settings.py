@@ -30,7 +30,7 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 DJANGO_DEBUG = os.getenv("DJANGO_DEBUG")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(int(os.environ.get('DJANGO_DEBUG', '1')))
 
 ALLOWED_HOSTS = [
     '*',
