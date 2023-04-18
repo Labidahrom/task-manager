@@ -37,6 +37,7 @@ ALLOWED_HOSTS = [
     'webserver',
 ]
 
+CSRF_TRUSTED_ORIGINS = ['https://*.railway.app','https://*.127.0.0.1']
 
 # Application definition
 
@@ -88,7 +89,7 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-if DEBUG:
+if not DEBUG:
     DATABASES = {
         'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'), engine='django.db.backends.postgresql')
     }
