@@ -28,6 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 DATABASE_URL = os.getenv("DATABASE_URL")
 DJANGO_DEBUG = os.getenv("DJANGO_DEBUG")
+POST_SERVER_ITEM_ACCESS_TOKEN = os.getenv("POST_SERVER_ITEM_ACCESS_TOKEN")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(int(os.environ.get('DJANGO_DEBUG', '1')))
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -152,3 +154,10 @@ AUTH_USER_MODEL = 'task_manager.User'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 warnings.filterwarnings("ignore", message="No directory at", module="whitenoise.base" )
+
+ROLLBAR = {
+    'access_token': POST_SERVER_ITEM_ACCESS_TOKEN,
+    'environment': 'development' if DEBUG else 'production',
+    'code_version': '1.0',
+    'root': BASE_DIR,
+}

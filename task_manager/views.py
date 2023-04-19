@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
 from django.contrib import messages
 from django.views import View
 from django import forms
@@ -9,6 +9,9 @@ from django.contrib.auth import authenticate, login, logout
 
 
 def index(request):
+    a = None
+    a.hello() # Creating an error with an invalid line of code
+    return HttpResponse("Hello, world. You're at the pollapp index.")
     return render(request, 'base.html')
 
 
