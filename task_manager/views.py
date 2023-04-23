@@ -1,7 +1,6 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views import View
-from django import forms
 from django.urls import reverse
 from task_manager.models import User, Status, Task, Label
 from task_manager import forms
@@ -42,25 +41,30 @@ class UpdateUser(View):
     def get(self, request, *args, **kwargs):
         user_id = kwargs.get('id')
         if not request.user.id:
-            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            messages.warning(request, 'Вы не авторизованы! '
+                                      'Пожалуйста, выполните вход.')
             return redirect(reverse('login'))
         if user_id != request.user.id:
-            messages.warning(request, 'У вас нет прав для изменения другого пользователя.')
+            messages.warning(request, 'У вас нет прав для '
+                                      'изменения другого пользователя.')
             return redirect(reverse('users_list'))
         updated_user = User.objects.get(id=user_id)
         form = forms.UserUpdateForm(instance=updated_user)
-        return render(request, 'update_user.html', {'form': form, 'updated_user': updated_user, 'id': user_id})
+        return render(request, 'update_user.html',
+                      {'form': form, 'updated_user': updated_user,
+                       'id': user_id})
 
     def post(self, request, *args, **kwargs):
         user_id = kwargs.get('id')
         if user_id != request.user.id:
-            messages.warning(request, 'Вы не можете редактировать этого юзера')
+            messages.warning(request, 'Вы не можете '
+                                      'редактировать этого юзера')
             return redirect(reverse('users_list'))
         user = User.objects.get(id=user_id)
         form = forms.UserUpdateForm(request.POST, instance=user)
         if form.is_valid():
-            user = form.save(commit=False)  # Создаем объект user, но не сохраняем его в базе данных
-            user.set_password(request.POST.get('password'))  # Устанавливаем зашифрованный пароль
+            user = form.save(commit=False)
+            user.set_password(request.POST.get('password'))
             user.save()
             return redirect(reverse('users_list'))
         return render(request, 'update_user.html', {'form': form})
@@ -70,24 +74,33 @@ class DeleteUser(View):
     def get(self, request, *args, **kwargs):
         user_id = kwargs.get('id')
         if not request.user.id:
-            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            messages.warning(request, 'Вы не авторизованы! '
+                                      'Пожалуйста, выполните вход.')
             return redirect(reverse('login'))
         if user_id != request.user.id:
-            messages.warning(request, 'У вас нет прав для изменения другого пользователя.')
+            messages.warning(request, 'У вас нет прав для изменения '
+                                      'другого пользователя.')
             return redirect(reverse('users_list'))
         deleted_user = User.objects.get(id=user_id)
-        return render(request, 'delete_user.html', {'user': deleted_user})
+        return render(request, 'delete_user.html',
+                      {'user': deleted_user})
 
     def post(self, request, *args, **kwargs):
-        used_authors_id = [i for i in Task.objects.values_list('author', flat=True).distinct()]
+        used_authors_id = \
+            [i for i in Task.objects.values_list('author',
+                                                 flat=True).distinct()]
         print('used_authors_id:', used_authors_id)
-        used_assignees_id = [i for i in Task.objects.values_list('assigned_to', flat=True).distinct()]
+        used_assignees_id = \
+            [i for i in Task.objects.values_list('assigned_to',
+                                                 flat=True).distinct()]
         user_id = kwargs.get('id')
         if user_id in used_authors_id or user_id in used_assignees_id:
-            messages.warning(request, 'Невозможно удалить пользователя, потому что он используется')
+            messages.warning(request, 'Невозможно удалить пользователя, '
+                                      'потому что он используется')
             return redirect(reverse('users_list'))
         if user_id != request.user.id:
-            messages.warning(request, 'Вы не можете редактировать этого пользователя')
+            messages.warning(request, 'Вы не можете редактировать этого '
+                                      'пользователя')
             return redirect(reverse('users_list'))
         deleted_user = User.objects.get(id=user_id)
         deleted_user.delete()
@@ -103,7 +116,8 @@ class LoginUser(View):
     def post(self, request, *args, **kwargs):
         username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, username=username,
+                            password=password)
 
         if user is not None:
             login(request, user)
@@ -111,8 +125,13 @@ class LoginUser(View):
                 messages.success(request, 'Вы залогинены')
             return redirect(reverse('users_list'))
         else:
-            messages.warning(request, 'Пожалуйста, введите правильные имя пользователя и пароль. Оба поля могут быть чувствительны к регистру.')
-            return render(request, 'login_user.html', {'form': forms.LoginForm()})
+            messages.warning(request,
+                             'Пожалуйста, введите правильные '
+                             'имя пользователя и пароль. Оба '
+                             'поля могут быть чувствительны '
+                             'к регистру.')
+            return render(request, 'login_user.html',
+                          {'form': forms.LoginForm()})
 
 
 class LogoutUser(View):
@@ -152,16 +171,22 @@ class UpdateStatus(View):
     def get(self, request, *args, **kwargs):
         status_id = kwargs.get('id')
         if not request.user.id:
-            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            messages.warning(request, 'Вы не авторизованы! '
+                                      'Пожалуйста, выполните вход.')
             return redirect(reverse('login'))
         updated_status = Status.objects.get(id=status_id)
         form = forms.StatusUpdateForm(instance=updated_status)
-        return render(request, 'update_status.html', {'form': form, 'updated_status': updated_status, 'id': status_id})
+        return render(request,
+                      'update_status.html',
+                      {'form': form,
+                       'updated_status': updated_status,
+                       'id': status_id})
 
     def post(self, request, *args, **kwargs):
         status_id = kwargs.get('id')
         if not request.user.id:
-            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            messages.warning(request, 'Вы не авторизованы! '
+                                      'Пожалуйста, выполните вход.')
             return redirect(reverse('login'))
         status = Status.objects.get(id=status_id)
         form = forms.StatusUpdateForm(request.POST, instance=status)
@@ -177,19 +202,26 @@ class DeleteStatus(View):
     def get(self, request, *args, **kwargs):
         status_id = kwargs.get('id')
         if not request.user.id:
-            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            messages.warning(request, 'Вы не авторизованы! '
+                                      'Пожалуйста, выполните вход.')
             return redirect(reverse('login'))
         deleted_status = Status.objects.get(id=status_id)
-        return render(request, 'delete_status.html', {'status': deleted_status})
+        return render(request, 'delete_status.html',
+                      {'status': deleted_status})
 
     def post(self, request, *args, **kwargs):
-        used_statuses_id = [i.id for i in Status.objects.filter(task__isnull=False).distinct()]
+        used_statuses_id = \
+            [i.id for i in Status.objects.filter(
+                task__isnull=False).distinct()]
         status_id = kwargs.get('id')
         if status_id in used_statuses_id:
-            messages.warning(request, 'Невозможно удалить статус, потому что он используется')
+            messages.warning(request, 'Невозможно удалить '
+                                      'статус, потому что он '
+                                      'используется')
             return redirect(reverse('statuses_list'))
         if not request.user.id:
-            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            messages.warning(request, 'Вы не авторизованы! '
+                                      'Пожалуйста, выполните вход.')
             return redirect(reverse('login'))
         deleted_status = Status.objects.get(id=status_id)
         deleted_status.delete()
@@ -201,7 +233,9 @@ class TasksListView(View):
 
     def get(self, request, *args, **kwargs):
         tasks = Task.objects.all()
-        f = forms.TaskFilter(request.GET, queryset=Task.objects.all(), request=request)
+        f = forms.TaskFilter(request.GET,
+                             queryset=Task.objects.all(),
+                             request=request)
         return render(request, 'tasks_list.html', context={
             'tasks': tasks, 'filter': f
         })
@@ -243,16 +277,22 @@ class UpdateTask(View):
     def get(self, request, *args, **kwargs):
         task_id = kwargs.get('id')
         if not request.user.id:
-            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            messages.warning(request, 'Вы не авторизованы! '
+                                      'Пожалуйста, выполните вход.')
             return redirect(reverse('login'))
         updated_task = Task.objects.get(id=task_id)
-        form = forms.TaskUpdateForm(instance=updated_task, initial={'label': updated_task.labels.all()})
-        return render(request, 'update_task.html', {'form': form, 'updated_task': updated_task, 'id': task_id})
+        form = \
+            forms.TaskUpdateForm(instance=updated_task, initial={
+                'label': updated_task.labels.all()})
+        return render(request, 'update_task.html',
+                      {'form': form, 'updated_task': updated_task,
+                       'id': task_id})
 
     def post(self, request, *args, **kwargs):
         task_id = kwargs.get('id')
         if not request.user.id:
-            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            messages.warning(request, 'Вы не авторизованы! '
+                                      'Пожалуйста, выполните вход.')
             return redirect(reverse('login'))
         task = Task.objects.get(id=task_id)
         form = forms.TaskUpdateForm(request.POST, instance=task)
@@ -270,18 +310,23 @@ class DeleteTask(View):
     def get(self, request, *args, **kwargs):
         task_id = kwargs.get('id')
         if not request.user.id:
-            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            messages.warning(request, 'Вы не авторизованы! Пожалуйста, '
+                                      'выполните вход.')
             return redirect(reverse('login'))
         deleted_task = Task.objects.get(id=task_id)
         if request.user != deleted_task.author:
-            messages.warning(request, 'Задачу может удалить только её автор')
+            messages.warning(request, 'Задачу может удалить '
+                                      'только её автор')
             return redirect(reverse('tasks_list'))
-        return render(request, 'delete_task.html', {'task': deleted_task})
+        return render(request, 'delete_task.html',
+                      {'task': deleted_task})
 
     def post(self, request, *args, **kwargs):
         task_id = kwargs.get('id')
         if not request.user.id:
-            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            messages.warning(request,
+                             'Вы не авторизованы! '
+                             'Пожалуйста, выполните вход.')
             return redirect(reverse('login'))
         deleted_task = Task.objects.get(id=task_id)
         deleted_task.delete()
@@ -302,16 +347,19 @@ class CreateLabel(View):
 
     def get(self, request, *args, **kwargs):
         form = forms.LabelCreateForm()
-        return render(request, 'create_label.html', {'form': form})
+        return render(request, 'create_label.html',
+                      {'form': form})
 
     def post(self, request, *args, **kwargs):
         form = forms.LabelCreateForm(request.POST)
         if form.is_valid():
             label = form.save(commit=False)
             label.save()
-            messages.success(request, 'Метка успешно создана')
+            messages.success(request,
+                             'Метка успешно создана')
             return redirect(reverse('labels_list'))
-        return render(request, 'create_label.html', {'form': form})
+        return render(request, 'create_label.html',
+                      {'form': form})
 
 
 class UpdateLabel(View):
@@ -319,16 +367,20 @@ class UpdateLabel(View):
     def get(self, request, *args, **kwargs):
         label_id = kwargs.get('id')
         if not request.user.id:
-            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            messages.warning(request, 'Вы не авторизованы! '
+                                      'Пожалуйста, выполните вход.')
             return redirect(reverse('login'))
         updated_label = Label.objects.get(id=label_id)
         form = forms.LabelUpdateForm(instance=updated_label)
-        return render(request, 'update_label.html', {'form': form, 'updated_label': updated_label, 'id': label_id})
+        return render(request, 'update_label.html',
+                      {'form': form, 'updated_label': updated_label,
+                       'id': label_id})
 
     def post(self, request, *args, **kwargs):
         label_id = kwargs.get('id')
         if not request.user.id:
-            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            messages.warning(request, 'Вы не авторизованы! '
+                                      'Пожалуйста, выполните вход.')
             return redirect(reverse('login'))
         label = Label.objects.get(id=label_id)
         form = forms.LabelUpdateForm(request.POST, instance=label)
@@ -344,19 +396,25 @@ class DeleteLabel(View):
     def get(self, request, *args, **kwargs):
         label_id = kwargs.get('id')
         if not request.user.id:
-            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            messages.warning(request, 'Вы не авторизованы! '
+                                      'Пожалуйста, выполните вход.')
             return redirect(reverse('login'))
         deleted_label = Label.objects.get(id=label_id)
-        return render(request, 'delete_label.html', {'label': deleted_label})
+        return render(request, 'delete_label.html',
+                      {'label': deleted_label})
 
     def post(self, request, *args, **kwargs):
-        used_labels_id = [i.id for i in Label.objects.filter(tasklabel__isnull=False).distinct()]
+        used_labels_id = \
+            [i.id for i in
+             Label.objects.filter(tasklabel__isnull=False).distinct()]
         label_id = kwargs.get('id')
         if label_id in used_labels_id:
-            messages.warning(request, 'Невозможно удалить метку, потому что она используется')
+            messages.warning(request, 'Невозможно удалить метку, '
+                                      'потому что она используется')
             return redirect(reverse('labels_list'))
         if not request.user.id:
-            messages.warning(request, 'Вы не авторизованы! Пожалуйста, выполните вход.')
+            messages.warning(request, 'Вы не авторизованы! '
+                                      'Пожалуйста, выполните вход.')
             return redirect(reverse('login'))
         deleted_label = Label.objects.get(id=label_id)
         deleted_label.delete()

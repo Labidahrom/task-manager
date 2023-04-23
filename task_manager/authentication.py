@@ -1,6 +1,7 @@
 from django.contrib.auth.backends import BaseBackend
 from task_manager.models import User, UserManager
 
+
 class CustomUserModelBackend(BaseBackend):
     def authenticate(self, request, username=None, password=None, **kwargs):
         try:

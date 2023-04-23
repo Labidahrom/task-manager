@@ -14,4 +14,5 @@ start:
 shell:
 	poetry run python manage.py shell
 
-
+lint:
+	poetry run flake8 task_manager
