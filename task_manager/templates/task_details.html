@@ -1,28 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Просмотр задачи</h1>
+{% load i18n %}
+<h1>{% translate "Просмотр задачи" %}</h1>
  <div>
   <div><h2>{{ task.name }}</h2></div>
   <div><p>{{ task.description }}<p></div>
 <table  class="table table-striped">
   <tr>
-  <td>Автор:</td>
+  <td>{% translate "Автор:" %}</td>
   <td>{{ task.author }}</td>
   </tr>
   <tr>
-  <td>Исполнитель:</td>
+  <td>{% translate "Исполнитель:" %}</td>
   <td>{{ task.assigned_to }}</td>
   </tr>
   <tr>
-  <td>Статус:</td>
+  <td>{% translate "Статус:" %}</td>
   <td>{{ task.status }}</td>
   </tr>
   <tr>
-  <td>Дата создания:</td>
-  <td>{{ task.created_at }}</td>
+  <td>{% translate "Дата создания:" %}</td>
+  <td>{{ task.created_at|date:"d.m.Y H:i" }}</td>
   </tr>
   <tr>
-  <td>Метки:</td>
+  <td>{% translate "Метки:" %}</td>
   <td>
   <ul>
   {% for i in task_labels %}

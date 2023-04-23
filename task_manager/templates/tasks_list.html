@@ -1,21 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Задачи</h1>
-<p><a href="{% url 'task_create' %}">Создать задачу</a></p>
+{% load i18n %}
+<h1>{% translate "Задачи" %}</h1>
+<p><a href="{% url 'task_create' %}">{% translate "Создать задачу" %}</a></p>
 <div class="table-responsive">
     <form method="get">
       {{ filter.form.as_p }}
-      <input type="submit" />
+      <input type="submit" value="Показать"/>
     </form>
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>ID</th>
-        <th>Имя</th>
-        <th>Статус</th>
-        <th>Автор</th>
-        <th>Исполнитель</th>
-        <th>Дата создания</th>
+        <th>{% translate "ID" %}</th>
+        <th>{% translate "Имя" %}</th>
+        <th>{% translate "Статус" %}</th>
+        <th>{% translate "Автор" %}</th>
+        <th>{% translate "Исполнитель" %}</th>
+        <th>{% translate "Дата создания" %}</th>
       </tr>
     </thead>
     <tbody>
@@ -26,7 +27,7 @@
         <td>{{ task.status }}</td>
         <td>{{ task.author }}</td>
         <td>{{ task.assigned_to }}</td>
-        <td>{{ task.created_at }}</td>
+        <td>{{ task.created_at|date:"d.m.Y H:i" }}</td>
         <td>
           <form action="{% url 'task_update' id=task.id %}" method="get">
           {% csrf_token %}

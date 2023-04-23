@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+{% load i18n %}
 {% if form.subject.errors %}
 <div>
     <ul>
@@ -9,7 +10,7 @@
     </ul>
 </div>
 {% endif %}
-<h1>Удаление статуса</h1>
+<h1>{% translate "Удаление статуса" %}</h1>
 <div>Вы уверены, что хотите удалить {{ status.name }}?</div>
 <form action="{% url 'status_delete' id=status.id %}" method="post">
     {% csrf_token %}

@@ -1,18 +1,15 @@
-from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.views import View
 from django import forms
 from django.urls import reverse
-from task_manager.models import User, Status, Task, Label, StatusFilter, TaskFilter
+from task_manager.models import User, Status, Task, Label
 from task_manager import forms
 from django.contrib.auth import authenticate, login, logout
 
 
 def index(request):
-    a = None
-    a.hello() # Creating an error with an invalid line of code
-    return HttpResponse("Hello, world. You're at the pollapp index.")
-    return render(request, 'base.html')
+    return render(request, 'index.html')
 
 
 class UsersListView(View):
@@ -129,9 +126,8 @@ class StatusesListView(View):
 
     def get(self, request, *args, **kwargs):
         statuses = Status.objects.all()
-        f = StatusFilter(request.GET, queryset=Status.objects.all())
         return render(request, 'status_list.html', context={
-            'statuses': statuses, 'filter': f
+            'statuses': statuses
         })
 
 
@@ -205,7 +201,7 @@ class TasksListView(View):
 
     def get(self, request, *args, **kwargs):
         tasks = Task.objects.all()
-        f = TaskFilter(request.GET, queryset=Task.objects.all())
+        f = forms.TaskFilter(request.GET, queryset=Task.objects.all(), request=request)
         return render(request, 'tasks_list.html', context={
             'tasks': tasks, 'filter': f
         })

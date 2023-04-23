@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+{% load i18n %}
 {% if form.subject.errors %}
 <div>
     <ul>
@@ -9,7 +10,7 @@
     </ul>
 </div>
 {% endif %}
-<h1>Удаление метки</h1>
+<h1>{% translate "Удаление метки" %}</h1>
 <div>Вы уверены, что хотите удалить {{ label.name }}?</div>
 <form action="{% url 'label_delete' id=label.id %}" method="post">
     {% csrf_token %}

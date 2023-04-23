@@ -1,14 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Метки</h1>
-<p><a href="{% url 'label_create' %}">Создать метку</a></p>
+{% load i18n %}
+<h1>{% translate "Метки" %}</h1>
+<p><a href="{% url 'label_create' %}">{% translate "Создать метку" %}</a></p>
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>ID</th>
-        <th>Имя</th>
-        <th>Дата создания</th>
+        <th>{% translate "ID" %}</th>
+        <th>{% translate "Имя" %}</th>
+        <th>{% translate "Дата создания" %}</th>
       </tr>
     </thead>
     <tbody>
@@ -16,7 +17,7 @@
       <tr>
         <td>{{ label.id }}</td>
         <td>{{ label.name }}</td>
-        <td>{{ label.created_at }}</td>
+        <td>{{ label.created_at|date:"d.m.Y H:i" }}</td>
         <td>
           <form action="{% url 'label_update' id=label.id %}" method="get">
           {% csrf_token %}

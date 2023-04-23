@@ -5,6 +5,7 @@ from django import forms
 from django.urls import reverse
 from task_manager.models import User, Status, Task, Label
 from django.contrib.auth import authenticate, login, logout
+import django_filters
 
 
 class BootstrapMixin:
@@ -118,3 +119,35 @@ class LabelUpdateForm(LabelCreateForm):
     class Meta:
         model = Label
         fields = ['name']
+
+
+class TaskFilter(django_filters.FilterSet):
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.get('request', None)
+        super().__init__(*args, **kwargs)
+
+    status = django_filters.ModelChoiceFilter(
+        queryset=Status.objects.all(),
+        to_field_name='name'
+    )
+    author = django_filters.ModelChoiceFilter(
+        queryset=User.objects.all(),
+        to_field_name='username'
+    )
+    assigned_to = django_filters.ModelChoiceFilter(
+        queryset=User.objects.all(),
+        to_field_name='username'
+    )
+    is_authorized = django_filters.BooleanFilter(method='filter_by_authorized', widget=forms.CheckboxInput(), label="Только свои задачи")
+
+    class Meta:
+        model = Task
+        fields = ['status', 'author', 'assigned_to', 'is_authorized']
+
+    def filter_by_authorized(self, queryset, author, value):
+        authorized_user = getattr(self.request, 'user', None)
+
+        if value:
+            return queryset.filter(author=authorized_user.id)
+        else:
+            return queryset

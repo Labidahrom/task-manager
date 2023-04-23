@@ -12,15 +12,11 @@
       </tr>
     </thead>
     <tbody>
-    <form method="get">
-        {{ filter.form.as_p }}
-        <input type="submit" />
-    </form>
-    {% for status in filter.qs %}
+    {% for status in statuses %}
       <tr>
         <td>{{ status.id }}</td>
         <td>{{ status.name }}</td>
-        <td>{{ status.created_at }}</td>
+        <td>{{ status.created_at|date:"d.m.Y H:i" }}</td>
         <td>
           <form action="{% url 'status_update' id=status.id %}" method="get">
           {% csrf_token %}
