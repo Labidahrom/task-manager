@@ -26,3 +26,6 @@ jobs:
         run: |
           make lint
           make test
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          POST_SERVER_ITEM_ACCESS_TOKEN: ${{ secrets.POST_SERVER_ITEM_ACCESS_TOKEN }}
