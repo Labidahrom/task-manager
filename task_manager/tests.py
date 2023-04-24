@@ -4,7 +4,7 @@ from django.urls import reverse
 
 
 class SimpleTestCase(TestCase):
-    fixtures = ['data.json']
+    fixtures = ['dump.json']
 
     def test_header(self):
         client = Client()
@@ -93,11 +93,11 @@ class SimpleTestCase(TestCase):
         client.post('/login/',
                     {'username': '12345',
                      'password': '12345678'})
-        status = Status.objects.get(name='test2')
+        status = Status.objects.get(name='Норма44')
         client.post(f'/statuses/{status.id}/delete/',
                     {'id': status.id})
         response = client.get('/statuses/')
-        self.assertNotContains(response, "test2")
+        self.assertNotContains(response, "Норма44")
 
     def test_task_create(self):
         client = Client()
@@ -135,11 +135,11 @@ class SimpleTestCase(TestCase):
         client.post('/login/',
                     {'username': 'ulya',
                      'password': '12345678'})
-        task = Task.objects.get(name='test')
+        task = Task.objects.get(name='test344')
         client.post(f'/tasks/{task.id}/delete/',
                     {'id': task.id})
         response = client.get('/tasks/')
-        self.assertNotContains(response, "test")
+        self.assertNotContains(response, "test344")
 
     def test_label_create(self):
         client = Client()
@@ -167,8 +167,8 @@ class SimpleTestCase(TestCase):
         client.post('/login/',
                     {'username': '12345',
                      'password': '12345678'})
-        label = Label.objects.get(name='test2')
+        label = Label.objects.get(name='test3')
         client.post(f'/labels/{label.id}/delete/',
                     {'id': label.id})
         response = client.get('/labels/')
-        self.assertNotContains(response, "test2")
+        self.assertNotContains(response, "test3")

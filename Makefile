@@ -16,3 +16,6 @@ shell:
 
 lint:
 	poetry run flake8 task_manager
+
+test:
+	poetry run python3 manage.py test

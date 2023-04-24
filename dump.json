@@ -1,0 +1,394 @@
+[
+{
+  "model": "sessions.session",
+  "pk": "7g4f8hqbxd05ece3h794jjxoe38ms757",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSED5TG4dO83kBmgUjU0Ke3K-O_apAvd3nPOfYlI21rj1ssSpyzOQoM4_Y5M6VHaTvKd2m2WaW7rMrHcFXnQLq9zLs_L4f4dVOr1WxsXELV3icEZGmzRyJA8qJE9B_KIzqMCA8HymEmZFHLwLsBgUdtixPsD26M2zw:1pq89s:T9x-xY_HK6-6XXsPu-dd1piioK3xCreKjFD5Vxo5CJs",
+    "expire_date": "2023-05-06T07:59:48.667Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "8ppuiwlt83xan2prcibdl24nut6hr9ms",
+  "fields": {
+    "session_data": ".eJxVjDkOwjAURO_iGlkJXkNJzxmsvxkHUCzFSYW4O4mUAsqZ92beKsG6lLQ2mdPI6qJ6p06_JQI9ZdoJP2C6V011WuYR9a7ogzZ9qyyv6-H-HRRoZVsHkCzkz4BiIURHhoyzmXDLgSB7oBCRh8yGeo-h69CiZYpsBvHk1ecLVZs56Q:1po61f:vsKJqoUrfdKSsHAGgQX54TcZGfggvz3Y3DCHjV-4QDc",
+    "expire_date": "2023-04-30T17:18:55.254Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "jm8ksggd809xbri7i1ktje0aqi6l6yj7",
+  "fields": {
+    "session_data": ".eJxVjDkOwjAURO_iGlkJXkNJzxmsvxkHUCzFSYW4O4mUAsqZ92beKsG6lLQ2mdPI6qJ6p06_JQI9ZdoJP2C6V011WuYR9a7ogzZ9qyyv6-H-HRRoZVsHkCzkz4BiIURHhoyzmXDLgSB7oBCRh8yGeo-h69CiZYpsBvHk1ecLVZs56Q:1pqoJ6:cuBt3iJwKFgKjHRFuOPnMPonpaPgyiiNczDE4ZQgbzs",
+    "expire_date": "2023-05-08T05:00:08.420Z"
+  }
+},
+{
+  "model": "task_manager.user",
+  "fields": {
+    "password": "pbkdf2_sha256$390000$T0JeQ2LnoclyKPMligzjpC$jlUfWxhnXNngZ6UQK8cL3QzO3TKC44vwVfL25/jWeN8=",
+    "last_login": "2023-04-01T09:04:21.685Z",
+    "is_superuser": false,
+    "email": "",
+    "date_joined": "2023-03-30T16:08:23.034Z",
+    "username": "fgsgsg",
+    "first_name": "nol",
+    "last_name": "fagfa",
+    "created_at": "2023-03-30T16:08:23.034Z",
+    "is_active": true,
+    "is_admin": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "task_manager.user",
+  "fields": {
+    "password": "pbkdf2_sha256$390000$LbeFz36meCAVGBWvNzOrkg$muhFR28jT0YL3XHqvxgZtpYQ3w+rsvO/C5tto3n63Nk=",
+    "last_login": "2023-04-24T05:00:08.413Z",
+    "is_superuser": false,
+    "email": "",
+    "date_joined": "2023-04-01T09:33:48.738Z",
+    "username": "12345",
+    "first_name": "dafa",
+    "last_name": "dasfasf",
+    "created_at": "2023-04-01T09:33:48.738Z",
+    "is_active": true,
+    "is_admin": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "task_manager.user",
+  "fields": {
+    "password": "pbkdf2_sha256$390000$dcKIZsQDPBLGaFQZ7ZFVk8$S7nRIX/hChVT5bXOpMYSDSDMpaUFJwL8yQhWhe/AoAo=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "",
+    "date_joined": "2023-04-03T08:50:51.238Z",
+    "username": "zopa2",
+    "first_name": "rgrs",
+    "last_name": "fgdsd",
+    "created_at": "2023-04-03T08:50:51.238Z",
+    "is_active": true,
+    "is_admin": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "task_manager.user",
+  "fields": {
+    "password": "pbkdf2_sha256$390000$jobahO26li3AHpDqeS2pAa$8Z2AmPqAubsuM6yr21RWsRC106H0vY1U7x2bSkgHMg4=",
+    "last_login": "2023-04-03T09:43:10.468Z",
+    "is_superuser": false,
+    "email": "labidahrom@yandex.ru",
+    "date_joined": "2023-04-03T09:42:33.695Z",
+    "username": "admin",
+    "first_name": null,
+    "last_name": null,
+    "created_at": "2023-04-03T09:42:33.694Z",
+    "is_active": true,
+    "is_admin": true,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "task_manager.user",
+  "fields": {
+    "password": "pbkdf2_sha256$390000$CkCQqTshCPAKp2mzJikeTe$b8G/uLtD/CMgoj8Z/r2QL0n1r1xM1qzEKLJjsQZHpz4=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "",
+    "date_joined": "2023-04-05T14:37:46.133Z",
+    "username": "2",
+    "first_name": "Ulya",
+    "last_name": "1",
+    "created_at": "2023-04-05T14:37:46.133Z",
+    "is_active": true,
+    "is_admin": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "task_manager.user",
+  "fields": {
+    "password": "pbkdf2_sha256$390000$IKPhaexEl1gHJejWAYPmzo$WYtXEQeAyibUuW6G+MQuSsb8Fn03+CDshCrueXwAU94=",
+    "last_login": "2023-04-22T07:59:48.657Z",
+    "is_superuser": false,
+    "email": "",
+    "date_joined": "2023-04-05T14:38:40.023Z",
+    "username": "ulya",
+    "first_name": "1",
+    "last_name": "1",
+    "created_at": "2023-04-05T14:38:40.023Z",
+    "is_active": true,
+    "is_admin": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "task_manager.user",
+  "fields": {
+    "password": "pbkdf2_sha256$390000$pHqbRsBL7E85RvKKVdNHww$OaqIx1Banr4v+Kj5lmfo/dFS2OrhWhFJIRy2/TE8qIQ=",
+    "last_login": "2023-04-11T10:23:57.127Z",
+    "is_superuser": false,
+    "email": "",
+    "date_joined": "2023-04-06T16:42:39.311Z",
+    "username": "test",
+    "first_name": "test",
+    "last_name": "test",
+    "created_at": "2023-04-06T16:42:39.311Z",
+    "is_active": true,
+    "is_admin": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "task_manager.user",
+  "fields": {
+    "password": "pbkdf2_sha256$390000$QBAQQEAdMf3FvTFNMWXhM9$tsNPBsQKiOmUfFwrikYRhBGB+VOE7zJlQ+KIKuxZEww=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "",
+    "date_joined": "2023-04-11T10:25:15.704Z",
+    "username": "afaf",
+    "first_name": "test2",
+    "last_name": "ntcn",
+    "created_at": "2023-04-11T10:25:15.704Z",
+    "is_active": true,
+    "is_admin": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "task_manager.status",
+  "pk": 2,
+  "fields": {
+    "name": "Норма",
+    "created_at": "2023-04-05T14:33:21.654Z"
+  }
+},
+{
+  "model": "task_manager.status",
+  "pk": 3,
+  "fields": {
+    "name": "Очень срочно",
+    "created_at": "2023-04-05T14:37:06.635Z"
+  }
+},
+{
+  "model": "task_manager.status",
+  "pk": 4,
+  "fields": {
+    "name": "Быстро",
+    "created_at": "2023-04-05T14:37:16.363Z"
+  }
+},
+{
+  "model": "task_manager.status",
+  "pk": 5,
+  "fields": {
+    "name": "test",
+    "created_at": "2023-04-06T16:43:03.446Z"
+  }
+},
+{
+  "model": "task_manager.status",
+  "pk": 6,
+  "fields": {
+    "name": "test2",
+    "created_at": "2023-04-11T10:22:11.515Z"
+  }
+},
+{
+  "model": "task_manager.status",
+  "pk": 7,
+  "fields": {
+    "name": "Норма44",
+    "created_at": "2023-04-19T06:28:29.519Z"
+  }
+},
+{
+  "model": "task_manager.tasklabel",
+  "pk": 14,
+  "fields": {
+    "task": 18,
+    "label": 10
+  }
+},
+{
+  "model": "task_manager.tasklabel",
+  "pk": 15,
+  "fields": {
+    "task": 20,
+    "label": 11
+  }
+},
+{
+  "model": "task_manager.tasklabel",
+  "pk": 16,
+  "fields": {
+    "task": 21,
+    "label": 10
+  }
+},
+{
+  "model": "task_manager.tasklabel",
+  "pk": 17,
+  "fields": {
+    "task": 21,
+    "label": 11
+  }
+},
+{
+  "model": "task_manager.tasklabel",
+  "pk": 18,
+  "fields": {
+    "task": 22,
+    "label": 11
+  }
+},
+{
+  "model": "task_manager.tasklabel",
+  "pk": 19,
+  "fields": {
+    "task": 23,
+    "label": 12
+  }
+},
+{
+  "model": "task_manager.label",
+  "pk": 10,
+  "fields": {
+    "name": "test",
+    "created_at": "2023-04-11T09:57:05.756Z"
+  }
+},
+{
+  "model": "task_manager.label",
+  "pk": 11,
+  "fields": {
+    "name": "test2",
+    "created_at": "2023-04-11T10:22:04.702Z"
+  }
+},
+{
+  "model": "task_manager.label",
+  "pk": 12,
+  "fields": {
+    "name": "wedsa",
+    "created_at": "2023-04-17T05:47:37.789Z"
+  }
+},
+{
+  "model": "task_manager.label",
+  "pk": 13,
+  "fields": {
+    "name": "test3",
+    "created_at": "2023-04-24T05:05:49.197Z"
+  }
+},
+{
+  "model": "task_manager.task",
+  "pk": 18,
+  "fields": {
+    "name": "test",
+    "description": "test",
+    "author": [
+      "ulya"
+    ],
+    "assigned_to": [
+      "test"
+    ],
+    "status": 5,
+    "created_at": "2023-04-11T09:57:27.963Z"
+  }
+},
+{
+  "model": "task_manager.task",
+  "pk": 19,
+  "fields": {
+    "name": "1244",
+    "description": "Imagine as.daaffas",
+    "author": [
+      "ulya"
+    ],
+    "assigned_to": [
+      "fgsgsg"
+    ],
+    "status": 4,
+    "created_at": "2023-04-15T07:38:23.372Z"
+  }
+},
+{
+  "model": "task_manager.task",
+  "pk": 20,
+  "fields": {
+    "name": "test333",
+    "description": "jhfn",
+    "author": [
+      "ulya"
+    ],
+    "assigned_to": [
+      "12345"
+    ],
+    "status": 3,
+    "created_at": "2023-04-16T17:18:44.022Z"
+  }
+},
+{
+  "model": "task_manager.task",
+  "pk": 21,
+  "fields": {
+    "name": "dafa daf",
+    "description": "1412312313",
+    "author": [
+      "12345"
+    ],
+    "assigned_to": [
+      "zopa2"
+    ],
+    "status": 6,
+    "created_at": "2023-04-16T17:19:15.318Z"
+  }
+},
+{
+  "model": "task_manager.task",
+  "pk": 22,
+  "fields": {
+    "name": "test344",
+    "description": "EWQRWFAWF",
+    "author": [
+      "ulya"
+    ],
+    "assigned_to": [
+      "ulya"
+    ],
+    "status": 4,
+    "created_at": "2023-04-18T04:56:23.956Z"
+  }
+},
+{
+  "model": "task_manager.task",
+  "pk": 23,
+  "fields": {
+    "name": "Роман_1",
+    "description": "Роман_1",
+    "author": [
+      "12345"
+    ],
+    "assigned_to": [
+      "zopa2"
+    ],
+    "status": 6,
+    "created_at": "2023-04-20T06:07:46.077Z"
+  }
+}
+]
