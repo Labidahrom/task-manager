@@ -123,7 +123,7 @@ class LoginUser(View):
             login(request, user)
             if request.user.is_authenticated:
                 messages.success(request, 'Вы залогинены')
-            return redirect(reverse('users_list'))
+            return redirect(reverse('index'))
         else:
             messages.warning(request,
                              'Пожалуйста, введите правильные '
