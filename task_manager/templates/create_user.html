@@ -15,9 +15,7 @@
 {% endif %}
 <form  class="form-group" action="{% url 'user_create' %}" method="post">
     {% csrf_token %}
-    <table border="1">
     {{ form }}
-    </table>
     <input type="submit" value="Создать">
 </form>
 </div>
