@@ -138,7 +138,7 @@ class LogoutUser(View):
 
     def get(self, request, *args, **kwargs):
         logout(request)
-        return redirect(reverse('index'))
+        return redirect(reverse('login'))
 
 
 class StatusesListView(View):
