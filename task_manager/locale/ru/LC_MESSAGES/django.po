@@ -102,7 +102,7 @@ msgstr "Имя"
 #: templates/label_list.html:12 templates/tasks_list.html:19
 #: templates/user_list.html:12
 msgid "Дата создания"
-msgstr "Дата создани"
+msgstr "Дата создания"
 
 #: templates/task_details.html:4
 #, fuzzy

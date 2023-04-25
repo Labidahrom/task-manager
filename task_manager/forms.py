@@ -13,23 +13,15 @@ class BootstrapMixin:
 
 class UserCreateForm(BootstrapMixin, forms.ModelForm):
 
-    password = forms.CharField(label='Password',
-                               widget=forms.PasswordInput())
-    password_confirmation = \
-        forms.CharField(label='Confirm password',
-                        widget=forms.PasswordInput())
+    first_name = forms.CharField(label='Имя')
+    last_name = forms.CharField(label='Фамилия')
+    username = forms.CharField(label='Имя пользователя')
+    password = forms.CharField(label='Пароль', widget=forms.PasswordInput())
+    password_confirmation = forms.CharField(label='Подтверждение пароля', widget=forms.PasswordInput())
 
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'username']
-        widgets = {
-            'first_name': forms.TextInput(
-                attrs={'label': 'Имя'}),
-            'last_name': forms.TextInput(
-                attrs={'label': 'Фамилия'}),
-            'username': forms.TextInput(
-                attrs={'label': 'Имя пользователя'}),
-        }
 
     def clean(self):
         cleaned_data = super().clean()
@@ -69,6 +61,9 @@ class UserUpdateForm(UserCreateForm):
 
 
 class LoginForm(BootstrapMixin, forms.ModelForm):
+    username = forms.CharField(label='Имя пользователя')
+    password = forms.CharField(label='Пароль', widget=forms.PasswordInput())
+
     class Meta:
         model = User
         fields = ['username', 'password']
