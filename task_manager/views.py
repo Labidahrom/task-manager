@@ -130,8 +130,9 @@ class LoginUser(View):
                              'имя пользователя и пароль. Оба '
                              'поля могут быть чувствительны '
                              'к регистру.')
-            return render(request, 'login_user.html',
-                          {'form': forms.LoginForm()})
+            # return render(request, 'login_user.html',
+            #               {'form': forms.LoginForm()})
+            return redirect(reverse('statuses_list'))
 
 
 class LogoutUser(View):
