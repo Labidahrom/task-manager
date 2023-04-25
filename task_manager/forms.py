@@ -13,28 +13,35 @@ class BootstrapMixin:
 
 class UserCreateForm(BootstrapMixin, forms.ModelForm):
 
+    password = forms.CharField(label='Password',
+                               widget=forms.PasswordInput())
+    password_confirmation = \
+        forms.CharField(label='Confirm password',
+                        widget=forms.PasswordInput())
+
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'password']
+        fields = ['first_name', 'last_name', 'username']
         widgets = {
             'first_name': forms.TextInput(
-                attrs={'label': 'first_name'}),
+                attrs={'label': 'Имя'}),
             'last_name': forms.TextInput(
-                attrs={'label': 'last_name'}),
+                attrs={'label': 'Фамилия'}),
             'username': forms.TextInput(
-                attrs={'label': 'username'}),
-            'password': forms.PasswordInput(
-                attrs={'label': 'username'}),
+                attrs={'label': 'Имя пользователя'}),
         }
 
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        password = self.cleaned_data.get('password')
-        if password:
-            user.set_password(password)
-        if commit:
-            user.save()
-        return user
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get("password")
+        password_confirmation = \
+            cleaned_data.get("password_confirmation")
+
+        if password and password_confirmation and password != \
+                password_confirmation:
+            raise forms.ValidationError("Passwords do not match")
+
+        return cleaned_data
 
 
 class UserUpdateForm(UserCreateForm):
@@ -61,7 +68,7 @@ class UserUpdateForm(UserCreateForm):
         return cleaned_data
 
 
-class LoginForm(UserCreateForm, BootstrapMixin):
+class LoginForm(BootstrapMixin, forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'password']
