@@ -8,7 +8,7 @@ class BootstrapMixin:
         super().__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].widget.\
-                attrs.update({'class': 'form-control'})
+                attrs.update({'class': 'form-control mb-3'})
 
 
 class UserCreateForm(BootstrapMixin, forms.ModelForm):
@@ -61,8 +61,14 @@ class UserUpdateForm(UserCreateForm):
 
 
 class LoginForm(BootstrapMixin, forms.ModelForm):
-    username = forms.CharField(label='Имя пользователя')
-    password = forms.CharField(label='Пароль', widget=forms.PasswordInput())
+    username = forms.CharField(
+        label='Имя пользователя',
+        widget=forms.TextInput(attrs={'placeholder': 'Имя пользователя'})
+    )
+    password = forms.CharField(
+        label='Пароль',
+        widget=forms.PasswordInput(attrs={'placeholder': 'Пароль'})
+    )
 
     class Meta:
         model = User
