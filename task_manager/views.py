@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.views import LoginView
 from django.views import View
 from django.urls import reverse
 from task_manager.models import User, Status, Task, Label
@@ -107,7 +108,7 @@ class DeleteUser(View):
         return redirect(reverse('users_list'))
 
 
-class LoginUser(View):
+class LoginUser(LoginView):
 
     def get(self, request, *args, **kwargs):
         form = forms.LoginForm()
