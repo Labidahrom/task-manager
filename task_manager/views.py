@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.views import LoginView
 from django.views import View
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from task_manager.models import User, Status, Task, Label
 from task_manager import forms
 from django.contrib.auth import authenticate, login, logout
@@ -109,30 +109,22 @@ class DeleteUser(View):
 
 
 class LoginUser(LoginView):
+    template_name = 'login_user.html'
+    next_page = reverse_lazy('index')
 
-    def get(self, request, *args, **kwargs):
-        form = forms.LoginForm()
-        return render(request, 'login_user.html', {'form': form})
+    def form_valid(self, form):
+        messages.success(self.request, 'Вы залогинены')
+        return super().form_valid(form)
 
-    def post(self, request, *args, **kwargs):
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username,
-                            password=password)
-
-        if user is not None:
-            login(request, user)
-            if request.user.is_authenticated:
-                messages.success(request, 'Вы залогинены')
-            return redirect(reverse('index'))
-        else:
-            messages.warning(request,
-                             'Пожалуйста, введите правильные '
-                             'имя пользователя и пароль. Оба '
-                             'поля могут быть чувствительны '
-                             'к регистру.')
-            return render(request, 'login_user.html',
-                          {'form': forms.LoginForm()})
+    def form_invalid(self, form):
+        messages.warning(
+            self.request,
+            'Пожалуйста, введите правильные '
+            'имя пользователя и пароль. Оба '
+            'поля могут быть чувствительны '
+            'к регистру.'
+        )
+        return super().form_invalid(form)
 
 
 class LogoutUser(View):
