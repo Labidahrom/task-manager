@@ -111,6 +111,7 @@ class DeleteUser(View):
 class LoginUser(LoginView):
     template_name = 'login_user.html'
     next_page = reverse_lazy('index')
+    form_class = forms.LoginForm
 
     def form_valid(self, form):
         messages.success(self.request, 'Вы залогинены')

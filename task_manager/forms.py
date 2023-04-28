@@ -1,6 +1,7 @@
 from django import forms
 from task_manager.models import User, Status, Task, Label
 import django_filters
+from django.contrib.auth.forms import AuthenticationForm
 
 
 class BootstrapMixin:
@@ -61,7 +62,12 @@ class UserUpdateForm(UserCreateForm):
         return cleaned_data
 
 
-class LoginForm(BootstrapMixin, forms.ModelForm):
+class LoginForm(BootstrapMixin, AuthenticationForm):
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super().__init__(*args, request=self.request, **kwargs)
+
     username = forms.CharField(
         label='Имя пользователя',
         widget=forms.TextInput(attrs={'placeholder': 'Имя пользователя'})
