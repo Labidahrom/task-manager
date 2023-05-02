@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Статусы</h1>
-<p><a href="{% url 'status_create' %}">Создать статус</a></p>
+<h1>{% translate "Statuses" %}</h1>
+<p><a href="{% url 'status_create' %}">{% translate "Create status" %}</a></p>
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
       <tr>
         <th>ID</th>
-        <th>Имя</th>
-        <th>Дата создания</th>
+        <th>{% translate "Name" %}</th>
+        <th>{% translate "Creation date" %}</th>
       </tr>
     </thead>
     <tbody>

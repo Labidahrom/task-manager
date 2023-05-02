@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.views import View
 from django.urls import reverse, reverse_lazy
 from task_manager.models import User, Status, Task, Label
@@ -111,7 +111,6 @@ class DeleteUser(View):
 class LoginUser(LoginView):
     template_name = 'login_user.html'
     next_page = reverse_lazy('index')
-    form_class = forms.LoginForm
 
     def form_valid(self, form):
         messages.success(self.request, 'Вы залогинены')
@@ -128,11 +127,9 @@ class LoginUser(LoginView):
         return super().form_invalid(form)
 
 
-class LogoutUser(View):
-
-    def get(self, request, *args, **kwargs):
-        logout(request)
-        return redirect(reverse('login'))
+class LogoutUser(LogoutView):
+    template_name = 'index.html'
+    next_page = reverse_lazy('index')
 
 
 class StatusesListView(View):

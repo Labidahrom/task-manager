@@ -3,14 +3,14 @@
 {% load i18n %}
 <head>
     <meta charset="UTF-8">
-    <title>Менеджер задач Hexlet</title>
+    <title>{% translate "Hexlet task manager" %}</title>
     {% load bootstrap4 %}
     {% bootstrap_css %}
     {% bootstrap_javascript jquery='full' %}
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <a class="navbar-brand" href="/">{% translate "Менеджер задач" %}</a>
+  <a class="navbar-brand" href="/">{% translate "Task manager" %}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -19,16 +19,16 @@
   <div class="collapse navbar-collapse" id="navbarsExample04">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'users_list' %}"> {% translate "Пользователи" %} </a>
+        <a class="nav-link" href="{% url 'users_list' %}"> {% translate "Users" %} </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'statuses_list' %}"> {% translate "Статусы" %} </a>
+        <a class="nav-link" href="{% url 'statuses_list' %}"> {% translate "Statuses" %} </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'labels_list' %}"> {% translate "Метки" %} </a>
+        <a class="nav-link" href="{% url 'labels_list' %}"> {% translate "Labels" %} </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'tasks_list' %}"> {% translate "Задачи" %} </a>
+        <a class="nav-link" href="{% url 'tasks_list' %}"> {% translate "Tasks" %} </a>
       </li>
 
     </ul>
@@ -38,7 +38,7 @@
           <a class="nav-link" href="{% url 'login' %}">Вы вошли как: {{ user.username }}</a>
             </li>
             <li class="nav-item">
-      <a class="nav-link" href="{% url 'logout' %}">{% translate "Выход" %}</a>
+      <a class="nav-link" href="{% url 'logout' %}">{% translate "Log out" %}</a>
             </li>
         </ul>
     </div>
@@ -47,16 +47,16 @@
   <div class="collapse navbar-collapse" id="navbarsExample04">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'users_list' %}"> {% translate "Пользователи" %} </a>
+        <a class="nav-link" href="{% url 'users_list' %}"> {% translate "Users" %} </a>
       </li>
     </ul>
     <div class="my-2 my-md-0">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-      <a class="nav-link" href="{% url 'login' %}">{% translate "Вход" %}</a>
+      <a class="nav-link" href="{% url 'login' %}">{% translate "Sigh in" %}</a>
             </li>
             <li class="nav-item">
-      <a class="nav-link" href="{% url 'user_create' %}">{% translate "Регистрация" %}</a>
+      <a class="nav-link" href="{% url 'user_create' %}">{% translate "Sigh out" %}</a>
             </li>
         </ul>
     </div>

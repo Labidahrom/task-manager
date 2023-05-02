@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-22 12:42+0300\n"
+"POT-Creation-Date: 2023-05-02 12:35+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,154 +18,177 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: templates/base.html:13
-msgid "Менеджер задач"
+#: task_manager/templates/base.html:6
+msgid "Hexlet task manager"
+msgstr "Hexlet task manager"
+
+#: task_manager/templates/base.html:13
+msgid "Task manager"
 msgstr "Task manager"
 
-#: templates/base.html:22 templates/base.html:50 templates/user_list.html:4
-msgid "Пользователи"
+#: task_manager/templates/base.html:22 task_manager/templates/base.html:50
+msgid "Users"
 msgstr "Users"
 
-#: templates/base.html:25
-msgid "Статусы"
+#: task_manager/templates/base.html:25
+#: task_manager/templates/status_list.html:3
+msgid "Statuses"
 msgstr "Statuses"
 
-#: templates/base.html:28 templates/label_list.html:4
-msgid "Метки"
+#: task_manager/templates/base.html:28 task_manager/templates/label_list.html:4
+msgid "Labels"
 msgstr "Labels"
 
-#: templates/base.html:31 templates/tasks_list.html:4
-msgid "Задачи"
+#: task_manager/templates/base.html:31 task_manager/templates/tasks_list.html:4
+msgid "Tasks"
 msgstr "Tasks"
 
-#: templates/base.html:41
-msgid "Выход"
+#: task_manager/templates/base.html:41
+msgid "Log out"
 msgstr "Log out"
 
-#: templates/base.html:56 templates/login_user.html:5
-msgid "Вход"
-msgstr "Sign in"
+#: task_manager/templates/base.html:56
+msgid "Sigh in"
+msgstr "Sigh in"
 
-#: templates/base.html:59 templates/create_user.html:5
-msgid "Регистрация"
-msgstr "Sign up"
+#: task_manager/templates/base.html:59
+msgid "Sigh out"
+msgstr "Sigh out"
 
-#: templates/create_label.html:5 templates/label_list.html:5
-msgid "Создать метку"
-msgstr "Create label"
+#: task_manager/templates/create_label.html:5
+msgid "Make a label"
+msgstr "Make a label"
 
-#: templates/create_status.html:5
-msgid "Создать статус"
-msgstr "Create status"
+#: task_manager/templates/create_status.html:5
+msgid "Make a status"
+msgstr "Make a status"
 
-#: templates/create_task.html:5 templates/tasks_list.html:5
-#, fuzzy
-#| msgid "Менеджер задач"
-msgid "Создать задачу"
+#: task_manager/templates/create_task.html:5
+msgid "Create task"
 msgstr "Create task"
 
-#: templates/delete_label.html:13
-msgid "Удаление метки"
+#: task_manager/templates/create_user.html:5
+msgid "Register"
+msgstr "Register"
+
+#: task_manager/templates/delete_label.html:13
+msgid "Delete label"
 msgstr "Delete label"
 
-#: templates/delete_status.html:13
-msgid "Удаление статуса"
+#: task_manager/templates/delete_status.html:13
+msgid "Delete status"
 msgstr "Delete status"
 
-#: templates/delete_task.html:13
-#, fuzzy
-#| msgid "Менеджер задач"
-msgid "Удаление задачи"
+#: task_manager/templates/delete_task.html:13
+msgid "Delete task"
 msgstr "Delete task"
 
-#: templates/delete_user.html:13
-#, fuzzy
-#| msgid "Пользователи"
-msgid "Удаление пользователя"
+#: task_manager/templates/delete_user.html:13
+msgid "Delete user"
 msgstr "Delete user"
 
-#: templates/index.html:4
-msgid "Простой планировщик задач"
+#: task_manager/templates/index.html:4
+msgid "Simple task manager"
 msgstr "Simple task manager"
 
-#: templates/label_list.html:10 templates/tasks_list.html:14
-#: templates/user_list.html:9
+#: task_manager/templates/label_list.html:5
+msgid "Create label"
+msgstr "Create label"
+
+#: task_manager/templates/label_list.html:10
+#: task_manager/templates/tasks_list.html:14
+#: task_manager/templates/user_list.html:9
 msgid "ID"
 msgstr "ID"
 
-#: templates/label_list.html:11 templates/tasks_list.html:15
-msgid "Имя"
+#: task_manager/templates/label_list.html:11
+#: task_manager/templates/status_list.html:10
+#: task_manager/templates/tasks_list.html:15
+msgid "Name"
 msgstr "Name"
 
-#: templates/label_list.html:12 templates/tasks_list.html:19
-#: templates/user_list.html:12
-msgid "Дата создания"
+#: task_manager/templates/label_list.html:12
+#: task_manager/templates/status_list.html:11
+msgid "Creation date"
 msgstr "Creation date"
 
-#: templates/task_details.html:4
-#, fuzzy
-#| msgid "Менеджер задач"
-msgid "Просмотр задачи"
-msgstr "Talk details"
+#: task_manager/templates/login_user.html:5
+msgid "Log in"
+msgstr "Log in"
 
-#: templates/task_details.html:10
-msgid "Автор:"
-msgstr "Author"
+#: task_manager/templates/status_list.html:4
+msgid "Create status"
+msgstr "Create status"
 
-#: templates/task_details.html:14
-msgid "Исполнитель:"
-msgstr "Assigned to"
+#: task_manager/templates/task_details.html:4
+msgid "Task details"
+msgstr "Task details"
 
-#: templates/task_details.html:18
-msgid "Статус:"
+#: task_manager/templates/task_details.html:10
+msgid "Author:"
+msgstr "Author:"
+
+#: task_manager/templates/task_details.html:14
+msgid "Assigned to:"
+msgstr "Assigned to:"
+
+#: task_manager/templates/task_details.html:18
+msgid "Status:"
+msgstr "Status:"
+
+#: task_manager/templates/task_details.html:22
+msgid "Created at:"
+msgstr "Created at:"
+
+#: task_manager/templates/task_details.html:26
+msgid "Labels:"
+msgstr "Labels:"
+
+#: task_manager/templates/tasks_list.html:5
+msgid "Create tasks"
+msgstr "Create tasks"
+
+#: task_manager/templates/tasks_list.html:16
+msgid "Status"
 msgstr "Status"
 
-#: templates/task_details.html:22
-msgid "Дата создания:"
-msgstr "Creation date"
-
-#: templates/task_details.html:26
-msgid "Метки:"
-msgstr "Labels"
-
-#: templates/tasks_list.html:16
-msgid "Статус"
-msgstr "Status"
-
-#: templates/tasks_list.html:17
-msgid "Автор"
+#: task_manager/templates/tasks_list.html:17
+msgid "Author"
 msgstr "Author"
 
-#: templates/tasks_list.html:18
-msgid "Исполнитель"
+#: task_manager/templates/tasks_list.html:18
+msgid "Assigned to"
 msgstr "Assigned to"
 
-#: templates/update_label.html:5
-msgid "Изменение метки"
+#: task_manager/templates/tasks_list.html:19
+#: task_manager/templates/user_list.html:12
+msgid "Created at"
+msgstr "Created at"
+
+#: task_manager/templates/update_label.html:5
+msgid "Update label"
 msgstr "Update label"
 
-#: templates/update_status.html:5
-msgid "Изменение статуса"
+#: task_manager/templates/update_status.html:5
+msgid "Update status"
 msgstr "Update status"
 
-#: templates/update_task.html:5
-#, fuzzy
-#| msgid "Менеджер задач"
-msgid "Изменение задачи"
+#: task_manager/templates/update_task.html:5
+msgid "Update task"
 msgstr "Update task"
 
-#: templates/update_user.html:5
-#, fuzzy
-#| msgid "Пользователи"
-msgid "Изменение пользователя"
+#: task_manager/templates/update_user.html:5
+msgid "Update user"
 msgstr "Update user"
 
-#: templates/user_list.html:10
-#, fuzzy
-#| msgid "Пользователи"
-msgid "Имя пользователя"
-msgstr "User name"
+#: task_manager/templates/user_list.html:4
+msgid "Users list"
+msgstr "Users list"
 
-#: templates/user_list.html:11
-msgid "Полное имя"
+#: task_manager/templates/user_list.html:10
+msgid "Username"
+msgstr "Username"
+
+#: task_manager/templates/user_list.html:11
+msgid "Full name"
 msgstr "Full name"

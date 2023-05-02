@@ -2,7 +2,7 @@
 {% block content %}
 {% load i18n %}
 <div class="container wrapper flex-grow-1">
-    <h1>{% translate "Вход" %}</h1>
+    <h1>{% translate "Log in" %}</h1>
 {% if form.subject.errors %}
 <div>
     <ul>
@@ -12,11 +12,6 @@
     </ul>
 </div>
 {% endif %}
-<!--<form action="{% url 'login' %}" method="post">-->
-<!--    {% csrf_token %}-->
-<!--    {{ form }}-->
-<!--    <input type="submit" value="Войти">-->
-<!--</form>-->
 <form action="{% url 'login' %}" method="post">
   {% csrf_token %}
   <div class="form-group">

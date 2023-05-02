@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 {% load i18n %}
-<h1>{% translate "Задачи" %}</h1>
-<p><a href="{% url 'task_create' %}">{% translate "Создать задачу" %}</a></p>
+<h1>{% translate "Tasks" %}</h1>
+<p><a href="{% url 'task_create' %}">{% translate "Create tasks" %}</a></p>
 <div class="table-responsive">
     <form method="get">
       {{ filter.form.as_p }}
@@ -12,11 +12,11 @@
     <thead>
       <tr>
         <th>{% translate "ID" %}</th>
-        <th>{% translate "Имя" %}</th>
-        <th>{% translate "Статус" %}</th>
-        <th>{% translate "Автор" %}</th>
-        <th>{% translate "Исполнитель" %}</th>
-        <th>{% translate "Дата создания" %}</th>
+        <th>{% translate "Name" %}</th>
+        <th>{% translate "Status" %}</th>
+        <th>{% translate "Author" %}</th>
+        <th>{% translate "Assigned to" %}</th>
+        <th>{% translate "Created at" %}</th>
       </tr>
     </thead>
     <tbody>
