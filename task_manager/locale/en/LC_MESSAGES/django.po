@@ -185,6 +185,7 @@ msgid "Users list"
 msgstr "Users list"
 
 #: task_manager/templates/user_list.html:10
+#: task_manager/templates/login_user.html:19
 msgid "Username"
 msgstr "Username"
 

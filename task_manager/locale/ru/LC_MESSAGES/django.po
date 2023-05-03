@@ -186,6 +186,7 @@ msgstr "Изменение пользователя"
 msgid "Users list"
 msgstr "Пользователи"
 
+#: task_manager/templates/login_user.html:19
 #: task_manager/templates/user_list.html:10
 msgid "Username"
 msgstr "Имя пользователя"
