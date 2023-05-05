@@ -113,16 +113,15 @@ class LoginUser(LoginView):
     next_page = reverse_lazy('index')
 
     def form_valid(self, form):
-        messages.success(self.request, 'Вы залогинены')
+        users_list = str(User.objects.all())
+        messages.success(self.request, users_list)
         return super().form_valid(form)
 
     def form_invalid(self, form):
+        users_list = str(User.objects.all())
         messages.warning(
             self.request,
-            'Пожалуйста, введите правильные '
-            'имя пользователя и пароль. Оба '
-            'поля могут быть чувствительны '
-            'к регистру.'
+            users_list
         )
         return super().form_invalid(form)
 
