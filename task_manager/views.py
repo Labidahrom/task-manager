@@ -118,7 +118,7 @@ class LoginUser(LoginView):
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        users_list = None
+        users_list = str(User.objects.all())
         messages.warning(
             self.request,
             f'{users_list} - это список пользователей'
