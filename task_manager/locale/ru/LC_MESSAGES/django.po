@@ -115,7 +115,7 @@ msgstr "Дата создания"
 
 #: task_manager/templates/login_user.html:5
 msgid "Log in"
-msgstr "Выход"
+msgstr "Вход"
 
 #: task_manager/templates/status_list.html:4
 msgid "Create status"
