@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+{% load i18n %}
 <h1>{% translate "Statuses" %}</h1>
 <p><a href="{% url 'status_create' %}">{% translate "Create status" %}</a></p>
 <div class="table-responsive">

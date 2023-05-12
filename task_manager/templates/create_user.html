@@ -13,10 +13,35 @@
     </ul>
 </div>
 {% endif %}
-<form  class="form-group" action="{% url 'user_create' %}" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Создать">
+<!--<form  class="form-group" action="{% url 'user_create' %}" method="post">-->
+<!--    {% csrf_token %}-->
+<!--    {{ form }}-->
+<!--    <input type="submit" value="Создать">-->
+<!--</form>-->
+
+<form action="{% url 'user_create' %}" method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
+    {{ form.first_name }}
+    </div>
+    <div class="form-group">
+    <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
+    {{ form.last_name }}
+    </div>
+  <div class="form-group">
+    <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+    {{ form.username }}
+  </div>
+  <div class="form-group">
+    <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
+    {{ form.password1 }}
+  </div>
+    <div class="form-group">
+    <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
+    {{ form.password2 }}
+    </div>
+  <input type="submit" class="btn btn-primary" value="Создать">
 </form>
-</div>
 {% endblock %}
+</div>

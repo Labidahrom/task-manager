@@ -6,6 +6,7 @@ from django.urls import reverse, reverse_lazy
 from task_manager.models import User, Status, Task, Label
 from task_manager import forms
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 
 def index(request):
@@ -31,7 +32,7 @@ class CreateUser(View):
         form = forms.UserCreateForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.set_password(request.POST.get('password'))
+            user.set_password(request.POST.get('password1'))
             user.save()
             return redirect(reverse('login'))
         return render(request, 'create_user.html', {'form': form})
@@ -65,9 +66,10 @@ class UpdateUser(View):
         form = forms.UserUpdateForm(request.POST, instance=user)
         if form.is_valid():
             user = form.save(commit=False)
-            user.set_password(request.POST.get('password'))
+            user.set_password(request.POST.get('password1'))
             user.save()
             return redirect(reverse('users_list'))
+        messages.warning(request, 'ошибка')
         return render(request, 'update_user.html', {'form': form})
 
 
