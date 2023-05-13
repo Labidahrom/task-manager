@@ -143,7 +143,7 @@ class LogoutUser(View):
     def get(self, request, *args, **kwargs):
         logout(request)
         messages.success(self.request, 'Вы разлогинены')
-        return redirect(reverse('login'))
+        return redirect(reverse('index'))
 
 
 class StatusesListView(View):
