@@ -70,6 +70,7 @@ class UpdateUser(View):
             user = form.save(commit=False)
             user.set_password(request.POST.get('password1'))
             user.save()
+            messages.success(request, 'Пользователь успешно изменен')
             return redirect(reverse('users_list'))
         messages.warning(request, 'ошибка')
         return render(request, 'update_user.html', {'form': form})
