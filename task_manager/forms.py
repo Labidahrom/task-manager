@@ -2,6 +2,7 @@ from django import forms
 from task_manager.models import User, Status, Task, Label
 import django_filters
 from django.contrib.auth.forms import UserCreationForm
+from django.utils.translation import gettext as _
 
 
 class BootstrapMixin:
@@ -48,14 +49,17 @@ class StatusUpdateForm(StatusCreateForm):
 class TaskCreateForm(BootstrapMixin, forms.ModelForm):
     assigned_to = \
         forms.ModelChoiceField(queryset=User.objects.all(),
+                               label=_('Assigned to'),
                                widget=forms.Select(
                                    attrs={'label': 'assigned_to'}))
     status = \
         forms.ModelChoiceField(queryset=Status.objects.all(),
+                               label=_('Status'),
                                widget=forms.Select(
                                    attrs={'label': 'status'}))
     label = \
         forms.ModelMultipleChoiceField(queryset=Label.objects.all(),
+                                       label=_('Label'),
                                        widget=forms.SelectMultiple(
                                        attrs={'label': 'label'}),
                                        required=False)

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.utils import timezone
+from django.utils.translation import gettext as _
 
 
 class UserManager(BaseUserManager):
@@ -65,7 +66,7 @@ class User(AbstractUser):
 
 
 class Status(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(_('Name'), max_length=100, unique=True)
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
@@ -81,7 +82,7 @@ class TaskLabel(models.Model):
 
 
 class Label(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(_('Name'), max_length=100, unique=True)
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
@@ -95,8 +96,8 @@ class Label(models.Model):
 
 
 class Task(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-    description = models.TextField()
+    name = models.CharField(_('Name'), max_length=100, unique=True)
+    description = models.TextField(_('Description'),)
     author = models.ForeignKey(User, on_delete=models.PROTECT,
                                related_name='user_author')
     assigned_to = models.ForeignKey(User, on_delete=models.PROTECT,

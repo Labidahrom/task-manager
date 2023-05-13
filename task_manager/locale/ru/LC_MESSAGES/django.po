@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-13 10:57+0600\n"
+"POT-Creation-Date: 2023-05-13 19:57+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,26 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: task_manager/forms.py:70 task_manager/templates/tasks_list.html:18
+#: task_manager/models.py:52
+msgid "Assigned to"
+msgstr "Исполнитель"
+
+#: task_manager/models.py:69 task_manager/models.py:85
+#: task_manager/models.py:99 task_manager/templates/label_list.html:11
+#: task_manager/templates/status_list.html:11
+#: task_manager/templates/tasks_list.html:15
+msgid "Name"
+msgstr "Имя"
+
+#: task_manager/models.py:100
+msgid "Description"
+msgstr "Описание"
+
+#: task_manager/forms.py:62
+msgid "Label"
+msgstr "Метки"
 
 #: task_manager/templates/base.html:6
 msgid "Hexlet task manager"
@@ -44,10 +64,6 @@ msgstr "Метки"
 #: task_manager/templates/base.html:31 task_manager/templates/tasks_list.html:4
 msgid "Tasks"
 msgstr "Задачи"
-
-#: task_manager/templates/base.html:41
-msgid "Log out"
-msgstr "Выход"
 
 #: task_manager/templates/base.html:56
 msgid "Sigh in"
@@ -103,12 +119,6 @@ msgstr "Создать метку"
 msgid "ID"
 msgstr "ID"
 
-#: task_manager/templates/label_list.html:11
-#: task_manager/templates/status_list.html:11
-#: task_manager/templates/tasks_list.html:15
-msgid "Name"
-msgstr "Имя"
-
 #: task_manager/templates/label_list.html:12
 #: task_manager/templates/status_list.html:12
 msgid "Creation date"
@@ -132,7 +142,7 @@ msgstr "Исполнитель"
 
 #: task_manager/templates/task_details.html:18
 msgid "Status:"
-msgstr "Статус"
+msgstr "Статус:"
 
 #: task_manager/templates/task_details.html:22
 msgid "Created at:"
@@ -146,6 +156,7 @@ msgstr "Метки"
 msgid "Create tasks"
 msgstr "Создать задачу"
 
+#: task_manager/forms.py:57
 #: task_manager/templates/tasks_list.html:16
 msgid "Status"
 msgstr "Статус"
@@ -153,10 +164,6 @@ msgstr "Статус"
 #: task_manager/templates/tasks_list.html:17
 msgid "Author"
 msgstr "Автор"
-
-#: task_manager/templates/tasks_list.html:18
-msgid "Assigned to"
-msgstr "Исполнитель"
 
 #: task_manager/templates/tasks_list.html:19
 #: task_manager/templates/user_list.html:12
@@ -190,6 +197,9 @@ msgstr "Имя пользователя"
 #: task_manager/templates/user_list.html:11
 msgid "Full name"
 msgstr "Полное имя"
+
+#~ msgid "Log out"
+#~ msgstr "Выход"
 
 #~ msgid "Log in"
 #~ msgstr "Вход"

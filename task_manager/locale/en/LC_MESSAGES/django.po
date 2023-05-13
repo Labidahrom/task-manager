@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-13 10:57+0600\n"
+"POT-Creation-Date: 2023-05-13 19:57+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: task_manager/forms.py:70 task_manager/templates/tasks_list.html:18
+msgid "Assigned to"
+msgstr "Assigned to"
+
+#: task_manager/forms.py:71
+#, fuzzy
+#| msgid "Status"
+msgid "Status11"
+msgstr "Status"
+
+#: task_manager/models.py:69 task_manager/models.py:85
+#: task_manager/models.py:99 task_manager/templates/label_list.html:11
+#: task_manager/templates/status_list.html:11
+#: task_manager/templates/tasks_list.html:15
+msgid "Name"
+msgstr "Name"
+
+#: task_manager/models.py:100
+msgid "Description"
+msgstr ""
 
 #: task_manager/templates/base.html:6
 msgid "Hexlet task manager"
@@ -42,10 +63,6 @@ msgstr "Labels"
 #: task_manager/templates/base.html:31 task_manager/templates/tasks_list.html:4
 msgid "Tasks"
 msgstr "Tasks"
-
-#: task_manager/templates/base.html:41
-msgid "Log out"
-msgstr "Log out"
 
 #: task_manager/templates/base.html:56
 msgid "Sigh in"
@@ -101,12 +118,6 @@ msgstr "Create label"
 msgid "ID"
 msgstr "ID"
 
-#: task_manager/templates/label_list.html:11
-#: task_manager/templates/status_list.html:11
-#: task_manager/templates/tasks_list.html:15
-msgid "Name"
-msgstr "Name"
-
 #: task_manager/templates/label_list.html:12
 #: task_manager/templates/status_list.html:12
 msgid "Creation date"
@@ -152,10 +163,6 @@ msgstr "Status"
 msgid "Author"
 msgstr "Author"
 
-#: task_manager/templates/tasks_list.html:18
-msgid "Assigned to"
-msgstr "Assigned to"
-
 #: task_manager/templates/tasks_list.html:19
 #: task_manager/templates/user_list.html:12
 msgid "Created at"
@@ -188,6 +195,9 @@ msgstr "Username"
 #: task_manager/templates/user_list.html:11
 msgid "Full name"
 msgstr "Full name"
+
+#~ msgid "Log out"
+#~ msgstr "Log out"
 
 #~ msgid "Log in"
 #~ msgstr "Log in"
