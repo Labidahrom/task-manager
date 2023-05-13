@@ -35,6 +35,7 @@ class CreateUser(View):
             user = form.save(commit=False)
             user.set_password(request.POST.get('password1'))
             user.save()
+            messages.success(request, 'Пользователь успешно зарегистрирован')
             return redirect(reverse('login'))
         return render(request, 'create_user.html', {'form': form})
 
