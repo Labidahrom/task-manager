@@ -110,6 +110,7 @@ class DeleteUser(View):
             return redirect(reverse('users_list'))
         deleted_user = User.objects.get(id=user_id)
         deleted_user.delete()
+        messages.success(request, 'Пользователь успешно удалён')
         return redirect(reverse('users_list'))
 
 
@@ -394,7 +395,7 @@ class UpdateLabel(View):
         if form.is_valid():
             label = form.save(commit=False)
             label.save()
-            messages.success(request, 'Метка успешно изменёна')
+            messages.success(request, 'Метка успешно изменена')
             return redirect(reverse('labels_list'))
         return render(request, 'update_label.html', {'form': form})
 
@@ -425,5 +426,5 @@ class DeleteLabel(View):
             return redirect(reverse('login'))
         deleted_label = Label.objects.get(id=label_id)
         deleted_label.delete()
-        messages.success(request, 'Метка успешно удалёна')
+        messages.success(request, 'Метка успешно удалена')
         return redirect(reverse('labels_list'))

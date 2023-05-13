@@ -14,6 +14,6 @@
 <div>Вы уверены, что хотите удалить {{ status.name }}?</div>
 <form action="{% url 'status_delete' id=status.id %}" method="post">
     {% csrf_token %}
-    <input class="btn btn-danger"  type=submit" value="Удалить">
+    <input class="btn btn-danger"  type=submit" value="Да, удалить">
 </form>
 {% endblock %}
