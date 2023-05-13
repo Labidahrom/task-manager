@@ -14,6 +14,6 @@
 <div>Вы уверены, что хотите удалить {{ label.name }}?</div>
 <form action="{% url 'label_delete' id=label.id %}" method="post">
     {% csrf_token %}
-    <input class="btn btn-danger"  type="submit" value="Да, удалить">
+    <input class="btn btn-danger" type="submit" value="Да, удалить">
 </form>
 {% endblock %}
