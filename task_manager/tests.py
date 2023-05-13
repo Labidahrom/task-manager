@@ -17,10 +17,11 @@ class SimpleTestCase(TestCase):
         client.post('/users/create/',
                     {'first_name': 'john2',
                      'last_name': 'john2',
-                     'username': 'john2',
-                     'password': '12345678'})
+                     'username': 'john22',
+                     'password1': 'wsd2349t',
+                     'password2': 'wsd2349t'})
         response = client.get('/users/')
-        self.assertContains(response, "john2")
+        self.assertContains(response, "john22")
 
     def test_user_login(self):
         client = Client()
@@ -51,21 +52,21 @@ class SimpleTestCase(TestCase):
                     {'first_name': 'john3',
                      'last_name': 'john3',
                      'username': 'john3',
-                     'password': '12345678',
-                     'password_confirmation': '12345678', })
+                     'password1': 'wsd2349t',
+                     'password2': 'wsd2349t', })
         response = client.get('/users/')
         self.assertContains(response, "john3")
 
     def test_user_delete(self):
         client = Client()
         client.post('/login/',
-                    {'username': 'afaf',
-                     'password': '12345678'})
-        user = User.objects.get(username='afaf')
+                    {'username': 'john3',
+                     'password': 'wsd2349t'})
+        user = User.objects.get(username='12345')
         client.post(f'/users/{user.id}/delete/',
                     {'id': user.id})
         response = client.get('/users/')
-        self.assertNotContains(response, "afaf")
+        self.assertNotContains(response, "john3")
 
     def test_status_create(self):
         client = Client()

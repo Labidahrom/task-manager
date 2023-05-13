@@ -1,7 +1,7 @@
 from django import forms
 from task_manager.models import User, Status, Task, Label
 import django_filters
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import UserCreationForm
 
 
 class BootstrapMixin:
@@ -26,47 +26,6 @@ class UserCreateForm(BootstrapMixin, UserCreationForm):
 
 class UserUpdateForm(UserCreateForm):
     pass
-    # password = forms.CharField(label='Password',
-    #                            widget=forms.PasswordInput())
-    # password_confirmation = \
-    #     forms.CharField(label='Confirm password',
-    #                     widget=forms.PasswordInput())
-
-    # class Meta:
-    #     model = User
-    #     fields = ['first_name', 'last_name', 'username']
-    #
-    # def clean(self):
-    #     cleaned_data = super().clean()
-    #     password = cleaned_data.get("password")
-    #     password_confirmation = \
-    #         cleaned_data.get("password_confirmation")
-    #
-    #     if password and password_confirmation and password != \
-    #             password_confirmation:
-    #         raise forms.ValidationError("Passwords do not match")
-    #
-    #     return cleaned_data
-
-
-# class LoginForm(BootstrapMixin, AuthenticationForm):
-#
-#     def __init__(self, *args, **kwargs):
-#         self.request = kwargs.pop('request', None)
-#         super().__init__(*args, request=self.request, **kwargs)
-#
-#     username = forms.CharField(
-#         label='Имя пользователя',
-#         widget=forms.TextInput(attrs={'placeholder': 'Имя пользователя'})
-#     )
-#     password = forms.CharField(
-#         label='Пароль',
-#         widget=forms.PasswordInput(attrs={'placeholder': 'Пароль'})
-#     )
-#
-#     class Meta:
-#         model = User
-#         fields = ['username', 'password']
 
 
 class StatusCreateForm(BootstrapMixin, forms.ModelForm):

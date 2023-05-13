@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-03 08:01+0600\n"
+"POT-Creation-Date: 2023-05-13 10:57+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 #: task_manager/templates/base.html:6
 msgid "Hexlet task manager"
 msgstr "Hexlet task manager"
@@ -30,7 +31,7 @@ msgid "Users"
 msgstr "Users"
 
 #: task_manager/templates/base.html:25
-#: task_manager/templates/status_list.html:3
+#: task_manager/templates/status_list.html:4
 msgid "Statuses"
 msgstr "Statuses"
 
@@ -101,21 +102,17 @@ msgid "ID"
 msgstr "ID"
 
 #: task_manager/templates/label_list.html:11
-#: task_manager/templates/status_list.html:10
+#: task_manager/templates/status_list.html:11
 #: task_manager/templates/tasks_list.html:15
 msgid "Name"
 msgstr "Name"
 
 #: task_manager/templates/label_list.html:12
-#: task_manager/templates/status_list.html:11
+#: task_manager/templates/status_list.html:12
 msgid "Creation date"
 msgstr "Creation date"
 
-#: task_manager/templates/login_user.html:5
-msgid "Log in"
-msgstr "Log in"
-
-#: task_manager/templates/status_list.html:4
+#: task_manager/templates/status_list.html:5
 msgid "Create status"
 msgstr "Create status"
 
@@ -185,10 +182,12 @@ msgid "Users list"
 msgstr "Users list"
 
 #: task_manager/templates/user_list.html:10
-#: task_manager/templates/login_user.html:19
 msgid "Username"
 msgstr "Username"
 
 #: task_manager/templates/user_list.html:11
 msgid "Full name"
 msgstr "Full name"
+
+#~ msgid "Log in"
+#~ msgstr "Log in"

@@ -48,8 +48,8 @@ class UserManager(BaseUserManager):
 
 class User(AbstractUser):
     # username = models.CharField(max_length=30, unique=True)
-    first_name = models.CharField(max_length=30, null=True)
-    last_name = models.CharField(max_length=30, null=True)
+    # first_name = models.CharField(max_length=30, null=True)
+    # last_name = models.CharField(max_length=30, null=True)
     created_at = models.DateTimeField(default=timezone.now)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)

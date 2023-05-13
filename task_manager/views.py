@@ -5,8 +5,6 @@ from django.views import View
 from django.urls import reverse, reverse_lazy
 from task_manager.models import User, Status, Task, Label
 from task_manager import forms
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 
 def index(request):
@@ -115,15 +113,14 @@ class LoginUser(LoginView):
     next_page = reverse_lazy('index')
 
     def form_valid(self, form):
-        users_list = str(User.objects.all())
-        messages.success(self.request, users_list)
+        messages.success(self.request, 'Вы залогинены')
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        users_list = str(User.objects.all())
         messages.warning(
             self.request,
-            f'{users_list} - это список пользователей'
+            'Пожалуйста, введите правильные имя пользователя и пароль.'
+            ' Оба поля могут быть чувствительны к регистру.'
         )
         return super().form_invalid(form)
 
