@@ -40,6 +40,10 @@ msgstr "Описание"
 msgid "Label"
 msgstr "Метки"
 
+#: task_manager/forms.py:52
+msgid "Executor"
+msgstr "Исполнитель"
+
 #: task_manager/templates/base.html:6
 msgid "Hexlet task manager"
 msgstr "Менеджер задач Hexlet"

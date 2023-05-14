@@ -100,9 +100,9 @@ class Task(models.Model):
     description = models.TextField(_('Description'),)
     author = models.ForeignKey(User, on_delete=models.PROTECT,
                                related_name='user_author')
-    assigned_to = models.ForeignKey(User, on_delete=models.PROTECT,
-                                    related_name='user_assignee')
     status = models.ForeignKey(Status, on_delete=models.PROTECT)
+    executor = models.ForeignKey(User, on_delete=models.PROTECT,
+                                    related_name='user_assignee')
     labels = models.ManyToManyField(Label, through=TaskLabel,
                                     related_name='tasks')
     created_at = models.DateTimeField(default=timezone.now)

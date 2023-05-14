@@ -25,8 +25,8 @@
         <td>{{ task.id }}</td>
         <td><a href="{% url 'task_details' id=task.id %}">{{ task.name }}</a></td>
         <td>{{ task.status }}</td>
-        <td>{{ task.author }}</td>
         <td>{{ task.assigned_to }}</td>
+        <td>{{ task.executor }}</td>
         <td>{{ task.created_at|date:"d.m.Y H:i" }}</td>
         <td>
           <form action="{% url 'task_update' id=task.id %}" method="get">

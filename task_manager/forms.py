@@ -47,11 +47,11 @@ class StatusUpdateForm(StatusCreateForm):
 
 
 class TaskCreateForm(BootstrapMixin, forms.ModelForm):
-    assigned_to = \
+    executor = \
         forms.ModelChoiceField(queryset=User.objects.all(),
-                               label=_('Assigned to'),
+                               label=_('Executor'),
                                widget=forms.Select(
-                                   attrs={'label': 'assigned_to'}))
+                                   attrs={'label': 'executor', 'name': 'executor'}))
     status = \
         forms.ModelChoiceField(queryset=Status.objects.all(),
                                label=_('Status'),
@@ -66,14 +66,14 @@ class TaskCreateForm(BootstrapMixin, forms.ModelForm):
 
     class Meta:
         model = Task
-        fields = ['name', 'description', 'assigned_to',
+        fields = ['name', 'description', 'executor',
                   'status', 'label']
         widgets = {
             'name': forms.TextInput(attrs={'label': 'name'}),
             'description':
                 forms.TextInput(attrs={'label': 'description'}),
-            'assigned_to':
-                forms.TextInput(attrs={'label': 'assigned_to'}),
+            'executor':
+                forms.TextInput(attrs={'label': 'executor'}),
             'status': forms.TextInput(attrs={'label': 'status'}),
             'label': forms.TextInput(attrs={'label': 'label'}),
         }
@@ -83,7 +83,7 @@ class TaskUpdateForm(TaskCreateForm):
 
     class Meta:
         model = Task
-        fields = ['name', 'description', 'assigned_to', 'status',
+        fields = ['name', 'description', 'executor', 'status',
                   'label']
 
 
@@ -117,7 +117,7 @@ class TaskFilter(django_filters.FilterSet):
         queryset=User.objects.all(),
         to_field_name='username'
     )
-    assigned_to = django_filters.ModelChoiceFilter(
+    executor = django_filters.ModelChoiceFilter(
         queryset=User.objects.all(),
         to_field_name='username'
     )
@@ -128,7 +128,7 @@ class TaskFilter(django_filters.FilterSet):
 
     class Meta:
         model = Task
-        fields = ['status', 'author', 'assigned_to', 'is_authorized']
+        fields = ['status', 'author', 'executor', 'is_authorized']
 
     def filter_by_authorized(self, queryset, author, value):
         authorized_user = getattr(self.request, 'user', None)
