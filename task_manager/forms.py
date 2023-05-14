@@ -46,9 +46,14 @@ class StatusUpdateForm(StatusCreateForm):
         fields = ['name']
 
 
+class UserModelChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return obj.first_name + " " + obj.last_name
+
+
 class TaskCreateForm(BootstrapMixin, forms.ModelForm):
     executor = \
-        forms.ModelChoiceField(queryset=User.objects.all(),
+        UserModelChoiceField(queryset=User.objects.all(),
                                label=_('Executor'),
                                widget=forms.Select(
                                    attrs={'label': 'executor', 'name': 'executor'}))
