@@ -97,7 +97,7 @@ class DeleteUser(View):
                                                  flat=True).distinct()]
         print('used_authors_id:', used_authors_id)
         used_assignees_id = \
-            [i for i in Task.objects.values_list('assigned_to',
+            [i for i in Task.objects.values_list('executor',
                                                  flat=True).distinct()]
         user_id = kwargs.get('id')
         if user_id in used_authors_id or user_id in used_assignees_id:
