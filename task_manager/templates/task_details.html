@@ -8,11 +8,11 @@
 <table  class="table table-striped">
   <tr>
   <td>{% translate "Author:" %}</td>
-  <td>{{ task.author }}</td>
+  <td>{{ task.author.first_name }} {{ task.author.last_name }}</td>
   </tr>
   <tr>
   <td>{% translate "Assigned to:" %}</td>
-  <td>{{ task.executor }}</td>
+  <td>{{ task.executor.first_name }} {{ task.executor.last_name }}</td>
   </tr>
   <tr>
   <td>{% translate "Status:" %}</td>
