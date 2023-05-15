@@ -132,7 +132,7 @@ class TaskFilter(django_filters.FilterSet):
         label=_('Executor'),
         label_suffix=''
     )
-    label = django_filters.ModelChoiceFilter(
+    labels = django_filters.ModelChoiceFilter(
         queryset=Label.objects.all(),
         to_field_name='name',
         label=_('Label'),
@@ -146,7 +146,7 @@ class TaskFilter(django_filters.FilterSet):
 
     class Meta:
         model = Task
-        fields = ['status', 'author', 'executor', 'self_tasks']
+        fields = ['status', 'author', 'executor', 'self_tasks', 'labels']
 
     def filter_by_authorized(self, queryset, author, value):
         authorized_user = getattr(self.request, 'user', None)
