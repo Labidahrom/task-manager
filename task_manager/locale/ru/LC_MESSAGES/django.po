@@ -41,6 +41,7 @@ msgid "Label"
 msgstr "Метки"
 
 #: task_manager/forms.py:52
+#: task_manager/forms.py:132
 msgid "Executor"
 msgstr "Исполнитель"
 
@@ -137,6 +138,7 @@ msgid "Task details"
 msgstr "Просмотр задачи"
 
 #: task_manager/templates/task_details.html:10
+#: task_manager/forms.py:126
 msgid "Author:"
 msgstr "Автор"
 
@@ -161,6 +163,7 @@ msgid "Create tasks"
 msgstr "Создать задачу"
 
 #: task_manager/forms.py:57
+#: task_manager/forms.py:120
 #: task_manager/templates/tasks_list.html:16
 msgid "Status"
 msgstr "Статус"

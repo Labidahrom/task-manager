@@ -117,15 +117,20 @@ class TaskFilter(django_filters.FilterSet):
     status = django_filters.ModelChoiceFilter(
         queryset=Status.objects.all(),
         to_field_name='name',
+        label=_('Status'),
         label_suffix=''
     )
     author = django_filters.ModelChoiceFilter(
         queryset=User.objects.all(),
-        to_field_name='username'
+        to_field_name='username',
+        label=_('Author'),
+        label_suffix=''
     )
     executor = django_filters.ModelChoiceFilter(
         queryset=User.objects.all(),
-        to_field_name='username'
+        to_field_name='username',
+        label=_('Executor'),
+        label_suffix=''
     )
     self_tasks = \
         django_filters.BooleanFilter(method='filter_by_authorized',
