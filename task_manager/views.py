@@ -309,7 +309,7 @@ class UpdateTask(View):
             task = form.save(commit=False)
             task.save()
             task.labels.set(selected_labels)
-            messages.success(request, 'Задача успешно отредактирована')
+            messages.success(request, 'Задача успешно изменена')
             return redirect(reverse('tasks_list'))
         return render(request, 'update_task.html', {'form': form})
 
