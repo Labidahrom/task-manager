@@ -27,7 +27,7 @@ ALLOWED_HOSTS = [
     'webserver',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://*.railway.app','https://*.127.0.0.1', 'https://*.webserver']
+CSRF_TRUSTED_ORIGINS = ['https://*.railway.app', 'https://*.127.0.0.1', 'https://*.webserver']
 
 # Application definition
 
@@ -81,7 +81,8 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 if not DEBUG:
     DATABASES = {
-        'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'), engine='django.db.backends.postgresql')
+        'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'),
+                                          engine='django.db.backends.postgresql')
     }
 else:
     DATABASES = {
@@ -127,7 +128,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -144,7 +144,7 @@ AUTH_USER_MODEL = 'task_manager.User'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-warnings.filterwarnings("ignore", message="No directory at", module="whitenoise.base" )
+warnings.filterwarnings("ignore", message="No directory at", module="whitenoise.base")
 
 ROLLBAR = {
     'access_token': POST_SERVER_ITEM_ACCESS_TOKEN,
