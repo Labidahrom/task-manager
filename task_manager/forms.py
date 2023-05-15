@@ -126,14 +126,14 @@ class TaskFilter(django_filters.FilterSet):
         queryset=User.objects.all(),
         to_field_name='username'
     )
-    is_authorized = \
+    self_tasks = \
         django_filters.BooleanFilter(method='filter_by_authorized',
                                      widget=forms.CheckboxInput(),
                                      label="Только свои задачи")
 
     class Meta:
         model = Task
-        fields = ['status', 'author', 'executor', 'is_authorized']
+        fields = ['status', 'author', 'executor', 'self_tasks']
 
     def filter_by_authorized(self, queryset, author, value):
         authorized_user = getattr(self.request, 'user', None)
