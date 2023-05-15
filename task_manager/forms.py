@@ -64,9 +64,9 @@ class TaskCreateForm(BootstrapMixin, forms.ModelForm):
                                    attrs={'label': 'status'}))
     label = \
         forms.ModelMultipleChoiceField(queryset=Label.objects.all(),
-                                       label=_('Label'),
+                                       label=_('Labels'),
                                        widget=forms.SelectMultiple(
-                                       attrs={'label': 'label'}),
+                                       attrs={'label': 'labels'}),
                                        required=False)
 
     class Meta:
@@ -80,7 +80,7 @@ class TaskCreateForm(BootstrapMixin, forms.ModelForm):
             'executor':
                 forms.TextInput(attrs={'label': 'executor'}),
             'status': forms.TextInput(attrs={'label': 'status'}),
-            'label': forms.TextInput(attrs={'label': 'label'}),
+            'labels': forms.TextInput(attrs={'label': 'labels'}),
         }
 
 
@@ -130,6 +130,12 @@ class TaskFilter(django_filters.FilterSet):
         queryset=User.objects.all(),
         to_field_name='username',
         label=_('Executor'),
+        label_suffix=''
+    )
+    label = django_filters.ModelChoiceFilter(
+        queryset=Label.objects.all(),
+        to_field_name='name',
+        label=_('Label'),
         label_suffix=''
     )
     self_tasks = \

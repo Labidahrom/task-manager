@@ -36,9 +36,9 @@ msgstr "Имя"
 msgid "Description"
 msgstr "Описание"
 
-#: task_manager/forms.py:62
+#: task_manager/forms.py:138
 msgid "Label"
-msgstr "Метки"
+msgstr "Метка"
 
 #: task_manager/forms.py:52
 #: task_manager/forms.py:132
@@ -62,6 +62,7 @@ msgstr "Пользователи"
 msgid "Statuses"
 msgstr "Статусы"
 
+#: task_manager/forms.py:62
 #: task_manager/templates/base.html:28 task_manager/templates/label_list.html:4
 msgid "Labels"
 msgstr "Метки"
