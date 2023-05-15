@@ -116,7 +116,8 @@ class TaskFilter(django_filters.FilterSet):
 
     status = django_filters.ModelChoiceFilter(
         queryset=Status.objects.all(),
-        to_field_name='name'
+        to_field_name='name',
+        label_suffix=''
     )
     author = django_filters.ModelChoiceFilter(
         queryset=User.objects.all(),
