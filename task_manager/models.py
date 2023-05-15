@@ -55,7 +55,7 @@ class User(AbstractUser):
     objects = UserManager()
 
     def __str__(self):
-        return self.username
+        return f'{self.first_name} {self.last_name}'
 
     @property
     def is_staff(self):

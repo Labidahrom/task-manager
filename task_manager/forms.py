@@ -109,6 +109,11 @@ class LabelUpdateForm(LabelCreateForm):
         fields = ['name']
 
 
+class FullNameUserFilter(django_filters.ModelChoiceFilter):
+    def get_full_name(self, obj):
+        return f'{obj.first_name} {obj.last_name}'
+
+
 class TaskFilter(django_filters.FilterSet):
     def __init__(self, *args, **kwargs):
         self.request = kwargs.get('request', None)
@@ -120,7 +125,7 @@ class TaskFilter(django_filters.FilterSet):
         label=_('Status'),
         label_suffix=''
     )
-    author = django_filters.ModelChoiceFilter(
+    author = FullNameUserFilter(
         queryset=User.objects.all(),
         to_field_name='username',
         label=_('Author'),
