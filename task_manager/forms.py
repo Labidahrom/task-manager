@@ -62,7 +62,7 @@ class TaskCreateForm(BootstrapMixin, forms.ModelForm):
                                label=_('Status'),
                                widget=forms.Select(
                                    attrs={'label': 'status'}))
-    label = \
+    labels = \
         forms.ModelMultipleChoiceField(queryset=Label.objects.all(),
                                        label=_('Labels'),
                                        widget=forms.SelectMultiple(
@@ -72,7 +72,7 @@ class TaskCreateForm(BootstrapMixin, forms.ModelForm):
     class Meta:
         model = Task
         fields = ['name', 'description', 'executor',
-                  'status', 'label']
+                  'status', 'labels']
         widgets = {
             'name': forms.TextInput(attrs={'label': 'name'}),
             'description':
@@ -89,7 +89,7 @@ class TaskUpdateForm(TaskCreateForm):
     class Meta:
         model = Task
         fields = ['name', 'description', 'executor', 'status',
-                  'label']
+                  'labels']
 
 
 class LabelCreateForm(BootstrapMixin, forms.ModelForm):
