@@ -269,7 +269,7 @@ class CreateTask(View):
     def post(self, request, *args, **kwargs):
         form = forms.TaskCreateForm(request.POST)
         if form.is_valid():
-            selected_labels = form.cleaned_data['label']
+            selected_labels = form.cleaned_data['labels']
             task = form.save(commit=False)
             task.author = request.user
             task.save()
@@ -291,7 +291,7 @@ class UpdateTask(View):
         updated_task = Task.objects.get(id=task_id)
         form = \
             forms.TaskUpdateForm(instance=updated_task, initial={
-                'label': updated_task.labels.all()})
+                'labels': updated_task.labels.all()})
         return render(request, 'update_task.html',
                       {'form': form, 'updated_task': updated_task,
                        'id': task_id})
@@ -305,7 +305,7 @@ class UpdateTask(View):
         task = Task.objects.get(id=task_id)
         form = forms.TaskUpdateForm(request.POST, instance=task)
         if form.is_valid():
-            selected_labels = form.cleaned_data['label']
+            selected_labels = form.cleaned_data['labels']
             task = form.save(commit=False)
             task.save()
             task.labels.set(selected_labels)
