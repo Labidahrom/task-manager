@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.views import View
 from django.urls import reverse, reverse_lazy
 from task_manager.models import User, Status, Task, Label
 from task_manager import forms
-from django.contrib.auth import logout
+from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.cache import never_cache
+from django.utils.decorators import method_decorator
 
 
 def index(request):
@@ -129,22 +131,22 @@ class LoginUser(LoginView):
         return super().form_invalid(form)
 
 
-# class LogoutUser(LogoutView):
-#     template_name = 'index.html'
-#     next_page = reverse_lazy('index')
-#
-#     def post(self, request, *args, **kwargs):
-#         messages.success(request, 'Вы разлогинены')
-#
-#         logout(request)
-#         return super().get(request, *args, **kwargs)
+class LogoutUser(LogoutView):
+    template_name = 'index.html'
+    next_page = reverse_lazy('index')
 
-class LogoutUser(View):
-
-    def get(self, request, *args, **kwargs):
-        logout(request)
+    @method_decorator(csrf_protect)
+    @method_decorator(never_cache)
+    def dispatch(self, request, *args, **kwargs):
         messages.success(self.request, 'Вы разлогинены')
-        return redirect(reverse('index'))
+        return super().dispatch(request, *args, **kwargs)
+
+# class LogoutUser(View):
+#
+#     def get(self, request, *args, **kwargs):
+#         logout(request)
+#         messages.success(self.request, 'Вы разлогинены')
+#         return redirect(reverse('index'))
 
 
 class StatusesListView(View):
