@@ -1,13 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView
 from django.views import View
 from django.urls import reverse, reverse_lazy
 from task_manager.models import User, Status, Task, Label
 from task_manager import forms
 from django.contrib.auth import logout
-from django.http import HttpResponseRedirect
-from django.utils.decorators import method_decorator
 
 
 def index(request):

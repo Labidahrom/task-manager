@@ -10,7 +10,7 @@ class BootstrapMixin:
         super().__init__(*args, **kwargs)
         self.label_suffix = ""
         for field in self.fields:
-            self.fields[field].widget.\
+            self.fields[field].widget. \
                 attrs.update({'class': 'form-control mb-3'})
 
 
@@ -30,7 +30,6 @@ class UserUpdateForm(UserCreateForm):
 
 
 class StatusCreateForm(BootstrapMixin, forms.ModelForm):
-
     class Meta:
         model = Status
         fields = ['name']
@@ -40,7 +39,6 @@ class StatusCreateForm(BootstrapMixin, forms.ModelForm):
 
 
 class StatusUpdateForm(StatusCreateForm):
-
     class Meta:
         model = Status
         fields = ['name']
@@ -54,9 +52,9 @@ class UserModelChoiceField(forms.ModelChoiceField):
 class TaskCreateForm(BootstrapMixin, forms.ModelForm):
     executor = \
         UserModelChoiceField(queryset=User.objects.all(),
-                               label=_('Executor'),
-                               widget=forms.Select(
-                                   attrs={'label': 'executor', 'name': 'executor'}))
+                             label=_('Executor'),
+                             widget=forms.Select(
+                                 attrs={'label': 'executor'}))
     status = \
         forms.ModelChoiceField(queryset=Status.objects.all(),
                                label=_('Status'),
@@ -66,7 +64,7 @@ class TaskCreateForm(BootstrapMixin, forms.ModelForm):
         forms.ModelMultipleChoiceField(queryset=Label.objects.all(),
                                        label=_('Labels'),
                                        widget=forms.SelectMultiple(
-                                       attrs={'label': 'labels'}),
+                                           attrs={'label': 'labels'}),
                                        required=False)
 
     class Meta:
@@ -85,7 +83,6 @@ class TaskCreateForm(BootstrapMixin, forms.ModelForm):
 
 
 class TaskUpdateForm(TaskCreateForm):
-
     class Meta:
         model = Task
         fields = ['name', 'description', 'executor', 'status',
@@ -93,7 +90,6 @@ class TaskUpdateForm(TaskCreateForm):
 
 
 class LabelCreateForm(BootstrapMixin, forms.ModelForm):
-
     class Meta:
         model = Label
         fields = ['name']
@@ -103,7 +99,6 @@ class LabelCreateForm(BootstrapMixin, forms.ModelForm):
 
 
 class LabelUpdateForm(LabelCreateForm):
-
     class Meta:
         model = Label
         fields = ['name']
