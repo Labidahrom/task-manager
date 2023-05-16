@@ -1,7 +1,9 @@
 from django import forms
-from task_manager.models import User, Status, Task, Label
+from task_manager.models import Task
+from task_manager.label.models import Label
+from task_manager.status.models import Status
+from task_manager.user.models import User
 import django_filters
-from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext as _
 
 
@@ -12,36 +14,6 @@ class BootstrapMixin:
         for field in self.fields:
             self.fields[field].widget. \
                 attrs.update({'class': 'form-control mb-3'})
-
-
-class UserCreateForm(BootstrapMixin, UserCreationForm):
-    def __init__(self, *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
-        self.fields['last_name'].required = True
-        self.fields['first_name'].required = True
-
-    class Meta:
-        model = User
-        fields = ("username", "first_name", "last_name")
-
-
-class UserUpdateForm(UserCreateForm):
-    pass
-
-
-class StatusCreateForm(BootstrapMixin, forms.ModelForm):
-    class Meta:
-        model = Status
-        fields = ['name']
-        widgets = {
-            'name': forms.TextInput(attrs={'label': 'name'}),
-        }
-
-
-class StatusUpdateForm(StatusCreateForm):
-    class Meta:
-        model = Status
-        fields = ['name']
 
 
 class UserModelChoiceField(forms.ModelChoiceField):
@@ -87,21 +59,6 @@ class TaskUpdateForm(TaskCreateForm):
         model = Task
         fields = ['name', 'description', 'executor', 'status',
                   'labels']
-
-
-class LabelCreateForm(BootstrapMixin, forms.ModelForm):
-    class Meta:
-        model = Label
-        fields = ['name']
-        widgets = {
-            'name': forms.TextInput(attrs={'label': 'label'}),
-        }
-
-
-class LabelUpdateForm(LabelCreateForm):
-    class Meta:
-        model = Label
-        fields = ['name']
 
 
 class FullNameUserFilter(django_filters.ModelChoiceFilter):

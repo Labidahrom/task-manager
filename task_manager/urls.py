@@ -1,28 +1,15 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from task_manager import views
 
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('users/create/', views.CreateUser.as_view(),
-         name='user_create'),
-    path('users/<int:id>/update/', views.UpdateUser.as_view(),
-         name='user_update'),
-    path('users/<int:id>/delete/', views.DeleteUser.as_view(),
-         name='user_delete'),
     path('login/', views.LoginUser.as_view(), name='login'),
     path('logout/', views.LogoutUser.as_view(), name='logout'),
-    path('users/', views.UsersListView.as_view(), name='users_list'),
+    path('users/', include('task_manager.user.urls')),
     path('admin/', admin.site.urls),
-    path('statuses/', views.StatusesListView.as_view(),
-         name='statuses_list'),
-    path('statuses/create/', views.CreateStatus.as_view(),
-         name='status_create'),
-    path('statuses/<int:id>/update/', views.UpdateStatus.as_view(),
-         name='status_update'),
-    path('statuses/<int:id>/delete/', views.DeleteStatus.as_view(),
-         name='status_delete'),
+    path('statuses/', include('task_manager.status.urls')),
     path('tasks/', views.TasksListView.as_view(), name='tasks_list'),
     path('tasks/create/', views.CreateTask.as_view(),
          name='task_create'),
@@ -32,12 +19,5 @@ urlpatterns = [
          name='task_delete'),
     path('tasks/<int:id>/', views.TaskDetailsView.as_view(),
          name='task_details'),
-    path('labels/', views.LabelsListView.as_view(),
-         name='labels_list'),
-    path('labels/create/', views.CreateLabel.as_view(),
-         name='label_create'),
-    path('labels/<int:id>/update/', views.UpdateLabel.as_view(),
-         name='label_update'),
-    path('labels/<int:id>/delete/', views.DeleteLabel.as_view(),
-         name='label_delete'),
+    path('labels/', include('task_manager.label.urls')),
 ]
