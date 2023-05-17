@@ -228,7 +228,7 @@ msgstr "Статус успешно создан"
 
 #: task_manager/status/views.py:30
 msgid "Status changed"
-msgstr "Статус успешно изменён"
+msgstr "Статус успешно изменен"
 
 #: task_manager/status/views.py:43
 msgid "Can't delete status"
@@ -236,7 +236,7 @@ msgstr "Невозможно удалить статус, потому что о
 
 #: task_manager/status/views.py:45
 msgid "Status deleted"
-msgstr "Статус успешно удалён"
+msgstr "Статус успешно удален"
 
 #: task_manager/task/views.py:42
 msgid "Task created"
