@@ -23,7 +23,7 @@ class TasksListView(View):
 class TaskDetailsView(View):
 
     def get(self, request, *args, **kwargs):
-        task_id = kwargs.get('id')
+        task_id = kwargs.get('pk')
         task = Task.objects.get(id=task_id)
         task_labels = task.labels.values_list('name', flat=True)
         return render(request, 'task/task_details.html', context={
