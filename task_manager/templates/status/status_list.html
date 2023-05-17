@@ -19,11 +19,11 @@
         <td>{{ status.name }}</td>
         <td>{{ status.created_at|date:"d.m.Y H:i" }}</td>
         <td>
-          <form action="{% url 'status_update' id=status.id %}" method="get">
+          <form action="{% url 'status_update' pk=status.id %}" method="get">
           {% csrf_token %}
           <input type="submit" value="Изменить">
           </form>
-          <form action="{% url 'status_delete' id=status.id %}" method="get">
+          <form action="{% url 'status_delete' pk=status.id %}" method="get">
           {% csrf_token %}
           <input type="submit" value="Удалить">
           </form>

@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.cache import never_cache
 from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import AccessMixin
 
 
 def index(request):
@@ -36,4 +37,14 @@ class LogoutUser(LogoutView):
     @method_decorator(never_cache)
     def dispatch(self, request, *args, **kwargs):
         messages.success(self.request, 'Вы разлогинены')
+        return super().dispatch(request, *args, **kwargs)
+
+
+class LoginRequiredMixin(AccessMixin):
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.warning(request, 'Вы не авторизованы! '
+                                      'Пожалуйста, выполните вход.')
+            return redirect(reverse('login'))
         return super().dispatch(request, *args, **kwargs)

@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views import View
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from task_manager.task.models import Task
 from task_manager.user.models import User
 from task_manager.user import forms
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from task_manager.views import LoginRequiredMixin
 
 
 class UsersListView(View):
@@ -16,92 +18,59 @@ class UsersListView(View):
         })
 
 
-class CreateUser(View):
+class CreateUser(CreateView):
+    form_class = forms.UserCreateForm
+    template_name = 'user/create_user.html'
+    success_url = reverse_lazy('users_list')
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Пользователь успешно зарегистрирован')
+        return super().form_valid(form)
+
+
+class UpdateUser(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = forms.UserUpdateForm
+    template_name = 'user/update_user.html'
+    success_url = reverse_lazy('users_list')
 
     def get(self, request, *args, **kwargs):
-        form = forms.UserCreateForm()
-        return render(request, 'user/create_user.html', {'form': form})
-
-    def post(self, request, *args, **kwargs):
-        form = forms.UserCreateForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.set_password(request.POST.get('password1'))
-            user.save()
-            messages.success(request, 'Пользователь успешно зарегистрирован')
-            return redirect(reverse('login'))
-        return render(request, 'user/create_user.html', {'form': form})
-
-
-class UpdateUser(View):
-
-    def get(self, request, *args, **kwargs):
-        user_id = kwargs.get('id')
-        if not request.user.id:
-            messages.warning(request, 'Вы не авторизованы! '
-                                      'Пожалуйста, выполните вход.')
-            return redirect(reverse('login'))
-        if user_id != request.user.id:
-            messages.warning(request, 'У вас нет прав для '
-                                      'изменения другого пользователя.')
-            return redirect(reverse('users_list'))
-        updated_user = User.objects.get(id=user_id)
-        form = forms.UserUpdateForm(instance=updated_user)
-        return render(request, 'user/update_user.html',
-                      {'form': form, 'updated_user': updated_user,
-                       'id': user_id})
-
-    def post(self, request, *args, **kwargs):
-        user_id = kwargs.get('id')
+        user_id = kwargs.get('pk')
         if user_id != request.user.id:
             messages.warning(request, 'Вы не можете '
-                                      'редактировать этого юзера')
+                                      'редактировать этого пользователя')
             return redirect(reverse('users_list'))
-        user = User.objects.get(id=user_id)
-        form = forms.UserUpdateForm(request.POST, instance=user)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.set_password(request.POST.get('password1'))
-            user.save()
-            messages.success(request, 'Пользователь успешно изменён')
-            return redirect(reverse('users_list'))
-        messages.warning(request, 'ошибка')
-        return render(request, 'user/update_user.html', {'form': form})
+        return super().get(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Пользователь успешно изменён')
+        return super().form_valid(form)
 
 
-class DeleteUser(View):
+class DeleteUser(LoginRequiredMixin, DeleteView):
+    model = User
+    template_name = 'user/delete_user.html'
+    success_url = reverse_lazy('users_list')
+
     def get(self, request, *args, **kwargs):
-        user_id = kwargs.get('id')
-        if not request.user.id:
-            messages.warning(request, 'Вы не авторизованы! '
-                                      'Пожалуйста, выполните вход.')
-            return redirect(reverse('login'))
+        user_id = kwargs.get('pk')
         if user_id != request.user.id:
-            messages.warning(request, 'У вас нет прав для изменения '
-                                      'другого пользователя.')
+            messages.warning(request, 'Вы не можете '
+                                      'редактировать этого пользователя')
             return redirect(reverse('users_list'))
-        deleted_user = User.objects.get(id=user_id)
-        return render(request, 'user/delete_user.html',
-                      {'user': deleted_user})
+        return super().get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        used_authors_id = \
-            [i for i in Task.objects.values_list('author',
-                                                 flat=True).distinct()]
-        print('used_authors_id:', used_authors_id)
-        used_assignees_id = \
-            [i for i in Task.objects.values_list('executor',
-                                                 flat=True).distinct()]
-        user_id = kwargs.get('id')
-        if user_id in used_authors_id or user_id in used_assignees_id:
+        self.object = self.get_object()
+        form = self.get_form()
+        if self.object.id != self.request.user.id:
+            messages.warning(request, 'Вы не можете '
+                                      'редактировать этого пользователя')
+            return redirect(self.get_success_url())
+        if Task.objects.filter(author=self.object).exists() or \
+                Task.objects.filter(executor=self.object).exists():
             messages.warning(request, 'Невозможно удалить пользователя, '
                                       'потому что он используется')
-            return redirect(reverse('users_list'))
-        if user_id != request.user.id:
-            messages.warning(request, 'Вы не можете редактировать этого '
-                                      'пользователя')
-            return redirect(reverse('users_list'))
-        deleted_user = User.objects.get(id=user_id)
-        deleted_user.delete()
+            return redirect(self.get_success_url())
         messages.success(request, 'Пользователь успешно удалён')
-        return redirect(reverse('users_list'))
+        return self.form_valid(form)

@@ -19,11 +19,11 @@
         <td>{{ label.name }}</td>
         <td>{{ label.created_at|date:"d.m.Y H:i" }}</td>
         <td>
-          <form action="{% url 'label_update' id=label.id %}" method="get">
+          <form action="{% url 'label_update' pk=label.id %}" method="get">
           {% csrf_token %}
           <input type="submit" value="Изменить">
           </form>
-          <form action="{% url 'label_delete' id=label.id %}" method="get">
+          <form action="{% url 'label_delete' pk=label.id %}" method="get">
           {% csrf_token %}
           <input type="submit" value="Удалить">
           </form>

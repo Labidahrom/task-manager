@@ -14,7 +14,7 @@
 {% endif %}
 
 
-<form action="{% url 'user_update' id=user.id %}" method="post">
+<form action="{% url 'user_update' pk=user.id %}" method="post">
   {% csrf_token %}
   <div class="form-group">
     <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>

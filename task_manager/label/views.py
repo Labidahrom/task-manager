@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views import View
-from django.urls import reverse
+from django.urls import reverse_lazy
 from task_manager.label.models import Label
+from task_manager.task.models import TaskLabel
 from task_manager.label import forms
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from task_manager.views import LoginRequiredMixin
 
 
 class LabelsListView(View):
@@ -15,80 +18,38 @@ class LabelsListView(View):
         })
 
 
-class CreateLabel(View):
+class CreateLabel(CreateView):
+    form_class = forms.LabelCreateForm
+    template_name = 'label/create_label.html'
+    success_url = reverse_lazy('labels_list')
 
-    def get(self, request, *args, **kwargs):
-        form = forms.LabelCreateForm()
-        return render(request, 'label/create_label.html',
-                      {'form': form})
-
-    def post(self, request, *args, **kwargs):
-        form = forms.LabelCreateForm(request.POST)
-        if form.is_valid():
-            label = form.save(commit=False)
-            label.save()
-            messages.success(request,
-                             'Метка успешно создана')
-            return redirect(reverse('labels_list'))
-        return render(request, 'label/create_label.html',
-                      {'form': form})
+    def form_valid(self, form):
+        messages.success(self.request, 'Метка успешно создана')
+        return super().form_valid(form)
 
 
-class UpdateLabel(View):
+class UpdateLabel(LoginRequiredMixin, UpdateView):
+    model = Label
+    form_class = forms.LabelUpdateForm
+    template_name = 'label/update_label.html'
+    success_url = reverse_lazy('labels_list')
 
-    def get(self, request, *args, **kwargs):
-        label_id = kwargs.get('id')
-        if not request.user.id:
-            messages.warning(request, 'Вы не авторизованы! '
-                                      'Пожалуйста, выполните вход.')
-            return redirect(reverse('login'))
-        updated_label = Label.objects.get(id=label_id)
-        form = forms.LabelUpdateForm(instance=updated_label)
-        return render(request, 'label/update_label.html',
-                      {'form': form, 'updated_label': updated_label,
-                       'id': label_id})
+    def form_valid(self, form):
+        messages.success(self.request, 'Метка успешно изменена')
+        return super().form_valid(form)
+
+
+class DeleteLabel(LoginRequiredMixin, DeleteView):
+    model = Label
+    template_name = 'label/delete_label.html'
+    success_url = reverse_lazy('labels_list')
 
     def post(self, request, *args, **kwargs):
-        label_id = kwargs.get('id')
-        if not request.user.id:
-            messages.warning(request, 'Вы не авторизованы! '
-                                      'Пожалуйста, выполните вход.')
-            return redirect(reverse('login'))
-        label = Label.objects.get(id=label_id)
-        form = forms.LabelUpdateForm(request.POST, instance=label)
-        if form.is_valid():
-            label = form.save(commit=False)
-            label.save()
-            messages.success(request, 'Метка успешно изменена')
-            return redirect(reverse('labels_list'))
-        return render(request, 'label/update_label.html', {'form': form})
-
-
-class DeleteLabel(View):
-    def get(self, request, *args, **kwargs):
-        label_id = kwargs.get('id')
-        if not request.user.id:
-            messages.warning(request, 'Вы не авторизованы! '
-                                      'Пожалуйста, выполните вход.')
-            return redirect(reverse('login'))
-        deleted_label = Label.objects.get(id=label_id)
-        return render(request, 'label/delete_label.html',
-                      {'label': deleted_label})
-
-    def post(self, request, *args, **kwargs):
-        used_labels_id = \
-            [i.id for i in
-             Label.objects.filter(tasklabel__isnull=False).distinct()]
-        label_id = kwargs.get('id')
-        if label_id in used_labels_id:
+        self.object = self.get_object()
+        form = self.get_form()
+        if TaskLabel.objects.filter(label=self.object).exists():
             messages.warning(request, 'Невозможно удалить метку, '
                                       'потому что она используется')
-            return redirect(reverse('labels_list'))
-        if not request.user.id:
-            messages.warning(request, 'Вы не авторизованы! '
-                                      'Пожалуйста, выполните вход.')
-            return redirect(reverse('login'))
-        deleted_label = Label.objects.get(id=label_id)
-        deleted_label.delete()
+            return redirect(self.get_success_url())
         messages.success(request, 'Метка успешно удалена')
-        return redirect(reverse('labels_list'))
+        return self.form_valid(form)

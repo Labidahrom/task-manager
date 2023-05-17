@@ -12,7 +12,7 @@
     </ul>
 </div>
 {% endif %}
-<form action="{% url 'status_update' id=id %}" method="post">
+<form action="{% url 'status_update' pk=status.id %}" method="post">
     {% csrf_token %}
     <table border="1">
     {{ form }}

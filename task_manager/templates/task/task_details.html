@@ -34,13 +34,13 @@
   </tr>
   <tr>
   <td>
-  <form action="{% url 'task_update' id=task.id %}" method="get">
+  <form action="{% url 'task_update' pk=task.id %}" method="get">
   {% csrf_token %}
   <input type="submit" value="Изменить">
   </form>
   </td>
   <td>
-  <form action="{% url 'task_delete' id=task.id %}" method="get">
+  <form action="{% url 'task_delete' pk=task.id %}" method="get">
   {% csrf_token %}
   <input type="submit" value="Удалить">
   </form>

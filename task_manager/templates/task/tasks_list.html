@@ -23,17 +23,17 @@
     {% for task in filter.qs %}
       <tr>
         <td>{{ task.id }}</td>
-        <td><a href="{% url 'task_details' id=task.id %}">{{ task.name }}</a></td>
+        <td><a href="{% url 'task_details' pk=task.id %}">{{ task.name }}</a></td>
         <td>{{ task.status }}</td>
         <td>{{ task.author.first_name }} {{ task.author.last_name }}</td>
         <td>{{ task.executor.first_name }} {{ task.executor.last_name }}</td>
         <td>{{ task.created_at|date:"d.m.Y H:i" }}</td>
         <td>
-          <form action="{% url 'task_update' id=task.id %}" method="get">
+          <form action="{% url 'task_update' pk=task.id %}" method="get">
           {% csrf_token %}
           <input type="submit" value="Изменить">
           </form>
-          <form action="{% url 'task_delete' id=task.id %}" method="get">
+          <form action="{% url 'task_delete' pk=task.id %}" method="get">
           {% csrf_token %}
           <input type="submit" value="Удалить">
           </form>
