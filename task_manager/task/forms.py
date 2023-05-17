@@ -16,9 +16,9 @@ class UserModelChoiceField(forms.ModelChoiceField):
 class TaskCreateForm(BootstrapMixin, forms.ModelForm):
     executor = \
         forms.ModelChoiceField(queryset=User.objects.all(),
-                             label=_('Executor'),
-                             widget=forms.Select(
-                                 attrs={'label': 'executor'}))
+                               label=_('Executor'),
+                               widget=forms.Select(
+                                   attrs={'label': 'executor'}))
     status = \
         forms.ModelChoiceField(queryset=Status.objects.all(),
                                label=_('Status'),
