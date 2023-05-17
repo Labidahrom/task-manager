@@ -1,5 +1,5 @@
 from django import forms
-from task_manager.models import Status
+from task_manager.status.models import Status
 from task_manager.forms import BootstrapMixin
 
 

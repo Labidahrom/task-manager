@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views import View
 from django.urls import reverse
-from task_manager.models import Task
+from task_manager.task.models import Task
 from task_manager.user.models import User
 from task_manager.user import forms
 
