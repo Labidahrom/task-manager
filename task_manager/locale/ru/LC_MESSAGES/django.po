@@ -206,6 +206,88 @@ msgstr "Имя пользователя"
 msgid "Full name"
 msgstr "Полное имя"
 
+#: task_manager/label/views.py:27
+msgid "Label created"
+msgstr "Метка успешно создана"
+
+#: task_manager/label/views.py:39
+msgid "Label changed"
+msgstr "Метка успешно изменена"
+
+#: task_manager/label/views.py:52
+msgid "Can't delete label"
+msgstr "Невозможно удалить метку, потому что она используется"
+
+#: task_manager/label/views.py:54
+msgid "Label deleted"
+msgstr "Метка успешно удалена"
+
+#: task_manager/status/views.py:19
+msgid "Status created"
+msgstr "Статус успешно создан"
+
+#: task_manager/status/views.py:30
+msgid "Status changed"
+msgstr "Статус успешно изменён"
+
+#: task_manager/status/views.py:43
+msgid "Can't delete status"
+msgstr "Невозможно удалить статус, потому что он используется"
+
+#: task_manager/status/views.py:45
+msgid "Status deleted"
+msgstr "Статус успешно удалён"
+
+#: task_manager/task/views.py:42
+msgid "Task created"
+msgstr "Задача успешно создана"
+
+#: task_manager/task/views.py:53
+msgid "Task changed"
+msgstr "Задача успешно изменена"
+
+#: task_manager/task/views.py:65
+msgid "Task deleted"
+msgstr "Задача успешно удалена"
+
+#: task_manager/user/views.py:28
+msgid "User created"
+msgstr "Пользователь успешно зарегистрирован"
+
+#: task_manager/user/views.py:46
+msgid "User changed"
+msgstr "Пользователь успешно изменён"
+
+#: task_manager/user/views.py:41
+#: task_manager/user/views.py:58
+#: task_manager/user/views.py:66
+msgid "Can't edit user"
+msgstr "Вы не можете редактировать этого пользователя"
+
+#: task_manager/user/views.py:70
+msgid "Can't edit used user"
+msgstr "Невозможно удалить пользователя, потому что он используется"
+
+#: task_manager/user/views.py:72
+msgid "User deleted"
+msgstr "Пользователь успешно удалён"
+
+#: task_manager/views.py:21
+msgid "You logged in"
+msgstr "Вы залогинены"
+
+#: task_manager/views.py:27
+msgid "Enter your username and password"
+msgstr "Пожалуйста, введите правильные имя пользователя и пароль. Оба поля могут быть чувствительны к регистру."
+
+#: task_manager/views.py:39
+msgid "You logged out"
+msgstr "Вы разлогинены"
+
+#: task_manager/views.py:47
+msgid "You are not logged in"
+msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
+
 #~ msgid "Log out"
 #~ msgstr "Выход"
 

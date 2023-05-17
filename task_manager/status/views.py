@@ -7,6 +7,7 @@ from task_manager.task.models import Task
 from task_manager.status import forms
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from task_manager.views import LoginRequiredMixin
+from django.utils.translation import gettext as _
 
 
 class CreateStatus(CreateView):
@@ -15,7 +16,7 @@ class CreateStatus(CreateView):
     success_url = reverse_lazy('statuses_list')
 
     def form_valid(self, form):
-        messages.success(self.request, 'Статус успешно создан')
+        messages.success(self.request, _('Status created'))
         return super().form_valid(form)
 
 
@@ -26,7 +27,7 @@ class UpdateStatus(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('statuses_list')
 
     def form_valid(self, form):
-        messages.success(self.request, 'Статус успешно изменён')
+        messages.success(self.request, _('Status changed'))
         return super().form_valid(form)
 
 
@@ -39,10 +40,9 @@ class DeleteStatus(LoginRequiredMixin, DeleteView):
         self.object = self.get_object()
         form = self.get_form()
         if Task.objects.filter(status=self.object).exists():
-            messages.warning(request, 'Невозможно удалить статус,'
-                                      ' потому что он используется')
+            messages.warning(request, _("Can't delete status"))
             return redirect(self.get_success_url())
-        messages.success(request, 'Статус успешно удалён')
+        messages.success(request, _('Status deleted'))
         return self.form_valid(form)
 
 

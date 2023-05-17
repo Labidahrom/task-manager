@@ -7,6 +7,7 @@ from task_manager.user.models import User
 from task_manager.user import forms
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from task_manager.views import LoginRequiredMixin
+from django.utils.translation import gettext as _
 
 
 class UsersListView(View):
@@ -24,7 +25,7 @@ class CreateUser(CreateView):
     success_url = reverse_lazy('login')
 
     def form_valid(self, form):
-        messages.success(self.request, 'Пользователь успешно зарегистрирован')
+        messages.success(self.request, _('User created'))
         return super().form_valid(form)
 
 
@@ -37,13 +38,12 @@ class UpdateUser(LoginRequiredMixin, UpdateView):
     def get(self, request, *args, **kwargs):
         user_id = kwargs.get('pk')
         if user_id != request.user.id:
-            messages.warning(request, 'Вы не можете '
-                                      'редактировать этого пользователя')
+            messages.warning(request, _("Can't edit user"))
             return redirect(reverse('users_list'))
         return super().get(request, *args, **kwargs)
 
     def form_valid(self, form):
-        messages.success(self.request, 'Пользователь успешно изменён')
+        messages.success(self.request, _('User changed'))
         return super().form_valid(form)
 
 
@@ -55,8 +55,7 @@ class DeleteUser(LoginRequiredMixin, DeleteView):
     def get(self, request, *args, **kwargs):
         user_id = kwargs.get('pk')
         if user_id != request.user.id:
-            messages.warning(request, 'Вы не можете '
-                                      'редактировать этого пользователя')
+            messages.warning(request, _("Can't edit user"))
             return redirect(reverse('users_list'))
         return super().get(request, *args, **kwargs)
 
@@ -64,13 +63,11 @@ class DeleteUser(LoginRequiredMixin, DeleteView):
         self.object = self.get_object()
         form = self.get_form()
         if self.object.id != self.request.user.id:
-            messages.warning(request, 'Вы не можете '
-                                      'редактировать этого пользователя')
+            messages.warning(request, _("Can't edit user"))
             return redirect(self.get_success_url())
         if Task.objects.filter(author=self.object).exists() or \
                 Task.objects.filter(executor=self.object).exists():
-            messages.warning(request, 'Невозможно удалить пользователя, '
-                                      'потому что он используется')
+            messages.warning(request, _("Can't edit used user"))
             return redirect(self.get_success_url())
-        messages.success(request, 'Пользователь успешно удалён')
+        messages.success(request, _('User deleted'))
         return self.form_valid(form)

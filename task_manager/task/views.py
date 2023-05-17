@@ -6,6 +6,7 @@ from task_manager.task.models import Task
 from task_manager.task import forms
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from task_manager.views import LoginRequiredMixin
+from django.utils.translation import gettext as _
 
 
 class TasksListView(View):
@@ -38,7 +39,7 @@ class CreateTask(CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        messages.success(self.request, 'Задача успешно создана')
+        messages.success(self.request, _('Task created'))
         return super().form_valid(form)
 
 
@@ -49,7 +50,7 @@ class UpdateTask(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('tasks_list')
 
     def form_valid(self, form):
-        messages.success(self.request, 'Задача успешно изменена')
+        messages.success(self.request, _('Task changed'))
         return super().form_valid(form)
 
 
@@ -61,5 +62,5 @@ class DeleteTask(LoginRequiredMixin, DeleteView):
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         form = self.get_form()
-        messages.success(request, 'Задача успешно удалена')
+        messages.success(request, _('Task deleted'))
         return self.form_valid(form)

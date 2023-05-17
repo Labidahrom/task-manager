@@ -7,6 +7,7 @@ from task_manager.task.models import TaskLabel
 from task_manager.label import forms
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from task_manager.views import LoginRequiredMixin
+from django.utils.translation import gettext as _
 
 
 class LabelsListView(View):
@@ -24,7 +25,7 @@ class CreateLabel(CreateView):
     success_url = reverse_lazy('labels_list')
 
     def form_valid(self, form):
-        messages.success(self.request, 'Метка успешно создана')
+        messages.success(self.request, _('Label created'))
         return super().form_valid(form)
 
 
@@ -35,7 +36,7 @@ class UpdateLabel(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('labels_list')
 
     def form_valid(self, form):
-        messages.success(self.request, 'Метка успешно изменена')
+        messages.success(self.request, _('Label changed'))
         return super().form_valid(form)
 
 
@@ -48,8 +49,7 @@ class DeleteLabel(LoginRequiredMixin, DeleteView):
         self.object = self.get_object()
         form = self.get_form()
         if TaskLabel.objects.filter(label=self.object).exists():
-            messages.warning(request, 'Невозможно удалить метку, '
-                                      'потому что она используется')
+            messages.warning(request, _("Can't delete label"))
             return redirect(self.get_success_url())
-        messages.success(request, 'Метка успешно удалена')
+        messages.success(request, _('Label deleted'))
         return self.form_valid(form)
