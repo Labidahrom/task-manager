@@ -21,7 +21,7 @@ class UsersListView(View):
 class CreateUser(CreateView):
     form_class = forms.UserCreateForm
     template_name = 'user/create_user.html'
-    success_url = reverse_lazy('users_list')
+    success_url = reverse_lazy('login')
 
     def form_valid(self, form):
         messages.success(self.request, 'Пользователь успешно зарегистрирован')
