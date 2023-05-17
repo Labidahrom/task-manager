@@ -8,11 +8,6 @@ from django.utils.translation import gettext as _
 from task_manager.forms import BootstrapMixin
 
 
-class UserModelChoiceField(forms.ModelChoiceField):
-    def label_from_instance(self, obj):
-        return obj.first_name + " " + obj.last_name
-
-
 class TaskCreateForm(BootstrapMixin, forms.ModelForm):
     executor = \
         forms.ModelChoiceField(queryset=User.objects.all(),
@@ -51,11 +46,6 @@ class TaskUpdateForm(TaskCreateForm):
         model = Task
         fields = ['name', 'description', 'executor', 'status',
                   'labels']
-
-
-class FullNameUserFilter(django_filters.ModelChoiceFilter):
-    def get_full_name(self, obj):
-        return f'{obj.first_name} {obj.last_name}'
 
 
 class TaskFilter(django_filters.FilterSet):
