@@ -1,6 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.contrib import messages
-from django.views import View
 from django.urls import reverse_lazy
 from task_manager.status.models import Status
 from task_manager.task.models import Task
@@ -8,27 +7,29 @@ from task_manager.status import forms
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from task_manager.views import LoginRequiredMixin
 from django.utils.translation import gettext as _
+from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic.list import ListView
 
 
-class CreateStatus(CreateView):
+class StatusesListView(ListView):
+    model = Status
+    template_name = 'status/status_list.html'
+    context_object_name = 'statuses'
+
+
+class CreateStatus(SuccessMessageMixin, CreateView):
     form_class = forms.StatusCreateForm
     template_name = 'status/create_status.html'
     success_url = reverse_lazy('statuses_list')
-
-    def form_valid(self, form):
-        messages.success(self.request, _('Status created'))
-        return super().form_valid(form)
+    success_message = _('Status created')
 
 
-class UpdateStatus(LoginRequiredMixin, UpdateView):
+class UpdateStatus(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Status
     form_class = forms.StatusUpdateForm
     template_name = 'status/update_status.html'
     success_url = reverse_lazy('statuses_list')
-
-    def form_valid(self, form):
-        messages.success(self.request, _('Status changed'))
-        return super().form_valid(form)
+    success_message = _('Status changed')
 
 
 class DeleteStatus(LoginRequiredMixin, DeleteView):
@@ -44,12 +45,3 @@ class DeleteStatus(LoginRequiredMixin, DeleteView):
             return redirect(self.get_success_url())
         messages.success(request, _('Status deleted'))
         return self.form_valid(form)
-
-
-class StatusesListView(View):
-
-    def get(self, request, *args, **kwargs):
-        statuses = Status.objects.all()
-        return render(request, 'status/status_list.html', context={
-            'statuses': statuses
-        })

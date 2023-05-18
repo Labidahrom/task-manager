@@ -7,19 +7,17 @@ from django.views.decorators.cache import never_cache
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import AccessMixin
 from django.utils.translation import gettext as _
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 def index(request):
     return render(request, 'index.html')
 
 
-class LoginUser(LoginView):
+class LoginUser(SuccessMessageMixin, LoginView):
     template_name = 'login_user.html'
     next_page = reverse_lazy('index')
-
-    def form_valid(self, form):
-        messages.success(self.request, _('You logged in'))
-        return super().form_valid(form)
+    success_message = _('You logged in')
 
     def form_invalid(self, form):
         messages.warning(
@@ -29,7 +27,7 @@ class LoginUser(LoginView):
         return super().form_invalid(form)
 
 
-class LogoutUser(LogoutView):
+class LogoutUser(SuccessMessageMixin, LogoutView):
     template_name = 'index.html'
     next_page = reverse_lazy('index')
 

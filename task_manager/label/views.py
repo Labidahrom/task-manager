@@ -1,6 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.contrib import messages
-from django.views import View
 from django.urls import reverse_lazy
 from task_manager.label.models import Label
 from task_manager.task.models import TaskLabel
@@ -8,36 +7,29 @@ from task_manager.label import forms
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from task_manager.views import LoginRequiredMixin
 from django.utils.translation import gettext as _
+from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic.list import ListView
 
 
-class LabelsListView(View):
-
-    def get(self, request, *args, **kwargs):
-        labels = Label.objects.all()
-        return render(request, 'label/label_list.html', context={
-            'labels': labels,
-        })
+class LabelsListView(ListView):
+    model = Label
+    template_name = 'label/label_list.html'
+    context_object_name = 'labels'
 
 
-class CreateLabel(CreateView):
+class CreateLabel(SuccessMessageMixin, CreateView):
     form_class = forms.LabelCreateForm
     template_name = 'label/create_label.html'
     success_url = reverse_lazy('labels_list')
-
-    def form_valid(self, form):
-        messages.success(self.request, _('Label created'))
-        return super().form_valid(form)
+    success_message = _('Label created')
 
 
-class UpdateLabel(LoginRequiredMixin, UpdateView):
+class UpdateLabel(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Label
     form_class = forms.LabelUpdateForm
     template_name = 'label/update_label.html'
     success_url = reverse_lazy('labels_list')
-
-    def form_valid(self, form):
-        messages.success(self.request, _('Label changed'))
-        return super().form_valid(form)
+    success_message = _('Label changed')
 
 
 class DeleteLabel(LoginRequiredMixin, DeleteView):
