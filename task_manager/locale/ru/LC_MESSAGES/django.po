@@ -288,6 +288,10 @@ msgstr "Вы разлогинены"
 msgid "You are not logged in"
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
+#: task_manager/label/models.py:15
+msgid "Cannot delete Label object with associated tasks"
+msgstr "Не возможно удалить метку с связанной задачей."
+
 #~ msgid "Log out"
 #~ msgstr "Выход"
 

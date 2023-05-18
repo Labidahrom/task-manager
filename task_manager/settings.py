@@ -38,10 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'task_manager.status',
-    'task_manager.label',
-    'task_manager.user',
-    'task_manager.task',
+    'task_manager.statuses',
+    'task_manager.labels',
+    'task_manager.users',
+    'task_manager.tasks',
     'task_manager',
     'bootstrap4',
     'django_filters',
@@ -144,7 +144,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-AUTH_USER_MODEL = 'user.User'
+AUTH_USER_MODEL = 'users.User'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
