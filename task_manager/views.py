@@ -8,6 +8,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import AccessMixin
 from django.utils.translation import gettext as _
 from django.contrib.messages.views import SuccessMessageMixin
+from task_manager.users.forms import LoginForm
 
 
 def index(request):
@@ -18,6 +19,7 @@ class LoginUser(SuccessMessageMixin, LoginView):
     template_name = 'login_user.html'
     next_page = reverse_lazy('index')
     success_message = _('You logged in')
+    form_class = LoginForm
 
     def form_invalid(self, form):
         messages.warning(

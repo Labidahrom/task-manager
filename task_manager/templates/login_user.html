@@ -15,9 +15,7 @@
 
 <form  class="form-group" action="{% url 'login' %}" method="post">
     {% csrf_token %}
-    <table border="1">
     {{ form }}
-    </table>
     <input type="submit" class="btn btn-primary" value="Войти">
 </form>
 
