@@ -1,39 +1,40 @@
 from django.test import Client, TestCase
 from task_manager.statuses.models import Status
-from django.urls import reverse
+from task_manager.tests import get_test_data
 
 
-class SimpleTestCase(TestCase):
-    fixtures = ['fixtures/dump.json']
+TEST_DATA = get_test_data()
+
+
+class StatusTestCase(TestCase):
+    fixtures = ['task_manager/fixtures/database.json']
 
     def test_status_create(self):
         client = Client()
         client.post('/login/',
-                    {'username': '12345',
-                     'password': '12345678'})
+                    TEST_DATA['login_data'])
         client.post('/statuses/create/',
-                    {'name': 'john2'})
+                    TEST_DATA['create_status_data'])
         response = client.get('/statuses/')
-        self.assertContains(response, "john2")
+        self.assertContains(response,
+                            TEST_DATA["create_status_result"])
 
     def test_status_update(self):
         client = Client()
         client.post('/login/',
-                    {'username': '12345',
-                     'password': '12345678'})
-        status = Status.objects.get(name='Быстро')
+                    TEST_DATA['login_data'])
+        status = Status.objects.get(name=TEST_DATA['update_status'])
         client.post(f'/statuses/{status.id}/update/',
-                    {'name': 'Медленно'})
+                    TEST_DATA['update_status_data'])
         response = client.get('/statuses/')
-        self.assertContains(response, "Медленно")
+        self.assertContains(response, TEST_DATA['update_status_result'])
 
     def test_status_delete(self):
         client = Client()
         client.post('/login/',
-                    {'username': '12345',
-                     'password': '12345678'})
-        status = Status.objects.get(name='Норма44')
+                    TEST_DATA['login_data'])
+        status = Status.objects.get(name=TEST_DATA['delete_status'])
         client.post(f'/statuses/{status.id}/delete/',
-                    {'id': status.id})
+                    TEST_DATA['delete_status_data'])
         response = client.get('/statuses/')
-        self.assertNotContains(response, "Норма44")
+        self.assertNotContains(response, TEST_DATA['delete_status'])

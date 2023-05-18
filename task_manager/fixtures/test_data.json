@@ -1,0 +1,81 @@
+{
+  "login_data": {
+    "username": "12345reda",
+    "password": "wsd2349t"
+  },
+  "create_status_data": {
+    "name": "status1"
+  },
+  "create_status_result": "status1",
+  "update_status": "test_status",
+  "update_status_data": {
+    "name": "status2"
+  },
+  "update_status_result": "status2",
+  "delete_status": "test_status",
+  "delete_status_data": {
+    "name": "test_status"
+  },
+  "delete_status_result": "test_status",
+  "create_label_data": {
+    "name": "label1"
+  },
+  "create_label_result": "label1",
+  "update_label": "test_label",
+  "update_label_data": {
+    "name": "label2"
+  },
+  "update_label_result": "label2",
+  "delete_label": "test_label",
+  "delete_label_data": {
+    "name": "test_label"
+  },
+  "delete_label_result": "test_label",
+  "create_user_data": {
+    "first_name": "john2",
+    "last_name": "john2",
+    "username": "john2222",
+    "password1": "wsd2349t",
+    "password2": "wsd2349t"
+  },
+  "create_user_result": "john2222",
+  "update_user": "12345reda",
+  "update_user_data": {
+    "first_name": "john2",
+    "last_name": "john2",
+    "username": "john22223",
+    "password1": "wsd2349t",
+    "password2": "wsd2349t"
+  },
+  "update_user_result": "john22223",
+  "login_deleted_user_data": {
+    "username": "john2222",
+    "password": "wsd2349t"
+  },
+  "delete_user": "john2222",
+  "delete_user_data": {
+    "username": "john2222"
+  },
+  "delete_user_result": "john2222",
+  "create_task_data": {
+    "name": "task4task",
+    "description": "john3 khkjhkjhkj kjhhh",
+    "executor": 1,
+    "status": 2
+  },
+  "create_task_result": "task4task",
+  "update_task": "test_task",
+  "update_task_data": {
+    "name": "task4task1",
+    "description": "john3 khkjhkjhkj kjhhh",
+    "executor": 1,
+    "status": 2
+  },
+  "update_task_result": "task4task1",
+  "delete_task": "test_task",
+  "delete_task_data": {
+    "name": "test_task"
+  },
+  "delete_task_result": "test_task"
+}
+
