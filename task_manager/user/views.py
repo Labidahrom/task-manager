@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 from django.contrib import messages
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from task_manager.task.models import Task
 from task_manager.user.models import User
 from task_manager.user import forms
