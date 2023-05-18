@@ -10,18 +10,6 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.list import ListView
 
 
-# class TasksListView(View):
-#
-#     def get(self, request, *args, **kwargs):
-#         tasks = Task.objects.all()
-#         f = forms.TaskFilter(request.GET,
-#                              queryset=Task.objects.all(),
-#                              request=request)
-#         return render(request, 'task/tasks_list.html', context={
-#             'tasks': tasks, 'filter': f
-#         })
-
-
 class TasksListView(ListView):
     model = Task
     template_name = 'task/tasks_list.html'
@@ -36,6 +24,9 @@ class TasksListView(ListView):
 
 
 class TaskDetailsView(View):
+    model = Task
+    template_name = 'task/tasks_list.html'
+    context_object_name = 'tasks'
 
     def get(self, request, *args, **kwargs):
         task_id = kwargs.get('pk')

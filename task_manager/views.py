@@ -45,3 +45,13 @@ class LoginRequiredMixin(AccessMixin):
             messages.warning(request, _('You are not logged in'))
             return redirect(reverse('login'))
         return super().dispatch(request, *args, **kwargs)
+
+
+class UserRequiredMixin(AccessMixin):
+
+    def dispatch(self, request, *args, **kwargs):
+        user_id = kwargs.get('pk')
+        if user_id != request.user.id:
+            messages.warning(request, _("Can't edit user"))
+            return redirect(reverse('users_list'))
+        return super().dispatch(request, *args, **kwargs)
