@@ -440,14 +440,6 @@
   }
 },
 {
-  "model": "sessions.session",
-  "pk": "t1tme350thkqnwpnxvjxg39490vz8y7s",
-  "fields": {
-    "session_data": ".eJxVjMsOwiAQRf-FtSGdoTzq0r3fQIAZpGogKe3K-O_apAvd3nPOfQkftrX4rfPiZxJnAeL0u8WQHlx3QPdQb02mVtdljnJX5EG7vDbi5-Vw_w5K6OVbG60tZbRqGtGgAnSAGBJENtk6zdZZYk5q0FExTZRy1ICQEcYBCEm8P8BBN2s:1pzeTQ:dr_TheYwEPd3W3ROehoTaKgpa7ExmEXWDu9Tp8zPHjU",
-    "expire_date": "2023-06-01T14:19:20.668Z"
-  }
-},
-{
   "model": "statuses.status",
   "pk": 1,
   "fields": {
@@ -461,6 +453,22 @@
   "fields": {
     "name": "test_status",
     "created_at": "2023-05-18T14:17:50.594Z"
+  }
+},
+{
+  "model": "statuses.status",
+  "pk": 5,
+  "fields": {
+    "name": "s",
+    "created_at": "2023-05-20T07:58:44.515Z"
+  }
+},
+{
+  "model": "statuses.status",
+  "pk": 6,
+  "fields": {
+    "name": "used_status",
+    "created_at": "2023-05-20T08:39:54.872Z"
   }
 },
 {
@@ -480,11 +488,27 @@
   }
 },
 {
+  "model": "labels.label",
+  "pk": 4,
+  "fields": {
+    "name": "3421414",
+    "created_at": "2023-05-20T07:24:06.969Z"
+  }
+},
+{
+  "model": "labels.label",
+  "pk": 5,
+  "fields": {
+    "name": "used_label",
+    "created_at": "2023-05-20T08:40:04.283Z"
+  }
+},
+{
   "model": "users.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$600000$9jp0O20A95gZ1tlmMRMZT0$JKLwl8RRbIwVlRJM7SM0v4ZxNbjBXQuo5w5tEg8EOdA=",
-    "last_login": "2023-05-18T14:19:20.664Z",
+    "last_login": "2023-05-20T09:13:56.934Z",
     "is_superuser": false,
     "username": "12345reda",
     "first_name": "ROMAN",
@@ -518,6 +542,25 @@
   }
 },
 {
+  "model": "users.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$RTea8dE2qcSIRVyE75jLvE$XJmWuWIooL5qgWVWsaSwU99eNce+5eSpo5XK1Qb4yMQ=",
+    "last_login": "2023-05-20T08:39:25.117Z",
+    "is_superuser": false,
+    "username": "used_user",
+    "first_name": "ROMAN",
+    "last_name": "used",
+    "email": "",
+    "date_joined": "2023-05-20T08:39:04.316Z",
+    "created_at": "2023-05-20T08:39:04.316Z",
+    "is_active": true,
+    "is_admin": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
   "model": "tasks.tasklabel",
   "pk": 2,
   "fields": {
@@ -531,6 +574,14 @@
   "fields": {
     "task": 1,
     "label": 1
+  }
+},
+{
+  "model": "tasks.tasklabel",
+  "pk": 6,
+  "fields": {
+    "task": 6,
+    "label": 5
   }
 },
 {
@@ -555,6 +606,18 @@
     "status": 1,
     "executor": 1,
     "created_at": "2023-05-18T14:18:40.354Z"
+  }
+},
+{
+  "model": "tasks.task",
+  "pk": 6,
+  "fields": {
+    "name": "used_task",
+    "description": "dafa",
+    "author": 1,
+    "status": 6,
+    "executor": 3,
+    "created_at": "2023-05-20T09:11:02.433Z"
   }
 }
 ]

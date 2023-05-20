@@ -44,3 +44,14 @@ class UserTestCase(TestCase):
         response = client.get('/users/')
         self.assertNotContains(response, TEST_DATA['delete_user'])
         self.assertContains(response, TEST_DATA['delete_user_message'])
+
+    def test_delete_used_user(self):
+        client = Client()
+        client.post('/login/',
+                    TEST_DATA['login_used_user_data'])
+        user = User.objects.get(username=TEST_DATA['used_user'])
+        client.post(f'/users/{user.id}/delete/',
+                    TEST_DATA['delete_used_user_data'])
+        response = client.get('/users/')
+        self.assertContains(response, TEST_DATA['used_user'])
+        self.assertContains(response, TEST_DATA['delete_used_user_message'])

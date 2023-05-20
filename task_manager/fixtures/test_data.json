@@ -15,11 +15,16 @@
   "update_status_result": "status2",
   "update_status_message": "Статус успешно изменен",
   "delete_status": "test_status",
+  "used_status": "used_status",
+  "delete_used_status_data": {
+    "name": "used_status"
+  },
   "delete_status_data": {
     "name": "test_status"
   },
   "delete_status_result": "test_status",
   "delete_status_message": "Статус успешно удален",
+    "delete_used_status_message": "Невозможно удалить статус, потому что он используется",
   "create_label_data": {
     "name": "label1"
   },
@@ -31,12 +36,17 @@
   },
   "update_label_result": "label2",
   "update_label_message": "Метка успешно изменена",
+  "delete_used_label_data": {
+    "name": "used_label"
+  },  
   "delete_label": "test_label",
+  "used_label": "used_label",
   "delete_label_data": {
     "name": "test_label"
   },
   "delete_label_result": "test_label",
   "delete_label_message": "Метка успешно удалена",
+  "delete_used_label_message": "Невозможно удалить метку, потому что она используется",
   "create_user_data": {
     "first_name": "john2",
     "last_name": "john2",
@@ -60,12 +70,21 @@
     "username": "john2222",
     "password": "wsd2349t"
   },
+  "login_used_user_data": {
+    "username": "used_user",
+    "password": "wsd2349t"
+  },
   "delete_user": "john2222",
+  "used_user": "used_user", 
   "delete_user_data": {
     "username": "john2222"
   },
+  "delete_used_user_data": {
+    "username": "used_user"
+  },
   "delete_user_result": "john2222",
   "delete_user_message": "Пользователь успешно удален",
+  "delete_used_user_message": "Невозможно удалить пользователя, потому что он используется",
   "create_task_data": {
     "name": "task4task",
     "description": "john3 khkjhkjhkj kjhhh",

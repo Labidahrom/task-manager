@@ -42,3 +42,14 @@ class LabelTestCase(TestCase):
         response = client.get('/labels/')
         self.assertNotContains(response, TEST_DATA['delete_label'])
         self.assertContains(response, TEST_DATA['delete_label_message'])
+
+    def test_delete_used_label(self):
+        client = Client()
+        client.post('/login/',
+                    TEST_DATA['login_data'])
+        label = Label.objects.get(name=TEST_DATA['used_label'])
+        client.post(f'/labels/{label.id}/delete/',
+                    TEST_DATA['delete_used_label_data'])
+        response = client.get('/labels/')
+        self.assertContains(response, TEST_DATA['used_label'])
+        self.assertContains(response, TEST_DATA['delete_used_label_message'])

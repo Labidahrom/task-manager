@@ -42,3 +42,14 @@ class StatusTestCase(TestCase):
         response = client.get('/statuses/')
         self.assertNotContains(response, TEST_DATA['delete_status'])
         self.assertContains(response, TEST_DATA['delete_status_message'])
+
+    def test_delete_used_status(self):
+        client = Client()
+        client.post('/login/',
+                    TEST_DATA['login_data'])
+        status = Status.objects.get(name=TEST_DATA['used_status'])
+        client.post(f'/statuses/{status.id}/delete/',
+                    TEST_DATA['delete_used_status_data'])
+        response = client.get('/statuses/')
+        self.assertContains(response, TEST_DATA['used_status'])
+        self.assertContains(response, TEST_DATA['delete_used_status_message'])
