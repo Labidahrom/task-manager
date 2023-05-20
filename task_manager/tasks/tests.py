@@ -18,6 +18,8 @@ class TaskTestCase(TestCase):
         response = client.get('/tasks/')
         self.assertContains(response,
                             TEST_DATA['create_task_result'])
+        self.assertContains(response,
+                            TEST_DATA['create_task_message'])
 
     def test_task_update(self):
         client = Client()
@@ -28,6 +30,7 @@ class TaskTestCase(TestCase):
                     TEST_DATA['update_task_data'])
         response = client.get('/tasks/')
         self.assertContains(response, TEST_DATA['update_task_result'])
+        self.assertContains(response, TEST_DATA['update_task_message'])
 
     def test_task_delete(self):
         client = Client()
@@ -38,3 +41,4 @@ class TaskTestCase(TestCase):
                     TEST_DATA['delete_task_data'])
         response = client.get('/tasks/')
         self.assertNotContains(response, TEST_DATA['delete_task'])
+        self.assertContains(response, TEST_DATA['delete_task_message'])

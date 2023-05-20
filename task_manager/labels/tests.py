@@ -18,6 +18,8 @@ class LabelTestCase(TestCase):
         response = client.get('/labels/')
         self.assertContains(response,
                             TEST_DATA["create_label_result"])
+        self.assertContains(response,
+                            TEST_DATA["create_label_message"])
 
     def test_label_update(self):
         client = Client()
@@ -28,6 +30,7 @@ class LabelTestCase(TestCase):
                     TEST_DATA['update_label_data'])
         response = client.get('/labels/')
         self.assertContains(response, TEST_DATA['update_label_result'])
+        self.assertContains(response, TEST_DATA['update_label_message'])
 
     def test_label_delete(self):
         client = Client()
@@ -38,3 +41,4 @@ class LabelTestCase(TestCase):
                     TEST_DATA['delete_label_data'])
         response = client.get('/labels/')
         self.assertNotContains(response, TEST_DATA['delete_label'])
+        self.assertContains(response, TEST_DATA['delete_label_message'])

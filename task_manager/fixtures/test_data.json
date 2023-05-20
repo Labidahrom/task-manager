@@ -7,30 +7,36 @@
     "name": "status1"
   },
   "create_status_result": "status1",
+  "create_status_message": "Статус успешно создан",
   "update_status": "test_status",
   "update_status_data": {
     "name": "status2"
   },
   "update_status_result": "status2",
+  "update_status_message": "Статус успешно изменен",
   "delete_status": "test_status",
   "delete_status_data": {
     "name": "test_status"
   },
   "delete_status_result": "test_status",
+  "delete_status_message": "Статус успешно удален",
   "create_label_data": {
     "name": "label1"
   },
   "create_label_result": "label1",
+  "create_label_message": "Метка успешно создана",
   "update_label": "test_label",
   "update_label_data": {
     "name": "label2"
   },
   "update_label_result": "label2",
+  "update_label_message": "Метка успешно изменена",
   "delete_label": "test_label",
   "delete_label_data": {
     "name": "test_label"
   },
   "delete_label_result": "test_label",
+  "delete_label_message": "Метка успешно удалена",
   "create_user_data": {
     "first_name": "john2",
     "last_name": "john2",
@@ -39,6 +45,7 @@
     "password2": "wsd2349t"
   },
   "create_user_result": "john2222",
+  "create_user_message": "Пользователь успешно зарегистрирован",
   "update_user": "12345reda",
   "update_user_data": {
     "first_name": "john2",
@@ -48,6 +55,7 @@
     "password2": "wsd2349t"
   },
   "update_user_result": "john22223",
+  "update_user_message": "Пользователь успешно изменен",
   "login_deleted_user_data": {
     "username": "john2222",
     "password": "wsd2349t"
@@ -57,6 +65,7 @@
     "username": "john2222"
   },
   "delete_user_result": "john2222",
+  "delete_user_message": "Пользователь успешно удален",
   "create_task_data": {
     "name": "task4task",
     "description": "john3 khkjhkjhkj kjhhh",
@@ -64,6 +73,7 @@
     "status": 2
   },
   "create_task_result": "task4task",
+  "create_task_message": "Задача успешно создана",
   "update_task": "test_task",
   "update_task_data": {
     "name": "task4task1",
@@ -72,10 +82,12 @@
     "status": 2
   },
   "update_task_result": "task4task1",
+  "update_task_message": "Задача успешно изменена",
   "delete_task": "test_task",
   "delete_task_data": {
     "name": "test_task"
   },
-  "delete_task_result": "test_task"
+  "delete_task_result": "test_task",
+  "delete_task_message": "Задача успешно удалена"
 }
 

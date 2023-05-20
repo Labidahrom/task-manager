@@ -18,6 +18,8 @@ class UserTestCase(TestCase):
         response = client.get('/users/')
         self.assertContains(response,
                             TEST_DATA["create_user_result"])
+        self.assertContains(response,
+                            TEST_DATA["create_user_message"])
 
     def test_user_update(self):
         client = Client()
@@ -28,6 +30,7 @@ class UserTestCase(TestCase):
                     TEST_DATA['update_user_data'])
         response = client.get('/users/')
         self.assertContains(response, TEST_DATA['update_user_result'])
+        self.assertContains(response, TEST_DATA['update_user_message'])
 
     def test_user_delete(self):
         client = Client()
@@ -40,3 +43,4 @@ class UserTestCase(TestCase):
                     TEST_DATA['delete_user_data'])
         response = client.get('/users/')
         self.assertNotContains(response, TEST_DATA['delete_user'])
+        self.assertContains(response, TEST_DATA['delete_user_message'])

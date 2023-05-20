@@ -18,6 +18,8 @@ class StatusTestCase(TestCase):
         response = client.get('/statuses/')
         self.assertContains(response,
                             TEST_DATA["create_status_result"])
+        self.assertContains(response,
+                            TEST_DATA["create_status_message"])
 
     def test_status_update(self):
         client = Client()
@@ -28,6 +30,7 @@ class StatusTestCase(TestCase):
                     TEST_DATA['update_status_data'])
         response = client.get('/statuses/')
         self.assertContains(response, TEST_DATA['update_status_result'])
+        self.assertContains(response, TEST_DATA['update_status_message'])
 
     def test_status_delete(self):
         client = Client()
@@ -38,3 +41,4 @@ class StatusTestCase(TestCase):
                     TEST_DATA['delete_status_data'])
         response = client.get('/statuses/')
         self.assertNotContains(response, TEST_DATA['delete_status'])
+        self.assertContains(response, TEST_DATA['delete_status_message'])

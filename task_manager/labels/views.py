@@ -18,6 +18,7 @@ class LabelsListView(ListView):
 
 
 class CreateLabel(SuccessMessageMixin, CreateView):
+
     form_class = forms.LabelCreateForm
     template_name = 'label/create_label.html'
     success_url = reverse_lazy('labels_list')
@@ -40,7 +41,7 @@ class DeleteLabel(LoginRequiredMixin, DeleteView):
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         form = self.get_form()
-        if TaskLabel.objects.filter(label=self.object).exists():
+        if self.object.tasklabel_set.exists():
             messages.warning(request, _("Can't delete label"))
             return redirect(self.get_success_url())
         messages.success(request, _('Label deleted'))
