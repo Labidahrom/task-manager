@@ -1,7 +1,6 @@
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.urls import reverse_lazy
-from task_manager.tasks.models import Task
 from task_manager.users.models import User
 from task_manager.users import forms
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
