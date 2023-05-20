@@ -5,7 +5,7 @@ from task_manager.tasks.models import Task
 from task_manager.users.models import User
 from task_manager.users import forms
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from task_manager.views import LoginRequiredMixin, UserRequiredMixin
+from task_manager.mixins import LoginRequiredMixin, UserRequiredMixin
 from django.utils.translation import gettext as _
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.list import ListView

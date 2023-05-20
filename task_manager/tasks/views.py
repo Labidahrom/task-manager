@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from task_manager.tasks.models import Task
 from task_manager.tasks import forms
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from task_manager.views import LoginRequiredMixin
+from task_manager.mixins import LoginRequiredMixin
 from django.utils.translation import gettext as _
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.list import ListView
