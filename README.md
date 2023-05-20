@@ -6,6 +6,11 @@
 ### Web version
 https://python-project-52-production-3079.up.railway.app/
 
+### Project description
+A Task Manager web app built on the Django framework with basic functionality, including all CRUD operations and task management features:
+- registering a user and creating tasks on his behalf
+- attaching additional properties to tasks, such as statuses and labels
+
 ### System requirements
 - Linux
 - Python (3.6 or later)
