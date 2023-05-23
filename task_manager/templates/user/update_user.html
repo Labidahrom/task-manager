@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+{% load bootstrap4 %}
 {% load i18n %}
 <div class="container wrapper flex-grow-1">
     <h1>{% translate "Update user" %}</h1>
@@ -14,29 +15,10 @@
 {% endif %}
 
 
-<form action="{% url 'user_update' pk=user.id %}" method="post">
-  {% csrf_token %}
-  <div class="form-group">
-    <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
-    {{ form.first_name }}
-    </div>
-    <div class="form-group">
-    <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
-    {{ form.last_name }}
-    </div>
-  <div class="form-group">
-    <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
-    {{ form.username }}
-  </div>
-  <div class="form-group">
-    <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
-    {{ form.password1 }}
-  </div>
-    <div class="form-group">
-    <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
-    {{ form.password2 }}
-    </div>
-  <input type="submit" class="btn btn-primary" value="Изменить">
+<form method="post" action="{% url 'user_update' pk=user.id %}">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button type="submit" class="btn btn-primary">{% translate "Change data" %}</button>
 </form>
 </div>
 {% endblock %}

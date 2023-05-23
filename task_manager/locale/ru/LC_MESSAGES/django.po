@@ -190,6 +190,13 @@ msgstr "Дата создания"
 msgid "Update label"
 msgstr "Изменение метки"
 
+#: task_manager/templates/task/update_task.html:20
+#: task_manager/templates/status/update_status.html:20
+#: task_manager/templates/label/update_label.html:20
+#: task_manager/templates/user/update_user.html:20
+msgid "Change data"
+msgstr "Изменить"
+
 #: task_manager/templates/update_status.html:5
 msgid "Update status"
 msgstr "Изменение статуса"
