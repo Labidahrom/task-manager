@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+{% load bootstrap4 %}
 {% load i18n %}
 <div class="container wrapper flex-grow-1">
     <h1>{% translate "Update task" %}</h1>
@@ -15,10 +16,8 @@
 {% endif %}
 <form  class="form-group" action="{% url 'task_update' pk=task.id %}" method="post">
     {% csrf_token %}
-    <table border="1">
-    {{ form }}
-    </table>
-    <input type="submit" value='{% translate "Change data" %}'>
+    {% bootstrap_form form %}
+    <button type="submit" class="btn btn-primary">{% translate "Change data" %}</button>
 </form>
 </div>
 {% endblock %}
