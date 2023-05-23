@@ -197,6 +197,12 @@ msgstr "Изменение метки"
 msgid "Change data"
 msgstr "Изменить"
 
+#: task_manager/templates/task/create_task.html:21
+#: task_manager/templates/status/create_status.html:21
+#: task_manager/templates/label/create_label.html:21
+msgid "Create"
+msgstr "Создать"
+
 #: task_manager/templates/update_status.html:5
 msgid "Update status"
 msgstr "Изменение статуса"
