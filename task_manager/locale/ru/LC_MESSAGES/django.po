@@ -93,7 +93,7 @@ msgstr "Создать задачу"
 
 #: task_manager/templates/create_user.html:5
 msgid "Register"
-msgstr "Регистрация"
+msgstr "Зарегистрировать"
 
 #: task_manager/templates/delete_label.html:13
 msgid "Delete label"
