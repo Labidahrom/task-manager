@@ -173,6 +173,10 @@ msgstr "Статус"
 msgid "Author"
 msgstr "Автор"
 
+#: task_manager/templates/login_user.html:10
+msgid "Login"
+msgstr "Войти"
+
 #: task_manager/templates/tasks_list.html:19
 #: task_manager/templates/user_list.html:12
 msgid "Created at"
