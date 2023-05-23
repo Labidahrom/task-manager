@@ -91,9 +91,13 @@ msgstr "Создать статус"
 msgid "Create task"
 msgstr "Создать задачу"
 
-#: task_manager/templates/create_user.html:5
+#: task_manager/templates/create_user.html:21
 msgid "Register"
 msgstr "Зарегистрировать"
+
+#: task_manager/templates/create_user.html:6
+msgid "Register User"
+msgstr "Регистрация"
 
 #: task_manager/templates/delete_label.html:13
 msgid "Delete label"
