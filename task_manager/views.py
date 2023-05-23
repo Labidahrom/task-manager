@@ -20,15 +20,8 @@ class LoginUser(SuccessMessageMixin, LoginView):
     success_message = _('You logged in')
     form_class = LoginForm
 
-    def form_invalid(self, form):
-        messages.warning(
-            self.request,
-            _('Enter your username and password')
-        )
-        return super().form_invalid(form)
 
-
-class LogoutUser(SuccessMessageMixin, LogoutView):
+class LogoutUser(LogoutView):
     template_name = 'index.html'
     next_page = reverse_lazy('index')
 

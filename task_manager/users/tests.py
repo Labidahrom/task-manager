@@ -1,6 +1,7 @@
 from django.test import Client, TestCase
 from task_manager.users.models import User
 from task_manager.tests import get_test_data
+from django.utils.translation import gettext as _
 
 
 TEST_DATA = get_test_data()
@@ -19,7 +20,7 @@ class UserTestCase(TestCase):
         self.assertContains(response,
                             TEST_DATA["create_user_result"])
         self.assertContains(response,
-                            TEST_DATA["create_user_message"])
+                            _('User created'))
 
     def test_user_update(self):
         client = Client()
@@ -30,7 +31,7 @@ class UserTestCase(TestCase):
                     TEST_DATA['update_user_data'])
         response = client.get('/users/')
         self.assertContains(response, TEST_DATA['update_user_result'])
-        self.assertContains(response, TEST_DATA['update_user_message'])
+        self.assertContains(response, _('User changed'))
 
     def test_user_delete(self):
         client = Client()
@@ -43,7 +44,7 @@ class UserTestCase(TestCase):
                     TEST_DATA['delete_user_data'])
         response = client.get('/users/')
         self.assertNotContains(response, TEST_DATA['delete_user'])
-        self.assertContains(response, TEST_DATA['delete_user_message'])
+        self.assertContains(response, _('User deleted'))
 
     def test_delete_used_user(self):
         client = Client()
@@ -54,4 +55,4 @@ class UserTestCase(TestCase):
                     TEST_DATA['delete_used_user_data'])
         response = client.get('/users/')
         self.assertContains(response, TEST_DATA['used_user'])
-        self.assertContains(response, TEST_DATA['delete_used_user_message'])
+        self.assertContains(response, _("Can't delete used user"))

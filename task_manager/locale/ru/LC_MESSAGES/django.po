@@ -321,7 +321,7 @@ msgid "Can't edit user"
 msgstr "Вы не можете редактировать этого пользователя"
 
 #: task_manager/user/views.py:70
-msgid "Can't edit used user"
+msgid "Can't delete used user"
 msgstr "Невозможно удалить пользователя, потому что он используется"
 
 #: task_manager/user/views.py:72

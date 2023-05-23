@@ -42,7 +42,7 @@ class DeleteUser(LoginRequiredMixin, UserRequiredMixin, DeleteView):
         form = self.get_form()
         if self.object.user_author.exists() or \
                 self.object.user_assignee.exists():
-            messages.warning(request, _("Can't edit used user"))
+            messages.warning(request, _("Can't delete used user"))
             return redirect(self.get_success_url())
         messages.success(request, _('User deleted'))
         return self.form_valid(form)

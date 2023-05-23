@@ -1,6 +1,7 @@
 from django.test import Client, TestCase
 from task_manager.labels.models import Label
 from task_manager.tests import get_test_data
+from django.utils.translation import gettext as _
 
 
 TEST_DATA = get_test_data()
@@ -19,7 +20,7 @@ class LabelTestCase(TestCase):
         self.assertContains(response,
                             TEST_DATA["create_label_result"])
         self.assertContains(response,
-                            TEST_DATA["create_label_message"])
+                            _('Label created'))
 
     def test_label_update(self):
         client = Client()
@@ -30,7 +31,7 @@ class LabelTestCase(TestCase):
                     TEST_DATA['update_label_data'])
         response = client.get('/labels/')
         self.assertContains(response, TEST_DATA['update_label_result'])
-        self.assertContains(response, TEST_DATA['update_label_message'])
+        self.assertContains(response, _('Label changed'))
 
     def test_label_delete(self):
         client = Client()
@@ -41,7 +42,7 @@ class LabelTestCase(TestCase):
                     TEST_DATA['delete_label_data'])
         response = client.get('/labels/')
         self.assertNotContains(response, TEST_DATA['delete_label'])
-        self.assertContains(response, TEST_DATA['delete_label_message'])
+        self.assertContains(response, _('Label deleted'))
 
     def test_delete_used_label(self):
         client = Client()
@@ -52,4 +53,4 @@ class LabelTestCase(TestCase):
                     TEST_DATA['delete_used_label_data'])
         response = client.get('/labels/')
         self.assertContains(response, TEST_DATA['used_label'])
-        self.assertContains(response, TEST_DATA['delete_used_label_message'])
+        self.assertContains(response, _("Can't delete label"))
