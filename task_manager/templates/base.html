@@ -35,10 +35,10 @@
     <div class="my-2 my-md-0">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}">Вы вошли как: {{ user.username }}</a>
+          <a class="nav-link" href="{% url 'login' %}">{% translate "User:" %} {{ user.username }}</a>
             </li>
             <li class="nav-item">
-      <a class="nav-link" href="{% url 'logout' %}">Выход</a>
+      <a class="nav-link" href="{% url 'logout' %}">{% translate "Logout" %}</a>
             </li>
         </ul>
     </div>

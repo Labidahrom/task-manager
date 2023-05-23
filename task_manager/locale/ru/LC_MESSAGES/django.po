@@ -119,6 +119,18 @@ msgstr "Удаление пользователя"
 msgid "Simple task manager"
 msgstr "Простой планировщик задач"
 
+#: task_manager/templates/index.html:5
+msgid "Welcome to Simple task manager!"
+msgstr "Добро пожаловать в простой и быстрый планировщик задач. Планируйте свои задачи на здoровье:))"
+
+#: task_manager/templates/base.html:38
+msgid "User:"
+msgstr "Вы вошли как:"
+
+#: task_manager/templates/base.html:41
+msgid "Logout"
+msgstr "Выход"
+
 #: task_manager/templates/label_list.html:5
 msgid "Create label"
 msgstr "Создать метку"
@@ -186,16 +198,39 @@ msgstr "Войти"
 msgid "Created at"
 msgstr "Дата создания"
 
+#: task_manager/templates/tasks_list.html:38
+#: task_manager/templates/tasks_details.html:45
+#: task_manager/templates/user_list.html:29
+#: task_manager/templates/status_list.html:28
+#: task_manager/templates/label_list.html:28
+msgid "Delete data"
+msgstr "Удалить"
+
 #: task_manager/templates/update_label.html:5
 msgid "Update label"
 msgstr "Изменение метки"
 
 #: task_manager/templates/task/update_task.html:20
+#: task_manager/templates/tasks_details.html:39
 #: task_manager/templates/status/update_status.html:20
 #: task_manager/templates/label/update_label.html:20
 #: task_manager/templates/user/update_user.html:20
 msgid "Change data"
 msgstr "Изменить"
+
+#: task_manager/templates/task/delete_task.html:14
+#: task_manager/templates/status/delete_status.html:14
+#: task_manager/templates/label/delete_label.html:14
+#: task_manager/templates/user/delete_user.html:14
+msgid "Are you sure that you want to delete"
+msgstr "Вы уверены, что хотите удалить"
+
+#: task_manager/templates/task/delete_task.html:17
+#: task_manager/templates/status/delete_status.html:17
+#: task_manager/templates/label/delete_label.html:17
+#: task_manager/templates/user/delete_user.html:17
+msgid "Yes, delete it"
+msgstr "Да, удалить"
 
 #: task_manager/templates/task/create_task.html:21
 #: task_manager/templates/status/create_status.html:21

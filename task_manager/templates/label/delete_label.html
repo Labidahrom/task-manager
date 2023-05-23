@@ -11,9 +11,9 @@
 </div>
 {% endif %}
 <h1>{% translate "Delete label" %}</h1>
-<div>Вы уверены, что хотите удалить {{ label.name }}?</div>
+<div>{% translate "Are you sure that you want to delete" %} {{ label.name }}?</div>
 <form action="{% url 'label_delete' pk=label.id %}" method="post">
     {% csrf_token %}
-    <input class="btn btn-danger" type="submit" value="Да, удалить">
+    <input class="btn btn-danger" type="submit" value='{% translate "Yes, delete it" %}'>
 </form>
 {% endblock %}

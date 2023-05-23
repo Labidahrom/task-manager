@@ -21,11 +21,11 @@
         <td>
           <form action="{% url 'status_update' pk=status.id %}" method="get">
           {% csrf_token %}
-          <input type="submit" value="Изменить">
+          <input type="submit" value='{% translate "Change data" %}'>
           </form>
           <form action="{% url 'status_delete' pk=status.id %}" method="get">
           {% csrf_token %}
-          <input type="submit" value="Удалить">
+          <input type="submit" value='{% translate "Delete data" %}'>
           </form>
         </td>
       </tr>
