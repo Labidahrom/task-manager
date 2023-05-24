@@ -4,42 +4,44 @@ from task_manager.tests import get_test_data
 from django.urls import reverse
 from django.utils.translation import gettext as _
 
-TEST_DATA = get_test_data()
-
 
 class TaskTestCase(TestCase):
     fixtures = ['task_manager/fixtures/database.json']
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.test_data = get_test_data()
+
     def test_task_create(self):
         client = Client()
         client.post('/login/',
-                    TEST_DATA['login_data'])
+                    self.test_data['login_data'])
         client.post(reverse('task_create'),
-                    TEST_DATA['create_task_data'])
+                    self.test_data['create_task_data'])
         response = client.get('/tasks/')
         self.assertContains(response,
-                            TEST_DATA['create_task_result'])
+                            self.test_data['create_task_result'])
         self.assertContains(response,
                             _('Task created'))
 
     def test_task_update(self):
         client = Client()
         client.post('/login/',
-                    TEST_DATA['login_data'])
-        task = Task.objects.get(name=TEST_DATA['update_task'])
+                    self.test_data['login_data'])
+        task = Task.objects.get(name=self.test_data['update_task'])
         client.post(f'/tasks/{task.id}/update/',
-                    TEST_DATA['update_task_data'])
+                    self.test_data['update_task_data'])
         response = client.get('/tasks/')
-        self.assertContains(response, TEST_DATA['update_task_result'])
+        self.assertContains(response, self.test_data['update_task_result'])
         self.assertContains(response, _('Task changed'))
 
     def test_task_delete(self):
         client = Client()
         client.post('/login/',
-                    TEST_DATA['login_data'])
-        task = Task.objects.get(name=TEST_DATA['delete_task'])
+                    self.test_data['login_data'])
+        task = Task.objects.get(name=self.test_data['delete_task'])
         client.post(f'/tasks/{task.id}/delete/',
-                    TEST_DATA['delete_task_data'])
+                    self.test_data['delete_task_data'])
         response = client.get('/tasks/')
-        self.assertNotContains(response, TEST_DATA['delete_task'])
+        self.assertNotContains(response, self.test_data['delete_task'])
         self.assertContains(response, _('Task deleted'))

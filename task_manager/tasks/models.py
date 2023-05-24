@@ -8,7 +8,7 @@ from task_manager.users.models import User
 
 class TaskLabel(models.Model):
     task = models.ForeignKey('Task', on_delete=models.CASCADE)
-    label = models.ForeignKey('labels.Label', on_delete=models.CASCADE)
+    label = models.ForeignKey('labels.Label', on_delete=models.PROTECT)
 
     class Meta:
         unique_together = ('task', 'label')

@@ -38,9 +38,8 @@ class DeleteStatus(LoginRequiredMixin, DeleteView):
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
-        form = self.get_form()
         if self.object.task_set.exists():
             messages.warning(request, _("Can't delete status"))
             return redirect(self.get_success_url())
         messages.success(request, _('Status deleted'))
-        return self.form_valid(form)
+        return super().post(request, *args, **kwargs)
