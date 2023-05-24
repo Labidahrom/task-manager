@@ -88,7 +88,7 @@
   "create_task_data": {
     "name": "task4task",
     "description": "john3 khkjhkjhkj kjhhh",
-    "executor": 1,
+    "executor": 2,
     "status": 2
   },
   "create_task_result": "task4task",
@@ -97,7 +97,7 @@
   "update_task_data": {
     "name": "task4task1",
     "description": "john3 khkjhkjhkj kjhhh",
-    "executor": 1,
+    "executor": 2,
     "status": 2
   },
   "update_task_result": "task4task1",
