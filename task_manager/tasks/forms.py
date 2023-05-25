@@ -5,10 +5,9 @@ from task_manager.statuses.models import Status
 from task_manager.users.models import User
 import django_filters
 from django.utils.translation import gettext as _
-from task_manager.forms import BootstrapMixin
 
 
-class TaskCreateForm(BootstrapMixin, forms.ModelForm):
+class TaskCreateForm(forms.ModelForm):
     executor = \
         forms.ModelChoiceField(queryset=User.objects.all(),
                                label=_('Executor'),

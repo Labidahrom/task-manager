@@ -1,12 +1,11 @@
 from task_manager.users.models import User
-from task_manager.forms import BootstrapMixin
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import gettext_lazy as _
 
 
-class LoginForm(BootstrapMixin, AuthenticationForm):
+class LoginForm(AuthenticationForm):
     username = forms.CharField(
         label_suffix='',
         label=_('Username'),
@@ -27,7 +26,7 @@ class LoginForm(BootstrapMixin, AuthenticationForm):
     )
 
 
-class UserCreateForm(BootstrapMixin, UserCreationForm):
+class UserCreateForm(UserCreationForm):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         self.fields['last_name'].required = True

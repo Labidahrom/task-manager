@@ -13,7 +13,7 @@ class UserTestCase(TestCase):
         self.login_user = \
             User.objects.get(username=self.test_data['login_username'])
         self.used_user = \
-            User.objects.get(username=self.test_data['login_used_user_username'])
+            User.objects.get(username=self.test_data['login_used_username'])
         self.client = Client()
 
     def test_user_create(self):

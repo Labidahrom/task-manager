@@ -1,9 +1,8 @@
 from django import forms
 from task_manager.labels.models import Label
-from task_manager.forms import BootstrapMixin
 
 
-class LabelCreateForm(BootstrapMixin, forms.ModelForm):
+class LabelCreateForm(forms.ModelForm):
     class Meta:
         model = Label
         fields = ['name']

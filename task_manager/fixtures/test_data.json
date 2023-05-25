@@ -67,7 +67,7 @@
     "username": "john2222",
     "password": "wsd2349t"
   },
-  "login_used_user_username": "used_user",
+  "login_used_username": "used_user",
   "delete_user": "john2222",
   "used_user": "used_user", 
   "delete_user_data": {

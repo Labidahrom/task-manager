@@ -19,7 +19,7 @@ class TaskTestCase(TestCase):
     def test_task_create(self):
         self.client.force_login(self.login_user)
         self.client.post(reverse('task_create'),
-                    self.test_data['create_task_data'])
+                         self.test_data['create_task_data'])
         response = self.client.get('/tasks/')
         self.assertContains(response,
                             self.test_data['create_task_result'])
@@ -30,7 +30,7 @@ class TaskTestCase(TestCase):
         self.client.force_login(self.login_user)
         task = Task.objects.get(name=self.test_data['update_task'])
         self.client.post(f'/tasks/{task.id}/update/',
-                    self.test_data['update_task_data'])
+                         self.test_data['update_task_data'])
         response = self.client.get('/tasks/')
         self.assertContains(response, self.test_data['update_task_result'])
         self.assertContains(response, _('Task changed'))
@@ -39,7 +39,7 @@ class TaskTestCase(TestCase):
         self.client.force_login(self.login_user)
         task = Task.objects.get(name=self.test_data['delete_task'])
         self.client.post(f'/tasks/{task.id}/delete/',
-                    self.test_data['delete_task_data'])
+                         self.test_data['delete_task_data'])
         response = self.client.get('/tasks/')
         self.assertNotContains(response, self.test_data['delete_task'])
         self.assertContains(response, _('Task deleted'))

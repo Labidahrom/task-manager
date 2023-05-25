@@ -18,7 +18,7 @@ class LabelTestCase(TestCase):
     def test_label_create(self):
         self.client.force_login(self.login_user)
         self.client.post('/labels/create/',
-                    self.test_data['create_label_data'])
+                         self.test_data['create_label_data'])
         response = self.client.get('/labels/')
         self.assertContains(response,
                             self.test_data["create_label_result"])
@@ -29,7 +29,7 @@ class LabelTestCase(TestCase):
         self.client.force_login(self.login_user)
         label = Label.objects.get(name=self.test_data['update_label'])
         self.client.post(f'/labels/{label.id}/update/',
-                    self.test_data['update_label_data'])
+                         self.test_data['update_label_data'])
         response = self.client.get('/labels/')
         self.assertContains(response, self.test_data['update_label_result'])
         self.assertContains(response, _('Label changed'))
@@ -38,7 +38,7 @@ class LabelTestCase(TestCase):
         self.client.force_login(self.login_user)
         label = Label.objects.get(name=self.test_data['delete_label'])
         self.client.post(f'/labels/{label.id}/delete/',
-                    self.test_data['delete_label_data'])
+                         self.test_data['delete_label_data'])
         response = self.client.get('/labels/')
         self.assertNotContains(response, self.test_data['delete_label'])
         self.assertContains(response, _('Label deleted'))
@@ -47,7 +47,7 @@ class LabelTestCase(TestCase):
         self.client.force_login(self.login_user)
         label = Label.objects.get(name=self.test_data['used_label'])
         self.client.post(f'/labels/{label.id}/delete/',
-                    self.test_data['delete_used_label_data'])
+                         self.test_data['delete_used_label_data'])
         response = self.client.get('/labels/')
         self.assertContains(response, self.test_data['used_label'])
         self.assertContains(response, _("Can't delete label"))

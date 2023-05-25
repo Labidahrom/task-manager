@@ -18,7 +18,7 @@ class StatusTestCase(TestCase):
     def test_status_create(self):
         self.client.force_login(self.login_user)
         self.client.post('/statuses/create/',
-                    self.test_data['create_status_data'])
+                         self.test_data['create_status_data'])
         response = self.client.get('/statuses/')
         self.assertContains(response,
                             self.test_data["create_status_result"])
@@ -29,7 +29,7 @@ class StatusTestCase(TestCase):
         self.client.force_login(self.login_user)
         status = Status.objects.get(name=self.test_data['update_status'])
         self.client.post(f'/statuses/{status.id}/update/',
-                    self.test_data['update_status_data'])
+                         self.test_data['update_status_data'])
         response = self.client.get('/statuses/')
         self.assertContains(response, self.test_data['update_status_result'])
         self.assertContains(response, _('Status changed'))
@@ -38,7 +38,7 @@ class StatusTestCase(TestCase):
         self.client.force_login(self.login_user)
         status = Status.objects.get(name=self.test_data['delete_status'])
         self.client.post(f'/statuses/{status.id}/delete/',
-                    self.test_data['delete_status_data'])
+                         self.test_data['delete_status_data'])
         response = self.client.get('/statuses/')
         self.assertNotContains(response, self.test_data['delete_status'])
         self.assertContains(response, _('Status deleted'))
@@ -47,7 +47,7 @@ class StatusTestCase(TestCase):
         self.client.force_login(self.login_user)
         status = Status.objects.get(name=self.test_data['used_status'])
         self.client.post(f'/statuses/{status.id}/delete/',
-                    self.test_data['delete_used_status_data'])
+                         self.test_data['delete_used_status_data'])
         response = self.client.get('/statuses/')
         self.assertContains(response, self.test_data['used_status'])
         self.assertContains(response, _("Can't delete status"))
