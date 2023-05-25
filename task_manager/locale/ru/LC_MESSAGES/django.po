@@ -242,6 +242,14 @@ msgstr "Создать"
 msgid "Update status"
 msgstr "Изменение статуса"
 
+#: task_manager/templates/login_user.html:6
+msgid "Login user"
+msgstr "Вход"
+
+#: task_manager/templates/task/tasks_list.html:9
+msgid "Show"
+msgstr "Показать"
+
 #: task_manager/templates/update_task.html:5
 msgid "Update task"
 msgstr "Изменение задачи"

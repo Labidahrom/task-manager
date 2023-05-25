@@ -3,7 +3,7 @@
 {% block content %}
 {% load i18n %}
 <div class="container wrapper flex-grow-1">
-    <h1>Вход</h1>
+    <h1>{% translate "Login user" %}</h1>
     <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
         {% bootstrap_form form %}
