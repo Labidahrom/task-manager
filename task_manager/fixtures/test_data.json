@@ -1,8 +1,5 @@
 {
-  "login_data": {
-    "username": "12345reda",
-    "password": "wsd2349t"
-  },
+  "login_username": "12345reda",
   "create_status_data": {
     "name": "status1"
   },
@@ -70,10 +67,7 @@
     "username": "john2222",
     "password": "wsd2349t"
   },
-  "login_used_user_data": {
-    "username": "used_user",
-    "password": "wsd2349t"
-  },
+  "login_used_user_username": "used_user",
   "delete_user": "john2222",
   "used_user": "used_user", 
   "delete_user_data": {
