@@ -9,9 +9,3 @@ class Label(models.Model):
 
     def __str__(self):
         return self.name
-
-    def delete(self, *args, **kwargs):
-        if self.tasks.exists():
-            raise Exception(_('Cannot delete Label object '
-                            'with associated tasks'))
-        super().delete(*args, **kwargs)

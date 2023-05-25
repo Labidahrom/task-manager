@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from task_manager.labels.models import Label
 from task_manager.labels import forms
+# from django import forms
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from task_manager.mixins import LoginRequiredMixin
 from django.utils.translation import gettext as _
@@ -17,7 +18,6 @@ class LabelsListView(ListView):
 
 
 class CreateLabel(SuccessMessageMixin, CreateView):
-
     form_class = forms.LabelCreateForm
     template_name = 'label/create_label.html'
     success_url = reverse_lazy('labels_list')

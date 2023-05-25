@@ -79,7 +79,7 @@ class TaskFilter(django_filters.FilterSet):
     self_tasks = \
         django_filters.BooleanFilter(method='filter_by_authorized',
                                      widget=forms.CheckboxInput(),
-                                     label="Только свои задачи",
+                                     label=_("Only my tasks"),
                                      label_suffix='')
 
     class Meta:

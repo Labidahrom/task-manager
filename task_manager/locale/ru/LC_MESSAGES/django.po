@@ -306,6 +306,10 @@ msgstr "Задача успешно изменена"
 msgid "Task deleted"
 msgstr "Задача успешно удалена"
 
+#: task_manager/task/forms.py:65
+msgid "Only my tasks"
+msgstr "Только свои задачи"
+
 #: task_manager/user/views.py:28
 msgid "User created"
 msgstr "Пользователь успешно зарегистрирован"
