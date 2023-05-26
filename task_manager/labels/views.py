@@ -2,7 +2,6 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.urls import reverse_lazy
 from task_manager.labels.models import Label
-from task_manager.labels import forms
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from task_manager.mixins import LoginRequiredMixin
 from django.utils.translation import gettext as _
@@ -17,7 +16,8 @@ class LabelsListView(ListView):
 
 
 class CreateLabel(SuccessMessageMixin, CreateView):
-    form_class = forms.LabelCreateForm
+    model = Label
+    fields = ['name']
     template_name = 'label/create_label.html'
     success_url = reverse_lazy('labels_list')
     success_message = _('Label created')
@@ -25,7 +25,7 @@ class CreateLabel(SuccessMessageMixin, CreateView):
 
 class UpdateLabel(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Label
-    form_class = forms.LabelUpdateForm
+    fields = ['name']
     template_name = 'label/update_label.html'
     success_url = reverse_lazy('labels_list')
     success_message = _('Label changed')

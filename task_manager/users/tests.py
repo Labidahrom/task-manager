@@ -53,3 +53,8 @@ class UserTestCase(TestCase):
         response = self.client.get('/users/')
         self.assertContains(response, self.test_data['used_user'])
         self.assertContains(response, _("Can't delete used user"))
+
+    def test_create_already_exist_user(self):
+        response = self.client.post('/users/create/',
+                                    self.test_data['existed_user_data'])
+        self.assertContains(response, _("User already exist"))

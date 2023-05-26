@@ -51,3 +51,9 @@ class StatusTestCase(TestCase):
         response = self.client.get('/statuses/')
         self.assertContains(response, self.test_data['used_status'])
         self.assertContains(response, _("Can't delete status"))
+
+    def test_create_already_exist_status(self):
+        self.client.force_login(self.login_user)
+        response = self.client.post('/statuses/create/',
+                                    self.test_data['existed_status_data'])
+        self.assertContains(response, _("Status already exist"))

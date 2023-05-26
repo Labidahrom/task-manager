@@ -43,3 +43,9 @@ class TaskTestCase(TestCase):
         response = self.client.get('/tasks/')
         self.assertNotContains(response, self.test_data['delete_task'])
         self.assertContains(response, _('Task deleted'))
+
+    def test_create_already_exist_task(self):
+        self.client.force_login(self.login_user)
+        response = self.client.post('/tasks/create/',
+                                    self.test_data['existed_task_data'])
+        self.assertContains(response, _("Task already exist"))

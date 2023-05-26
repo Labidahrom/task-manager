@@ -13,6 +13,9 @@
   "update_status_message": "Статус успешно изменен",
   "delete_status": "test_status",
   "used_status": "used_status",
+  "existed_status_data": {
+    "name": "used_status"
+  },
   "delete_used_status_data": {
     "name": "used_status"
   },
@@ -35,6 +38,9 @@
   "update_label_message": "Метка успешно изменена",
   "delete_used_label_data": {
     "name": "used_label"
+  },
+  "existed_label_data": {
+  "name": "used_label"
   },  
   "delete_label": "test_label",
   "used_label": "used_label",
@@ -48,6 +54,13 @@
     "first_name": "john2",
     "last_name": "john2",
     "username": "john2222",
+    "password1": "wsd2349t",
+    "password2": "wsd2349t"
+  },
+  "existed_user_data": {
+    "first_name": "john2",
+    "last_name": "john2",
+    "username": "used_user",
     "password1": "wsd2349t",
     "password2": "wsd2349t"
   },
@@ -81,6 +94,12 @@
   "delete_used_user_message": "Невозможно удалить пользователя, потому что он используется",
   "create_task_data": {
     "name": "task4task",
+    "description": "john3 khkjhkjhkj kjhhh",
+    "executor": 2,
+    "status": 2
+  },
+  "existed_task_data": {
+    "name": "used_task",
     "description": "john3 khkjhkjhkj kjhhh",
     "executor": 2,
     "status": 2

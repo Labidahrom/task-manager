@@ -51,3 +51,9 @@ class LabelTestCase(TestCase):
         response = self.client.get('/labels/')
         self.assertContains(response, self.test_data['used_label'])
         self.assertContains(response, _("Can't delete label"))
+
+    def test_create_already_exist_label(self):
+        self.client.force_login(self.login_user)
+        response = self.client.post('/labels/create/',
+                                    self.test_data['existed_label_data'])
+        self.assertContains(response, _("Label already exist"))

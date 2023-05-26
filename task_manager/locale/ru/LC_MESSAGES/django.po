@@ -274,6 +274,10 @@ msgstr "Полное имя"
 msgid "Label created"
 msgstr "Метка успешно создана"
 
+#: task_manager/label/tests.py:60
+msgid "Label already exist"
+msgstr "Label с таким Имя уже существует."
+
 #: task_manager/label/views.py:39
 msgid "Label changed"
 msgstr "Метка успешно изменена"
@@ -289,6 +293,10 @@ msgstr "Метка успешно удалена"
 #: task_manager/status/views.py:19
 msgid "Status created"
 msgstr "Статус успешно создан"
+
+#: task_manager/status/tests.py:59
+msgid "Status already exist"
+msgstr "Status с таким Имя уже существует."
 
 #: task_manager/status/views.py:30
 msgid "Status changed"
@@ -325,6 +333,14 @@ msgstr "Пользователь успешно зарегистрирован"
 #: task_manager/user/views.py:46
 msgid "User changed"
 msgstr "Пользователь успешно изменен"
+
+#: task_manager/user/tests.py:52
+msgid "User already exist"
+msgstr "Пользователь с таким именем уже существует."
+
+#: task_manager/tasks/tests.py:51
+msgid "Task already exist"
+msgstr "Task с таким Имя уже существует."
 
 #: task_manager/user/views.py:41
 #: task_manager/user/views.py:58

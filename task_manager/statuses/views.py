@@ -2,7 +2,6 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.urls import reverse_lazy
 from task_manager.statuses.models import Status
-from task_manager.statuses import forms
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from task_manager.mixins import LoginRequiredMixin
 from django.utils.translation import gettext as _
@@ -17,7 +16,8 @@ class StatusesListView(ListView):
 
 
 class CreateStatus(SuccessMessageMixin, CreateView):
-    form_class = forms.StatusCreateForm
+    model = Status
+    fields = ['name']
     template_name = 'status/create_status.html'
     success_url = reverse_lazy('statuses_list')
     success_message = _('Status created')
@@ -25,7 +25,7 @@ class CreateStatus(SuccessMessageMixin, CreateView):
 
 class UpdateStatus(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Status
-    form_class = forms.StatusUpdateForm
+    fields = ['name']
     template_name = 'status/update_status.html'
     success_url = reverse_lazy('statuses_list')
     success_message = _('Status changed')
