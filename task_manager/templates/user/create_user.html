@@ -4,8 +4,6 @@
 {% load i18n %}
 <div class="container wrapper flex-grow-1">
     <h1>{% translate "Register User" %}</h1>
-
-
 <form method="post" action="{% url 'user_create' %}">
     {% csrf_token %}
     {% bootstrap_form form %}

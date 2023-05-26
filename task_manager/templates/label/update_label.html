@@ -4,15 +4,6 @@
 {% load i18n %}
 <div class="container wrapper flex-grow-1">
     <h1>{% translate "Update label" %}</h1>
-{% if form.subject.errors %}
-<div>
-    <ul>
-    {% for error in form.subject.errors %}
-        <li><strong>{{ error|escape }}</strong></li>
-    {% endfor %}
-    </ul>
-</div>
-{% endif %}
 <form action="{% url 'label_update' pk=label.id %}" method="post">
     {% csrf_token %}
     {% bootstrap_form form %}
