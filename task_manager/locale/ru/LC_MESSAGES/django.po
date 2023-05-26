@@ -346,7 +346,11 @@ msgstr "Task с таким Имя уже существует."
 #: task_manager/user/views.py:58
 #: task_manager/user/views.py:66
 msgid "Can't edit user"
-msgstr "Вы не можете редактировать этого пользователя"
+msgstr "У вас нет прав для изменения другого пользователя."
+
+#: task_manager/user/views.py:40
+msgid "Can't delete user"
+msgstr "У вас нет прав для удаления другого пользователя."
 
 #: task_manager/user/views.py:70
 msgid "Can't delete used user"

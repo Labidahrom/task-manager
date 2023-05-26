@@ -23,19 +23,21 @@ class CreateUser(SuccessMessageMixin, CreateView):
     success_message = _('User created')
 
 
-class UpdateUser(SuccessMessageMixin, UserRequiredMixin,
-                 LoginRequiredMixin, UpdateView):
+class UpdateUser(SuccessMessageMixin, LoginRequiredMixin,
+                 UserRequiredMixin, UpdateView):
     model = User
     form_class = forms.UserUpdateForm
     template_name = 'user/update_user.html'
     success_url = reverse_lazy('users_list')
     success_message = _('User changed')
+    permission_denied_message = _("Can't edit user")
 
 
 class DeleteUser(LoginRequiredMixin, UserRequiredMixin, DeleteView):
     model = User
     template_name = 'user/delete_user.html'
     success_url = reverse_lazy('users_list')
+    permission_denied_message = _("Can't delete user")
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
