@@ -7,7 +7,7 @@ from django.views.decorators.cache import never_cache
 from django.utils.decorators import method_decorator
 from django.utils.translation import gettext as _
 from django.contrib.messages.views import SuccessMessageMixin
-from task_manager.users.forms import LoginForm
+from django.contrib.auth.forms import AuthenticationForm
 
 
 def index(request):
@@ -18,7 +18,7 @@ class LoginUser(SuccessMessageMixin, LoginView):
     template_name = 'login_user.html'
     next_page = reverse_lazy('index')
     success_message = _('You logged in')
-    form_class = LoginForm
+    form_class = AuthenticationForm
 
 
 class LogoutUser(LogoutView):
